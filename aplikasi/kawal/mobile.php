@@ -19,7 +19,7 @@ class Mobile extends Kawal
 		$this->papar->server = $_SERVER['SERVER_NAME'];
 
 		// pergi papar kandungan
-		$this->papar->baca('index/');
+		$this->papar->baca('ruangtamu/mobile');
 	}
 		
 }
