@@ -54,8 +54,7 @@ class Papar
 			require PAPAR . '/diatas-jqm.php';
 			//require PAPAR . '/menu_atas.php';
 			require $paparFail;
-			require PAPAR . '/dibawah-jqm.php';	
-			
+			require PAPAR . '/dibawah-jqm.php';
 		}
 		elseif ($noInclude == true) 
 		{
