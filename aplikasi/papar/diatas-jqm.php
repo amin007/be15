@@ -19,3 +19,7 @@
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
+<div data-role="page" id="home">
+	<div data-role="header">
+		<h1><?php echo !isset($tajuk) ? 'Kosong':$tajuk; ?></h1>
+	</div>
