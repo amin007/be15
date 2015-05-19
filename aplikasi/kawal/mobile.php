@@ -6,7 +6,7 @@ class Mobile extends Kawal
 	function __construct() 
 	{
 		parent::__construct();
-        Kebenaran::kawalMasuk();		
+        //Kebenaran::kawalMasuk();		
 	}
 	
 	function index() 
