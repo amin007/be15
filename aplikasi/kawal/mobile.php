@@ -15,4 +15,10 @@ class Mobile extends Kawal
 		$this->papar->baca('ruangtamu/mobile');
 	}
 		
+	function icon() 
+	{
+		// pergi papar kandungan
+		$this->papar->baca('ruangtamu/iconjqm');
+	}
+
 }
