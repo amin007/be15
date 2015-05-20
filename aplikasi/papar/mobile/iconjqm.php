@@ -63,7 +63,7 @@ $icons = array(
 <?php foreach ($icons as $key => $value) : ?>			
 			<tr>
 			<td><a href="#" class="ui-btn ui-icon-<?php echo $key ?> ui-btn-icon-left"><?php echo $key ?></a></td>
-			<td><?php echo $value ?></td>
+			<td><?php echo $key . ' | ' . $value ?></td>
 			</tr>
 <?php endforeach; ?>
 			</table>
