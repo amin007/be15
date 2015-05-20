@@ -51,7 +51,7 @@ class Papar
 			Mulakan::failPaparTidakWujud();
 		}
 		//elseif (in_array($nama,$cariJQM)) 
-		elseif ( $namafail[0]=='mobile')) 
+		elseif ( $namafail[0]=='mobile')
 		{
 			require PAPAR . '/diatas-jqm.php';
 			require $paparFail;
