@@ -33,5 +33,4 @@ $linkJS = $_SERVER['SERVER_NAME'] . '/private_html/js/jquery/mobile';
 			<input type="search" name="cariNama" id="cariNama" 
 			placeholder="Cari Newss/Nama" data-clear-btn="true">
 		</form>
-
 	</div>
