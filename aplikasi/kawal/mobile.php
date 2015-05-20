@@ -11,6 +11,7 @@ class Mobile extends Kawal
 	
 	function index() 
 	{
+		//echo 'class Mobile::index() extends Kawal <br>';
 		// pergi papar kandungan
 		$this->papar->baca('ruangtamu/mobile');
 	}
