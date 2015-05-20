@@ -60,7 +60,6 @@ class Mobile extends Kawal
 	
 	function paparData($cariID)
 	{
-
         // senaraikan tatasusunan jadual dan setkan pembolehubah
         $jadualKawalan = 'mfg15_pom';
         $medanKawalan = 'newss,concat_ws("|",nama,operator) nama,'
