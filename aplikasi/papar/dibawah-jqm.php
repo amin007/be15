@@ -16,12 +16,13 @@ echo $theme = (isset($theme)) ? $theme : null;
 ?>
 	<div data-role="footer">
 		<h4>&copy; Hak Cipta Terperihara 2014. </h4>
-		<span>
+		<p><span>
 		Theme <?php
-$theme = ($pilih==null) ? 'Asal Bootstrap Twitter' : $pilih;
+$pilih = ( isset($pilih) ) ? $pilih : null;
+$theme = ($pilih==null) ? 'Asal Jquery Mobile' : $pilih;
 echo $theme = (isset($theme)) ? $theme : null;
 ?>
-		</span>
+		</span></p>
 	</div>
 </div>
 
