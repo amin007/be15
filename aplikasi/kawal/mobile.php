@@ -33,23 +33,22 @@ class Mobile extends Kawal
 		// pergi papar kandungan
 		$this->papar->baca('mobile/carinama');
 	}
-
+// function yang bukan dicapai secara terus dari URL	
 	function carian() 
 	{
-		//$cariNama = $this->semakData(bersih($_POST['cariNama']));
-		$cariNama = $_POST['cariNama'];
+		$cariNama = $this->semakData(bersih($_POST['cariNama']));
+		$cariNama = $this->semakData(bersih($_POST['cariNama']));
 		
-		echo (is_numeric($cariNama)) ?
-			"{$cariNama} adalah newss"
-			: "{$cariNama} adalah nama";
-		// pergi papar kandungan
-		//$this->papar->baca('mobile/cari');
+		$carian = (is_numeric($cariNama)) ?
+			"newss:{$cariNama}"	: "nama:{$cariNama}";
+		//*/
+		echo $carian;
 	}
-// function yang bukan dicapai secara terus dari URL	
+
 	function semakData($cariNama) 
 	{	
 		if (is_numeric($cariNama)):
-			$carian = $cariNama;
+			$carian = str_pad($cariNama, 12, "0", STR_PAD_LEFT);
 		else:
 			$carian = $cariNama;
 		endif;
@@ -58,7 +57,7 @@ class Mobile extends Kawal
 		
 	}
 	
-	function cariDB($cariNama)
+	function paparData($cariNama)
 	{
 
 
