@@ -41,7 +41,7 @@ class Papar
         echo '$failPapar=<pre>'; print_r($failPapar) . '</pre><br>';
 		echo '$paparFail->' . $paparFail . '<br>';
 		//*/
-		
+
 		$cariNama = array ('index/index', 'index/login',
 		'index/login_automatik','index/daftar','index/muar');
 
@@ -49,7 +49,7 @@ class Papar
 		{
 			Mulakan::failPaparTidakWujud();
 		}
-		elseif ($nama == 'mobile') 
+		elseif ($namafail[1] == 'mobile') 
 		{
 			require PAPAR . '/diatas-jqm.php';
 			//require PAPAR . '/menu_atas.php';
