@@ -12,13 +12,13 @@ class Mobile extends Kawal
 	function index() 
 	{//echo 'class Mobile::index() extends Kawal <br>';
 		// pergi papar kandungan
-		$this->papar->baca('ruangtamu/mobile');
+		$this->papar->baca('mobile/mobile');
 	}
 		
 	function icon() 
 	{
 		// pergi papar kandungan
-		$this->papar->baca('ruangtamu/iconjqm');
+		$this->papar->baca('mobile/iconjqm');
 	}
 
 }
