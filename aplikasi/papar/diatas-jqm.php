@@ -29,4 +29,9 @@ $linkJS = $_SERVER['SERVER_NAME'] . '/private_html/js/jquery/mobile';
 	<div data-role="header">
 		<h1><?php echo !isset($tajuk) ? 'Kosong':$tajuk; ?></h1><?php 
 		echo "\n"; include 'menubar-jqm.php'; echo "\n"; ?>
+		<form method="post" action="#">
+			<input type="search" name="cariNama" id="cariNama" 
+			placeholder="Cari Newss/Nama" data-clear-btn="true">
+		</form>
+
 	</div>
