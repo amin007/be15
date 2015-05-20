@@ -1,18 +1,18 @@
 <!-- Footer
 ================================================== -->
-	<div data-role="footer">
+	<div data-role="footer" style="text-align:center;">
 		<h4>&copy; Hak Cipta Terperihara 2014. </h4>
-		<p><span>
+		<span>
 		Theme <?php
 $pilih = ( isset($pilih) ) ? $pilih : null;
 $theme = ($pilih==null) ? 'Asal Jquery Mobile' : $pilih;
 echo $theme = (isset($theme)) ? $theme : null;
 ?>
-		</span></p>
+		</span>
 	</div>
 </div>
 
-<?php require 'jquery.php'; ?>
+<?php //require 'jquery.php'; ?>
 
 </body>
 </html>
