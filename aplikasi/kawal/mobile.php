@@ -42,8 +42,9 @@ class Mobile extends Kawal
 		$cari1 = (is_numeric($cariNama)) ?
 			"newss:{$cariNama}"	: "nama:{$cariNama}";
 		
-		$carian = $cari1 . '<br>' . $paparData;
+		$carian = $cari1 . '<br>';
 		echo $carian;
+		
 	}
 
 	function semakData($cariNama) 
@@ -61,7 +62,7 @@ class Mobile extends Kawal
 	function paparData($cariID)
 	{
         // senaraikan tatasusunan jadual dan setkan pembolehubah
-        $jadualKawalan = 'mfg15_pom';
+        $jadualKawalan = 'mfg15_kawal';
         $medanKawalan = 'newss,concat_ws("|",nama,operator) nama,'
 			//. '( if (hasil is null, "", '
 			/*. ' concat_ws("|",' . "\r"
@@ -73,7 +74,7 @@ class Mobile extends Kawal
 			. ' 	concat_ws("="," stok akhir",format(stok,0))' . "\r"
  			. ' ) as data5P,'//*/
 			. 'fe,respon,'		
-			. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat,' . "\r"
+			//. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat,' . "\r"
 			. 'concat_ws("-",kp,msic2008) keterangan' 
 			. '';
         $this->papar->kesID = array();
@@ -92,7 +93,7 @@ class Mobile extends Kawal
 				// 1.1 ambil nilai msic & msic08
 				//$msic00 = $this->papar->kawalan['kes'][0]['msic'];
 				$newss = $this->papar->kawalan['kes'][0]['newss'];
-				$msic = $this->papar->kawalan['kes'][0]['msic2008'];
+				$msic = $this->papar->kawalan['kes'][0]['keterangan'];
 				//326-46312  substr("abcdef", 0, -1);  // returns "abcde"
 				$msic08 = substr($msic, 4);  // returns "46312"
 				$cariM6[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'msic','apa'=>$msic08);
@@ -125,6 +126,57 @@ class Mobile extends Kawal
             $this->papar->carian='[tiada id diisi]';
         }
 
-
+	}
+	
+	function cetakData()
+	{
+		foreach ($this->cariApa as $myTable => $row)
+		{
+			if ( count($row)==0 )
+				echo '';
+			else
+			{
+####################################################################################################################
+				?>	<!-- Jadual <?php echo $myTable ?> ########################################### -->	
+				<table border="1" class="excel" id="example"><?php
+				$printed_headers = false; // mula bina jadual
+				#-----------------------------------------------------------------
+				for ($kira=0; $kira < count($row); $kira++)
+				{	//print the headers once: 	
+					if ( !$printed_headers ) 
+					{
+						?><thead><tr><th>#</th><?php
+						foreach ( array_keys($row[$kira]) as $tajuk ) 
+						{	
+							if ($tajuk=='newss'):
+								?><th colspan=1><?php echo $tajuk ?></th><?php 
+							else:
+								?><th><?php echo $tajuk ?></th><?php
+							endif;
+						}
+						?></tr></thead><?php
+						$printed_headers = true; 
+					} 
+				#-----------------------------------------------------------------		 
+					//print the data row 
+					?><tbody><tr><td><?php echo $kira+1 ?></td><?php
+					foreach ( $row[$kira] as $key=>$data ) 
+					{		
+						if ($key=='newss')
+						{
+							$k1 = URL . 'kawalan/ubah/' . $data;
+							/*?><td><a target="_blank" href="<?php echo $k1 ?>" class="btn btn-primary btn-mini">Ubah</a></td><?php*/
+							?><td><?php echo $data ?></td><?php
+						}
+						else
+							?><td><?php echo $data ?></td><?php
+					} 
+					?></tr></tbody><?php
+				}// endfor
+				#-----------------------------------------------------------------
+				?></table><?php
+####################################################################################################################
+			}// end iff
+		} // end foreach
 	}
 }
