@@ -42,7 +42,8 @@ class Mobile extends Kawal
 		$cari1 = (is_numeric($cariNama)) ?
 			"newss:{$cariNama}"	: "nama:{$cariNama}";
 		
-		$carian = $cari1 . '<br>';
+		$carian  = null; //$cari1; 
+		$carian .= json_encode($this->papar->kawalan);
 		echo $carian;
 		
 	}
@@ -62,8 +63,9 @@ class Mobile extends Kawal
 	function paparData($cariID)
 	{
         // senaraikan tatasusunan jadual dan setkan pembolehubah
-        $jadualKawalan = 'mfg15_kawal';
-        $medanKawalan = 'newss,concat_ws("|",nama,operator) nama,'
+        $jadualKawalan = 'msic2008';//'mfg15_kawal';
+        $medanKawalan = '*'
+			//.'newss,concat_ws("|",nama,operator) nama,'
 			//. '( if (hasil is null, "", '
 			/*. ' concat_ws("|",' . "\r"
 			. ' 	concat_ws("="," hasil",format(hasil,0)),' . "\r"
@@ -73,9 +75,9 @@ class Mobile extends Kawal
 			. ' 	concat_ws("="," staf",format(staf,0)),' . "\r"
 			. ' 	concat_ws("="," stok akhir",format(stok,0))' . "\r"
  			. ' ) as data5P,'//*/
-			. 'fe,respon,'		
+			//. 'fe,respon,'		
 			//. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat,' . "\r"
-			. 'concat_ws("-",kp,msic2008) keterangan' 
+			//. 'concat_ws("-",kp,msic2008) keterangan' 
 			. '';
         $this->papar->kesID = array();
 
@@ -83,7 +85,8 @@ class Mobile extends Kawal
         {
             //echo '$id:' . $id . '<br>';
             $this->papar->carian='newss';
-			$cari[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'newss','apa'=>$cariID);
+			//$cari[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'newss','apa'=>$cariID);
+			$cari[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'keterangan','apa'=>$cariID);
         
             // 1. mula semak dalam rangka 
             $this->papar->kawalan['kes'] = $this->tanya->
@@ -96,8 +99,8 @@ class Mobile extends Kawal
 				$msic = $this->papar->kawalan['kes'][0]['keterangan'];
 				//326-46312  substr("abcdef", 0, -1);  // returns "abcde"
 				$msic08 = substr($msic, 4);  // returns "46312"
-				$cariM6[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'msic','apa'=>$msic08);
-			
+				//$cariM6[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'msic','apa'=>$msic08);
+			/*
 				// 1.2 cari nilai msic & msic08 dalam jadual msic2008
 				$jadualMSIC = dpt_senarai('msicbaru');
 				// mula cari $cariID dalam $jadual
@@ -107,7 +110,7 @@ class Mobile extends Kawal
 					$jadualPendek = substr($msic, 16);
 					//echo "\$jadualPendek=$jadualPendek<br>";
 					// senarai nama medan
-					if($jadualPendek=='msic2008') /*bahagian B,kumpulan K,kelas Kls,*/
+					if($jadualPendek=='msic2008') //bahagian B,kumpulan K,kelas Kls,
 						$medanM6 = 'seksyen S,msic2000,msic,keterangan,notakaki';
 					elseif($jadualPendek=='msic2008_asas') 
 						$medanM6 = 'msic,survey kp,keterangan,keterangan_en';
@@ -118,6 +121,7 @@ class Mobile extends Kawal
 					$this->papar->_cariIndustri[$jadualPendek] = $this->tanya->
 						cariSemuaData($msic, $medanM6, $cariM6);
 				}// tamat ulang table
+			//*/
 			endif;
 		
 		}
