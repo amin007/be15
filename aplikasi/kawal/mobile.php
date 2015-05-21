@@ -37,7 +37,8 @@ class Mobile extends Kawal
 	function carian() 
 	{
 		$cariNama = $this->semakData(bersih($_POST['cariNama']));
-		$paparData = $this->paparData($cariNama);
+		//$paparData = $this->paparData($cariNama);
+		$paparData = $this->paparMSIC($cariNama);
 		
 		$cari1 = (is_numeric($cariNama)) ?
 			"newss:{$cariNama}"	: "nama:{$cariNama}";
@@ -58,6 +59,28 @@ class Mobile extends Kawal
 	
 		return $carian;
 		
+	}
+	
+	function paparMSIC($cariID)
+	{
+		$jadual = dpt_senarai('msicbaru');
+		$cari[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'keterangan','apa'=>$cariID);
+		// mula cari $cariID dalam $jadual
+		foreach ($jadual as $key => $namaPanjang)
+		{// mula ulang table
+			//$rest = substr("abcdef", 2, -1);  // returns "cde"
+			$myTable = substr($namaPanjang, 16);  
+			// senarai nama medan
+			$medan = ($myTable=='msic2008') ? 
+				'seksyen S,bahagian B,kumpulan Kpl,kelas Kls,' .
+				'msic2000,msic,keterangan,notakaki' 
+				: '*'; 
+			
+			$this->papar->kawalan['kes'] = $this->tanya->
+				cariSemuaData($myTable, $medan, $cari);
+
+		}// tamat ulang table
+
 	}
 	
 	function paparData($cariID)
