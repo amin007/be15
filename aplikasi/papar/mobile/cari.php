@@ -41,5 +41,5 @@
 		</div>
 
 		</form>
-		<a href="<?php echo URL ?>mobile/cariNama" data-icon="grid">Cari nama</a>
+		<a href="<?php echo URL ?>mobile/carinama" data-icon="grid">Cari nama</a>
 	</div>
