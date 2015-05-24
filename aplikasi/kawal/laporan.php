@@ -503,20 +503,21 @@ class Laporan extends Kawal
 		$this->papar->baca('laporan/f3all', 1);
 	}
 // SEMUA
-	public function cetakf3semua($cariBatch, $item = 30, $ms = 1)
+	public function cetakf3semua($cariBatch, $item = 30, $baris = 31)
 	{
 		# kiraKes dulu
+		$ms = 1;
 		$jadual = 'sse15_kawal';
 		$carian[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 		$bilSemua = $this->tanya->kiraKes($jadual, $medan = '*', $carian);
 		# tentukan bilangan mukasurat. bilangan jumlah rekod
 		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 		$jum = pencamSqlLimit($bilSemua, $item, $ms);
-		$susun[] = array_merge($jum, array('kumpul'=>null, 'susun'=>'kp, nama ASC' ) );
+		$susun[] = array_merge($jum, array('kumpul'=>null, 'susun'=>'bandar,kp, nama ASC' ) );
 		# kumpul respon
 		$kumpul = $this->tanya->kumpulRespon('kod','f2','respon',
 			$medan = "concat_ws('<br>Operator:',nama,operator) nama, concat_ws('-',kp,sv,nama_kp) as 'sv', "
-				. " '' as utama, newss, nota",
+				. " '' as utama, newss, concat_ws('|',bandar,nota) as nota",
 			$jadual,$carian,$susun);
 		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
 		$this->papar->kiraSemuaBaris = $bilSemua;
