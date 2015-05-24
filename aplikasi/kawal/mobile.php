@@ -76,7 +76,7 @@ class Mobile extends Kawal
 				'msic2000,msic,keterangan,notakaki' 
 				: '*'; 
 			
-			$this->papar->kawalan['kes'] = $this->tanya->
+			$this->papar->kawalan[$myTable] = $this->tanya->
 				cariSemuaData($myTable, $medan, $cari);
 
 		}// tamat ulang table
