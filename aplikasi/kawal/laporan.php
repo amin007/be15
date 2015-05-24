@@ -432,13 +432,13 @@ class Laporan extends Kawal
 		//$this->papar->baca('kawalan/batchsemak_cetak', 1);
 		$this->papar->baca('laporan/f3', 1);
 	}
-
-	public function cetakf3semua($cariBatch, $item = 30, $ms = 1)
+//PEMBUATAN
+	public function cetakf3mfg($cariBatch, $item = 30, $ms = 1)
 	{
 		# kiraKes dulu
-		//$jadual = 'cdt_pom_baki';
 		$jadual = 'sse15_kawal';
 		$carian[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+		$carian[] = array('fix'=>'zin','atau'=>'AND','medan'=>'kp','apa'=>'("205","800")');
 		$bilSemua = $this->tanya->kiraKes($jadual, $medan = '*', $carian);
 		# tentukan bilangan mukasurat. bilangan jumlah rekod
 		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
@@ -455,6 +455,76 @@ class Laporan extends Kawal
 		$this->papar->ms = $ms;	
 		$this->papar->hasil = $kumpul['kiraData'];
 		$this->papar->fe = $cariBatch;
+		$this->papar->sv = 'MFG';
+		$this->papar->halaman = halaman($jum);
+
+		# Set pemboleubah utama
+        $this->papar->pegawai = senarai_kakitangan();
+        $this->papar->lokasi = 'CDT 2014 - Ubah';
+		
+		 # pergi papar kandungan
+		//echo '<br>location: ' . URL . "batchawal/semak/$cariBatch/$dataID" . '';
+		//$this->papar->baca('kawalan/batchsemak_cetak', 1);
+		$this->papar->baca('laporan/f3all', 1);
+	}
+// PERKHIDMATAN
+	public function cetakf3ppt($cariBatch, $item = 30, $ms = 1)
+	{
+		# kiraKes dulu
+		$jadual = 'sse15_kawal';
+		$carian[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+		$carian[] = array('fix'=>'xlike','atau'=>'AND','medan'=>'kp','apa'=>'205');
+		$bilSemua = $this->tanya->kiraKes($jadual, $medan = '*', $carian);
+		# tentukan bilangan mukasurat. bilangan jumlah rekod
+		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
+		$jum = pencamSqlLimit($bilSemua, $item, $ms);
+		$susun[] = array_merge($jum, array('kumpul'=>null, 'susun'=>'kp,nama ASC' ) );
+		# kumpul respon
+		$kumpul = $this->tanya->kumpulRespon('kod','f2','respon',
+			$medan = "concat_ws('<br>Operator:',nama,operator) nama, concat_ws('-',kp,sv,nama_kp) as 'sv', "
+				. " '' as utama, newss, nota",
+			$jadual,$carian,$susun);
+		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
+		$this->papar->kiraSemuaBaris = $bilSemua;
+		$this->papar->item = $item;
+		$this->papar->ms = $ms;	
+		$this->papar->hasil = $kumpul['kiraData'];
+		$this->papar->fe = $cariBatch;
+		$this->papar->sv = 'SERVIS';
+		$this->papar->halaman = halaman($jum);
+
+		# Set pemboleubah utama
+        $this->papar->pegawai = senarai_kakitangan();
+        $this->papar->lokasi = 'CDT 2014 - Ubah';
+		
+		 # pergi papar kandungan
+		//echo '<br>location: ' . URL . "batchawal/semak/$cariBatch/$dataID" . '';
+		//$this->papar->baca('kawalan/batchsemak_cetak', 1);
+		$this->papar->baca('laporan/f3all', 1);
+	}
+// SEMUA
+	public function cetakf3semua($cariBatch, $item = 30, $ms = 1)
+	{
+		# kiraKes dulu
+		$jadual = 'sse15_kawal';
+		$carian[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+		$bilSemua = $this->tanya->kiraKes($jadual, $medan = '*', $carian);
+		# tentukan bilangan mukasurat. bilangan jumlah rekod
+		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
+		$jum = pencamSqlLimit($bilSemua, $item, $ms);
+		$susun[] = array_merge($jum, array('kumpul'=>null, 'susun'=>'kp, nama ASC' ) );
+		# kumpul respon
+		$kumpul = $this->tanya->kumpulRespon('kod','f2','respon',
+			$medan = "concat_ws('<br>Operator:',nama,operator) nama, concat_ws('-',kp,sv,nama_kp) as 'sv', "
+				. " '' as utama, newss, nota",
+			$jadual,$carian,$susun);
+		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
+		$this->papar->kiraSemuaBaris = $bilSemua;
+		$this->papar->item = $item;
+		$this->papar->ms = $ms;	
+		$this->papar->hasil = $kumpul['kiraData'];
+		$this->papar->fe = $cariBatch;
+		$this->papar->sv = 'SSE';
 		$this->papar->halaman = halaman($jum);
 
 		# Set pemboleubah utama
