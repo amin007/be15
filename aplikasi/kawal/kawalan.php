@@ -57,7 +57,7 @@ class Kawalan extends Kawal
 			. ' 	concat_ws("="," staf",staf),' . "\r"
 			. ' 	concat_ws("="," stok akhir",stok)' . "\r"
  			. ' ) as mko5P,'
-			. 'concat_ws(" | kp= ",ssm,nama_kp) as nossm,' . "\r"
+			. 'concat_ws(" | ",ssm,kp,sv,nama_kp) as nossm,' . "\r"
 			. 'respon,nota,nota_prosesan,fe,'		
 			. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat,' . "\r"
 			//. 'no,batu,jalan,tmn_kg,dp_baru,' . "\r"
