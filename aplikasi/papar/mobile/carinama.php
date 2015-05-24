@@ -28,20 +28,6 @@ $(document).ready(function()
 	});
 });
 /////////////////////////////////////////////////////////////////////
-// papar jadual
-$.getJSON('<?php echo URL ?>mobile/carian', function(data) 
-{
-	var output = "<table border=1>";
-	for (var i in data.kes) 
-	{
-		output += "<tr><td>" 
-		+ data.kes[i].msic + "</td><td>" 
-		+ data.kes[i].keterangan + "" 
-		+ "</td></tr>";
-	}
-	output += "</table>";
-	document.getElementById("jadual").innerHTML=output;
-});
 </script>
 <!-- mula page content -->
 	<div data-role="content" class="ui-content" role="main">
@@ -50,7 +36,5 @@ $.getJSON('<?php echo URL ?>mobile/carian', function(data)
 			<input type="search" name="cariNama" data-mini="true" data-theme="c" class="search-header" />
 			<button data-theme="b" id="submit" type="submit" class="ui-btn-hidden" aria-disabled="false">Submit</button>
 			<h3 id="nota"></h3>
-		</form>
-		<div id="jadual"></div>
-		
+		</form>	
 	</div>
