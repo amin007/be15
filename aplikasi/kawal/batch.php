@@ -140,7 +140,7 @@ class Batch extends Kawal
 				# tentukan bilangan mukasurat. bilangan jumlah rekod
 				//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 				$jum = pencamSqlLimit($bilSemua, $item, $ms);
-				$cantumSusun[] = array_merge($jum, array('kumpul'=>null,'susun'=>'fe DESC,respon DESC,nama') );
+				$cantumSusun[] = array_merge($jum, array('kumpul'=>null,'susun'=>'kp DESC,respon DESC,nama') );
 				$this->papar->bilSemua[$myTable] = $bilSemua;
 				# sql guna limit //$this->papar->cariApa = array();
 				$this->papar->cariApa[$myTable] = $this->tanya->
@@ -157,7 +157,7 @@ class Batch extends Kawal
 			$jadualGroup = $senaraiJadual[0];
 			
 			# sql semula
-			$carian[] = array('fix'=>'x=','atau'=>'AND','medan'=>'kp','apa'=>'205');
+			$carian[] = array('fix'=>'zin','atau'=>'AND','medan'=>'kp','apa'=>'("205","800")');
 			$this->papar->cariApa['mfg'] = $this->tanya->
 				kesBatchAwal($jadualGroup, $medan, $carian, $susun2);
 			# sql semula untuk cdtmdt
@@ -171,7 +171,13 @@ class Batch extends Kawal
 			# sql semula
 			$this->papar->cariApa['kiraBatchAwal'] = $this->tanya->
 				cariGroup($jadualGroup, $medan = 'fe, count(*) as kira', $carian = null, $susun3);
-
+			# buat group ikut pembuatan / perkhidmtan
+			$susun4[] = array_merge($jum2, array('kumpul'=>'kp,sv,nama_kp','susun'=>'kp,sv,nama_kp') );
+			# sql semula
+			$cariGroup[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$this->papar->cariApa['kiraKP' . $cariBatch] = $this->tanya->
+				cariGroup($jadualGroup, $medan = 'kp,sv,nama_kp, count(*) as kira', $cariGroup, $susun4);
+			
         # semak pembolehubah $this->papar->cariApa
         //echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
 
