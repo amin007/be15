@@ -155,16 +155,17 @@ class Batch extends Kawal
 			$jum2 = pencamSqlLimit(300, $item, $ms);
 			$susun2[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'nama') );
 			$jadualGroup = $senaraiJadual[0];
-			/*
+			
 			# sql semula
-			$carian[] = array('fix'=>'xnull','atau'=>'AND','medan'=>'mdt','apa'=>'-');
-			$this->papar->cariApa['batchAwalnullMdt'] = $this->tanya->
+			$carian[] = array('fix'=>'x=','atau'=>'AND','medan'=>'kp','apa'=>'205');
+			$this->papar->cariApa['mfg'] = $this->tanya->
 				kesBatchAwal($jadualGroup, $medan, $carian, $susun2);
 			# sql semula untuk cdtmdt
-			$cariMDTCDT[] = array('fix'=>'xnull','atau'=>'WHERE','medan'=>'mdt','apa'=>'-');
-			$this->papar->cariApa['cdtMdt'] = $this->tanya->
-				kesBatchAwal($jadualGroup, $medan, $cariMDTCDT, $susun2);
-			//*/
+			$cariPPT[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$cariPPT[] = array('fix'=>'x!=','atau'=>'and','medan'=>'kp','apa'=>'205');
+			$this->papar->cariApa['ppt'] = $this->tanya->
+				kesBatchAwal($jadualGroup, $medan, $cariPPT, $susun2);
+			
 			# buat group ikut fe
 			$susun3[] = array_merge($jum2, array('kumpul'=>'fe','susun'=>'fe') );
 			# sql semula
