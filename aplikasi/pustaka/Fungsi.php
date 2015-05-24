@@ -279,6 +279,7 @@ function paparJadualF3_TajukBesar($allRows,$rows,$fields,$kodsv,$nama_penyelia,$
 		case 'CDT': $SV='BANCI PERDAGANGAN EDARAN'; break;
 		case 'MM':  $SV='PENYIASATAN PEMBUATAN BULANAN'; break;
 		case 'QSS': $SV='PENYIASATAN PERKHIDMATAN SUKU TAHUNAN'; break;
+		case 'SSE':  $SV='PENYIASATAN TAHUNAN'; break;
 		case 'MFG':  $SV='PENYIASATAN PEMBUATAN TAHUNAN'; break;
 		case 'SERVIS':  $SV='PENYIASATAN PERKHDIMATAN TAHUNAN'; break;
 		case 'PPPMAS':  $SV='PENYIASATAN PERBELANJAAN UNTUK PELINDUNGAN ALAM SEKITAR'; break;
