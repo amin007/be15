@@ -96,9 +96,8 @@ class Kawalan extends Kawal
 				// mula cari $cariID dalam $jadual
 				foreach ($jadualMSIC as $m6 => $msic)
 				{// mula ulang table
-					//echo "\$msic=$msic|";
 					$jadualPendek = substr($msic, 16);
-					//echo "\$jadualPendek=$jadualPendek<br>";
+					//echo "\$msic=$msic|\$jadualPendek=$jadualPendek<br>";
 					// senarai nama medan
 					if($jadualPendek=='msic2008') /*bahagian B,kumpulan K,kelas Kls,*/
 						$medanM6 = 'seksyen S,msic2000,msic,keterangan,notakaki';
