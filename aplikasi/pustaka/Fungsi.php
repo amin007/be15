@@ -271,8 +271,11 @@ function halaman($jum)
 }// function halaman() - tamat
 
 // cetakF3
-function paparJadualF3_TajukBesar($allRows,$rows,$fields,$kodsv,$nama_penyelia,$nama_pegawai,$item,$ms)
+function paparJadualF3_TajukBesar($allRows,$rows,$fields,$kodsv,$namaOrg,$item,$ms)
 {
+	#pecah pembolehubah $nama orang
+	$nama_penyelia = $namaOrg['penyelia'];
+	$nama_pegawai = $namaOrg['pegawai'];
 	## tajuk besar
 	switch ($kodsv):
 		case 'MDT': $SV='PENYIASATAN PERDAGANGAN EDARAN BULANAN'; break;
@@ -320,17 +323,17 @@ function paparJadualF3_TajukBesar($allRows,$rows,$fields,$kodsv,$nama_penyelia,$
 
 }
 
-function paparJadualF3_TajukMedan($sv,$nama_penyelia,$nama_pegawai,$allRows,$rows,$fields,$hasil,$item,$ms)
+function paparJadualF3_TajukMedan($sv,$namaOrg,$allRows,$rows,$fields,$hasil,$item,$ms)
 {
 	## tajuk besar
 	echo '<tr style="page-break-before:always">';
-	paparJadualF3_TajukBesar($allRows,$rows,$fields,$sv,$nama_penyelia,$nama_pegawai,$item,$ms);
+	paparJadualF3_TajukBesar($allRows,$rows,$fields,$sv,$namaOrg,$item,$ms);
 	echo '</tr>';
 	
 	## tajuk medan - keputusan 
 	echo '<tr>';
 	echo "\n<th rowspan=\"2\">Bil</th>\n";
-	echo '<th rowspan="2">Nama Syarikat (KES ' . $nama_pegawai . ')</th>' . "\n";
+	echo '<th rowspan="2">Nama Syarikat (KES ' . $namaOrg['pegawai'] . ')</th>' . "\n";
 	echo '<th rowspan="2">Kod Peny.</th>' . "\n";
 	echo '<th rowspan="1">BBU</th>' . "\n";
 	echo '<th rowspan="2">NO SIRI NEWSS</th>' . "\n";
@@ -383,7 +386,8 @@ function paparJadualF3_TajukBawah($rows,$fields)
 		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' .
 		'</font></p></td></tr>' . "\r";
 }
-function paparJadualF3_Data($sv,$nama_penyelia,$nama_pegawai,$allRows,
+
+function paparJadualF3_Data($sv,$namaOrg,$allRows,
 	$rows,$fields,$hasil,$item,$ms,$baris=30)
 {	
 	// nak cari $rows
@@ -402,7 +406,7 @@ function paparJadualF3_Data($sv,$nama_penyelia,$nama_pegawai,$allRows,
 			{			
 				$ms = ($kira/$baris)+1;
 				$item = ceil($allRows/$baris);
-				paparJadualF3_TajukMedan($sv,$nama_penyelia,$nama_pegawai,$allRows,$rows,$fields,$hasil,$item,$ms);
+				paparJadualF3_TajukMedan($sv,$namaOrg,$allRows,$rows,$fields,$hasil,$item,$ms);
 				echo "<td><a target='_blank' href='" . URL . 'kawalan/ubah/'
 					. $nilai['newss']."'>".($kira+1)."</a></td>\n";
 			}
