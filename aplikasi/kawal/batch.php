@@ -35,7 +35,8 @@ class Batch extends Kawal
 			. 'concat_ws("<br>",alamat1,alamat2,poskod,bandar,negeri) as alamat' 
 			//. 'concat_ws("<br>",semak1,mdt,notamdt2014,notamdt2012,notamdt2011) as nota_lama'
 			. "\r";
-		$this->medanData = 'newss,nama,fe,respon R,nama_kp,kp,msic2008,fe,' . "\r"
+		$this->medanData = 'newss,nama,fe,"<input type=\"checkbox\">" as tik, ' . "\r"
+		   . 'respon R,nama_kp,kp,msic2008,'
 		   . 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota';
 		$this->pengguna = Sesi::get('namaPegawai');
 		$this->level = Sesi::get('levelPegawai');
@@ -117,13 +118,13 @@ class Batch extends Kawal
 				$paparError = 'Tiada id<br>';
 			else
 			{
-				$paparMedan = 'newss,nossm,nama,operator,'
-					. 'concat_ws(" ",alamat1,alamat2,poskod,bandar,negeri) as alamat';
+				$paparMedan = 'newss,ssm,nama,operator,'
+					. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat';
 				$cariNama[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'newss','apa'=>$cariID);
 				$dataKes = $this->tanya->cariSatuSahaja($senaraiJadual[0], $paparMedan, $cariNama);
 				//echo '<pre>', print_r($dataKes, 1) . '</pre><br>';
 				$paparError = 'Ada id:' . $dataKes['newss'] 
-							. '| ssm:' . $dataKes['nossm']
+							. '| ssm:' . $dataKes['ssm']
 							. '<br> nama:' . $dataKes['nama'] 
 							. '| operator:' . $dataKes['operator']
 							. '<br> alamat:' . $dataKes['alamat']; 
@@ -157,9 +158,10 @@ class Batch extends Kawal
 			$jadualGroup = $senaraiJadual[0];
 			
 			# sql semula
-			$carian[] = array('fix'=>'zin','atau'=>'AND','medan'=>'kp','apa'=>'("205","800")');
+			$cariMFG[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$cariMFG[] = array('fix'=>'zin','atau'=>'AND','medan'=>'kp','apa'=>'("205","800")');
 			$this->papar->cariApa['mfg'] = $this->tanya->
-				kesBatchAwal($jadualGroup, $medan, $carian, $susun2);
+				kesBatchAwal($jadualGroup, $medan, $cariMFG, $susun2);
 			# sql semula untuk cdtmdt
 			$cariPPT[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariPPT[] = array('fix'=>'x!=','atau'=>'and','medan'=>'kp','apa'=>'205');
