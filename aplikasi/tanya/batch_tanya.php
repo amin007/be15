@@ -210,7 +210,6 @@ class Batch_Tanya extends Tanya
 		{
 			foreach($val as $key2=>$p)
 			{
-				//echo "$p<br>";
 				//$kumpul .= ",\r '' as '" . $p . "'";
 				$kumpul .= ",\r if($r='".$p."','X','&nbsp;') as '" . $p . "'";
 				//$jumlah_kumpul.="+count(if($r='".$papar[0]."' and b.terima is not null,$r,null))\r";
