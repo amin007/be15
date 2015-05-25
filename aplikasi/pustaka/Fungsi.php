@@ -383,7 +383,8 @@ function paparJadualF3_TajukBawah($rows,$fields)
 		'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' .
 		'</font></p></td></tr>' . "\r";
 }
-function paparJadualF3_Data($sv,$nama_penyelia,$nama_pegawai,$allRows,$rows,$fields,$hasil,$item,$ms)
+function paparJadualF3_Data($sv,$nama_penyelia,$nama_pegawai,$allRows,
+	$rows,$fields,$hasil,$item,$ms,$baris=30)
 {	
 	// nak cari $rows
 	if ($rows=='0'): echo "\n";
@@ -397,10 +398,10 @@ function paparJadualF3_Data($sv,$nama_penyelia,$nama_pegawai,$allRows,$rows,$fie
 		{	//$mula = ($ms==1) ? $ms : ($ms*$item)-$ms;
 			$h = ($kira%'2'=='0') ? $highlight : $highlight2;
 			echo "<tr$h>";
-			if ($kira%'30'=='0')
+			if ($kira%$baris=='0')
 			{			
-				$ms = ($kira/30)+1;
-				$item = ceil($allRows/30);
+				$ms = ($kira/$baris)+1;
+				$item = ceil($allRows/$baris);
 				paparJadualF3_TajukMedan($sv,$nama_penyelia,$nama_pegawai,$allRows,$rows,$fields,$hasil,$item,$ms);
 				echo "<td><a target='_blank' href='" . URL . 'kawalan/ubah/'
 					. $nilai['newss']."'>".($kira+1)."</a></td>\n";
@@ -420,7 +421,7 @@ function paparJadualF3_Data($sv,$nama_penyelia,$nama_pegawai,$allRows,$rows,$fie
 			//$bilAwal = ($item-1)*30;  # dpt bil muka surat akhir
 			//$bilAkhir = $rows - $bilAwal; # $rows tolak bil tadi
 			//$terakhir = 30 - $bilAkhir; # 30 tolak beza tadi
-			$akhir = $rows + ( 30 - ($rows - (($item-1)*30) ) );
+			$akhir = $rows + ( $baris - ($rows - (($item-1)*$baris) ) );
 			//$mula = $rows+1;
 			for($i = $mula; $i <= ($akhir); $i++)
 			{
