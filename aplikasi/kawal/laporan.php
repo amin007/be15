@@ -433,9 +433,10 @@ class Laporan extends Kawal
 		$this->papar->baca('laporan/f3', 1);
 	}
 //PEMBUATAN
-	public function cetakf3mfg($cariBatch, $item = 30, $ms = 1)
+	public function cetakf3mfg($cariBatch, $item = 30, $baris = 31)
 	{
 		# kiraKes dulu
+		$ms = 1;
 		$jadual = 'sse15_kawal';
 		$carian[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 		$carian[] = array('fix'=>'zin','atau'=>'AND','medan'=>'kp','apa'=>'("205","800")');
@@ -452,6 +453,7 @@ class Laporan extends Kawal
 		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
 		$this->papar->kiraSemuaBaris = $bilSemua;
 		$this->papar->item = $item;
+		$this->papar->baris = $baris;
 		$this->papar->ms = $ms;	
 		$this->papar->hasil = $kumpul['kiraData'];
 		$this->papar->fe = $cariBatch;
@@ -468,9 +470,10 @@ class Laporan extends Kawal
 		$this->papar->baca('laporan/f3all', 1);
 	}
 // PERKHIDMATAN
-	public function cetakf3ppt($cariBatch, $item = 30, $ms = 1)
+	public function cetakf3ppt($cariBatch, $item = 30, $baris = 31)
 	{
 		# kiraKes dulu
+		$ms = 1;
 		$jadual = 'sse15_kawal';
 		$carian[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 		$carian[] = array('fix'=>'xlike','atau'=>'AND','medan'=>'kp','apa'=>'205');
@@ -487,6 +490,7 @@ class Laporan extends Kawal
 		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
 		$this->papar->kiraSemuaBaris = $bilSemua;
 		$this->papar->item = $item;
+		$this->papar->baris = $baris;
 		$this->papar->ms = $ms;	
 		$this->papar->hasil = $kumpul['kiraData'];
 		$this->papar->fe = $cariBatch;
@@ -522,6 +526,7 @@ class Laporan extends Kawal
 		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
 		$this->papar->kiraSemuaBaris = $bilSemua;
 		$this->papar->item = $item;
+		$this->papar->baris = $baris;
 		$this->papar->ms = $ms;	
 		$this->papar->hasil = $kumpul['kiraData'];
 		$this->papar->fe = $cariBatch;
