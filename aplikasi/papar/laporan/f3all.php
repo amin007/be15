@@ -15,6 +15,7 @@ include 'diatas.php';
 	endif;
 	$allRows = $this->kiraSemuaBaris;
 	$item = $this->item;
+	$baris = isset($this->baris) ? $this->baris : 30;
 	$ms = $this->ms;
 	$hasil = $this->hasil;
 	$tajukRespon=array();	
@@ -28,7 +29,7 @@ else:
 ?>
 	<table border="1" class="excel" width="100%" height="100%">
 	<?php
-	paparJadualF3_Data($sv,$nama_penyelia,$nama_pegawai,$allRows,$rows,$fields,$hasil,$item,$ms);
+	paparJadualF3_Data($sv,$nama_penyelia,$nama_pegawai,$allRows,$rows,$fields,$hasil,$item,$ms,$baris);
 	paparJadualF3_TajukBawah($rows,$fields);
 	?>
 	</table>
