@@ -60,14 +60,14 @@ class Batch extends Kawal
 			$posmen[$jadual][$medanID] = $dataID;
 			//echo '<br>$dataID=' . $dataID . '<br>';
 			//echo '<pre>$posmen='; print_r($posmen) . '</pre>';
-        
-			$this->tanya->ubahSimpan($posmen[$jadual], $jadual, $medanID);
+	
+		$this->tanya->ubahSimpan($posmen[$jadual], $jadual, $medanID);
 
 		# Set pemboleubah utama
-        $this->papar->pegawai = senarai_kakitangan();
-        $this->papar->lokasi = 'CDT 2014 - Ubah';
+		$this->papar->pegawai = senarai_kakitangan();
+		$this->papar->lokasi = 'CDT 2014 - Ubah';
 		
-		 # pergi papar kandungan
+		# pergi papar kandungan
 		//echo '<br>location: ' . URL . "batch/awal/$cariBatch" . '';
 		header('location: ' . URL . "batch/awal/$cariBatch");
 
