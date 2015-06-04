@@ -91,8 +91,8 @@ class Batch extends Kawal
 			$this->tanya->ubahSimpan($data, $jadual, $medanID);
 
 		# Set pemboleubah utama
-        $this->papar->pegawai = senarai_kakitangan();
-        $this->papar->lokasi = 'SSE 2015 - Ubah';
+		$this->papar->pegawai = senarai_kakitangan();
+		$this->papar->lokasi = 'SSE 2015 - Ubah';
 		
 		 # pergi papar kandungan
 		//echo '<br>location: ' . URL . "batch/awal/$cariBatch/$dataID" . '';
