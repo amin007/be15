@@ -100,16 +100,8 @@ class Batch extends Kawal
 
 	}
 	
-	public function awal($cariBatch = null, $cariID = null) 
-    {    
-		# setkan pembolehubah untuk $this->tanya
-			//echo "\$cariBatch = $cariBatch . \$cariID = $cariID <br>";
-			$item = 1000; $ms = 1;
-            $medanRangka = $this->medanRangka;
-			$medanData = $this->medanData;
-			$medan = $medanData;
-			$senaraiJadual = array('sse15_kawal');
-		# cari $cariBatch wujud tak
+	private function wujudBatchAwal($cariBatch = null, $cariID = null) 
+	{
 		if (!isset($cariBatch) || empty($cariBatch) ):
 			$paparError = 'Tiada batch<br>';
 		else:
@@ -129,7 +121,23 @@ class Batch extends Kawal
 							. '<br> alamat:' . $dataKes['alamat']; 
 			}			
 		endif;
-		
+	
+		return $paparError;
+	}
+	
+	
+	public function awal($cariBatch = null, $cariID = null) 
+    {    
+		# setkan pembolehubah untuk $this->tanya
+			//echo "\$cariBatch = $cariBatch . \$cariID = $cariID <br>";
+			$item = 1000; $ms = 1;
+            $medanRangka = $this->medanRangka;
+			$medanData = $this->medanData;
+			$medan = $medanData;
+			$senaraiJadual = array('sse15_kawal');
+			
+			# cari $cariBatch atauu cariID wujud tak
+			$paparError = wujudBatchAwal($cariBatch, $cariID);
 			# mula papar semua dalam $myTable
 			$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			foreach ($senaraiJadual as $key => $myTable)
