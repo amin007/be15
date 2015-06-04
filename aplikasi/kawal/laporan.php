@@ -517,11 +517,11 @@ class Laporan extends Kawal
 		# tentukan bilangan mukasurat. bilangan jumlah rekod
 		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 		$jum = pencamSqlLimit($bilSemua, $item, $ms);
-		$susun[] = array_merge($jum, array('kumpul'=>null, 'susun'=>'bandar,kp, nama ASC' ) );
+		$susun[] = array_merge($jum, array('kumpul'=>null, 'susun'=>'bandar,kp,nama ASC' ) );
 		# kumpul respon
 		$kumpul = $this->tanya->kumpulRespon('kod','f2','respon',
 			$medan = "concat_ws('<br>Operator:',nama,operator) nama, concat_ws('-',kp,sv,nama_kp) as 'sv', "
-				. " '' as utama, newss, concat_ws('|',bandar,nota) as nota",
+				. " '' as utama, newss, concat_ws(' ',alamat1,alamat2,poskod,bandar,nota) as nota",
 			$jadual,$carian,$susun);
 		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
 		$this->papar->kiraSemuaBaris = $bilSemua;
