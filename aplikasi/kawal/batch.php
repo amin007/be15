@@ -135,7 +135,7 @@ class Batch extends Kawal
 		$senaraiJadual = array('sse15_kawal');
 			
 			# cari $cariBatch atau cariID wujud tak
-			$paparError = $this->wujudBatchAwal($senaraiJadual, $cariBatch, $cariID);
+			$this->papar->error = $this->wujudBatchAwal($senaraiJadual, $cariBatch, $cariID);
 			# mula carian dalam jadual $myTable
 			$this->cariAwal($senaraiJadual, $cariBatch, $cariID, $medanData);
 			
@@ -147,7 +147,6 @@ class Batch extends Kawal
 		$this->papar->pegawai = senarai_kakitangan();
 		
 		## untuk dalam class Papar
-		$this->papar->error = $paparError; //echo ' Error : ' . $paparError . '<br>';
 		$this->papar->cariBatch = $cariBatch;
 		$this->papar->cariID = $cariID;
 		$this->papar->carian = 'semua';
