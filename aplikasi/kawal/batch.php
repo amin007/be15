@@ -3,10 +3,13 @@
 class Batch extends Kawal 
 {
 
-    public function __construct() 
-    {
-        parent::__construct();
-        Kebenaran::kawalKeluar();
+	public function __construct() 
+	{
+		parent::__construct();
+		Kebenaran::kawalKeluar();
+
+		$this->pengguna = Sesi::get('namaPegawai');
+		$this->level = Sesi::get('levelPegawai');
 		
 		$this->papar->js = array(
 			/*'bootstrap.js',
@@ -38,9 +41,7 @@ class Batch extends Kawal
 		$this->medanData = 'newss,nama,fe,"<input type=\"checkbox\">" as tik, ' . "\r"
 			. 'respon R,nama_kp,kp,msic2008,'
 			. 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota';
-		$this->pengguna = Sesi::get('namaPegawai');
-		$this->level = Sesi::get('levelPegawai');
-    }
+	}
     
     public function index() 
     { 
