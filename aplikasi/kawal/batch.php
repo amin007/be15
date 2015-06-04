@@ -116,10 +116,10 @@ class Batch extends Kawal
 				$dataKes = $this->tanya->cariSatuSahaja($senaraiJadual[0], $paparMedan, $cariNama);
 				//echo '<pre>', print_r($dataKes, 1) . '</pre><br>';
 				$paparError = 'Ada id:' . $dataKes['newss'] 
-							. '| ssm:' . $dataKes['ssm']
-							. '<br> nama:' . $dataKes['nama'] 
-							. '| operator:' . $dataKes['operator']
-							. '<br> alamat:' . $dataKes['alamat']; 
+						. '| ssm:' . $dataKes['ssm']
+						. '<br> nama:' . $dataKes['nama'] 
+						. '| operator:' . $dataKes['operator']
+						. '<br> alamat:' . $dataKes['alamat']; 
 			}			
 		endif;
 	
