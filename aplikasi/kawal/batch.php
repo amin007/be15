@@ -53,7 +53,6 @@ class Batch extends Kawal
 		# masuk dalam database
 			# ubahsuai $posmen
 			$jadual = 'sse15_kawal';
-			//$jadual = 'cdt_pom_baki';
 			$medanID = 'newss';
 			$posmen[$jadual]['fe'] = null;
 			$posmen[$jadual]['respon'] = null;
@@ -172,7 +171,7 @@ class Batch extends Kawal
 			$susun3[] = array_merge($jum2, array('kumpul'=>'fe','susun'=>'fe') );
 			# sql semula
 			$this->papar->cariApa['kiraBatchAwal'] = $this->tanya->
-				cariGroup($jadualGroup, $medan = 'fe, count(*) as kira', $carian = null, $susun3);
+				cariGroup($jadualGroup, $medan = 'fe as batchAwal, count(*) as kira', $carian = null, $susun3);
 			# buat group ikut pembuatan / perkhidmtan
 			$susun4[] = array_merge($jum2, array('kumpul'=>'kp,sv,nama_kp','susun'=>'kp,sv,nama_kp') );
 			# sql semula
