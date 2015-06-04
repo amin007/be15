@@ -136,9 +136,31 @@ class Batch extends Kawal
 			$medan = $medanData;
 			$senaraiJadual = array('sse15_kawal');
 			
-			# cari $cariBatch atauu cariID wujud tak
+			# cari $cariBatch atau cariID wujud tak
 			$paparError = $this->wujudBatchAwal($cariBatch, $cariID);
-			# mula papar semua dalam $myTable
+			# mula carian dalam jadual $myTable
+			$this->cariAwal($cariBatch, $cariID);
+			
+        # semak pembolehubah $this->papar->cariApa
+        //echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
+
+        # Set pemboleubah utama
+		## untuk menubar
+		$this->papar->pegawai = senarai_kakitangan();
+		
+		## untuk dalam class Papar
+		$this->papar->error = $paparError; //echo ' Error : ' . $paparError . '<br>';
+		$this->papar->cariBatch = $cariBatch;
+		$this->papar->cariID = $cariID;
+		$this->papar->carian = 'semua';
+        
+        # pergi papar kandungan
+        $this->papar->baca('kawalan/batchawal', 0);
+    }
+
+	private function cariAwal($cariBatch, $cariID)
+	{
+			# sql 1
 			$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			foreach ($senaraiJadual as $key => $myTable)
 			{# mula ulang table
@@ -160,49 +182,33 @@ class Batch extends Kawal
 			# tentukan bilangan mukasurat. bilangan jumlah rekod
 			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 			$jum2 = pencamSqlLimit(300, $item, $ms);
-			$susun2[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'nama') );
+			$susunNama[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'nama') );
 			$jadualGroup = $senaraiJadual[0];
 			
-			# sql semula
+			# sql 2 - cari kes MFG
 			$cariMFG[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariMFG[] = array('fix'=>'zin','atau'=>'AND','medan'=>'kp','apa'=>'("205","800")');
 			$this->papar->cariApa['mfg'] = $this->tanya->
-				kesBatchAwal($jadualGroup, $medan, $cariMFG, $susun2);
-			# sql semula untuk cdtmdt
+				kesBatchAwal($jadualGroup, $medan, $cariMFG, $susunNama);
+			# sql 3 - cari kes PPT
 			$cariPPT[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariPPT[] = array('fix'=>'x!=','atau'=>'and','medan'=>'kp','apa'=>'205');
 			$this->papar->cariApa['ppt'] = $this->tanya->
-				kesBatchAwal($jadualGroup, $medan, $cariPPT, $susun2);
-			
-			# buat group ikut fe
-			$susun3[] = array_merge($jum2, array('kumpul'=>'fe','susun'=>'fe') );
-			# sql semula
+				kesBatchAwal($jadualGroup, $medan, $cariPPT, $susunNama);
+				
+			## buat group, $medan set semua
+			# sql 4 - buat group ikut fe
+			$susunFE[] = array_merge($jum2, array('kumpul'=>'fe','susun'=>'fe') );
 			$this->papar->cariApa['kiraBatchAwal'] = $this->tanya->
-				cariGroup($jadualGroup, $medan = 'fe as batchAwal, count(*) as kira', $carian = null, $susun3);
-			# buat group ikut pembuatan / perkhidmtan
-			$susun4[] = array_merge($jum2, array('kumpul'=>'kp,sv,nama_kp','susun'=>'kp,sv,nama_kp') );
-			# sql semula
-			$cariGroup[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+				cariGroup($jadualGroup, $medan = 'fe as batchAwal, count(*) as kira', $carian = null, $susunFE);
+			# sql 5 - buat group ikut pembuatan / perkhidmtan
+			$susunKP[] = array_merge($jum2, array('kumpul'=>'kp,sv,nama_kp','susun'=>'kp,sv,nama_kp') );
+			$cariKP[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$this->papar->cariApa['kiraKP' . $cariBatch] = $this->tanya->
-				cariGroup($jadualGroup, $medan = 'kp,sv,nama_kp, count(*) as kira', $cariGroup, $susun4);
-			
-        # semak pembolehubah $this->papar->cariApa
-        //echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
-
-        # Set pemboleubah utama
-		## untuk menubar
-		$this->papar->pegawai = senarai_kakitangan();
-		
-		## untuk dalam class Papar
-		$this->papar->error = $paparError; //echo ' Error : ' . $paparError . '<br>';
-		$this->papar->cariBatch = $cariBatch;
-		$this->papar->cariID = $cariID;
-		$this->papar->carian = 'semua';
-        
-        # pergi papar kandungan
-        $this->papar->baca('kawalan/batchawal', 0);
-    }
-
+				cariGroup($jadualGroup, $medan = 'kp,sv,nama_kp, count(*) as kira', $cariKP, $susunKP);
+	
+	}
+	
 	public function tukarBatch($tukarBatch)
 	{
 /*			echo '<pre>$sql jangkaan->
