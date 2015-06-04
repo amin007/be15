@@ -139,8 +139,8 @@ class Batch extends Kawal
 			# mula carian dalam jadual $myTable
 			$this->cariAwal($senaraiJadual, $cariBatch, $cariID, $medanData);
 			
-        # semak pembolehubah $this->papar->cariApa
-        //echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
+		# semak pembolehubah $this->papar->cariApa
+		//echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
 
 		# Set pemboleubah utama
 		## untuk menubar
