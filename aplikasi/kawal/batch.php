@@ -137,7 +137,7 @@ class Batch extends Kawal
 			$senaraiJadual = array('sse15_kawal');
 			
 			# cari $cariBatch atauu cariID wujud tak
-			$paparError = wujudBatchAwal($cariBatch, $cariID);
+			$paparError = $this->wujudBatchAwal($cariBatch, $cariID);
 			# mula papar semua dalam $myTable
 			$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			foreach ($senaraiJadual as $key => $myTable)
