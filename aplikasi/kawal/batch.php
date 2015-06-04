@@ -142,7 +142,7 @@ class Batch extends Kawal
         # semak pembolehubah $this->papar->cariApa
         //echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
 
-        # Set pemboleubah utama
+		# Set pemboleubah utama
 		## untuk menubar
 		$this->papar->pegawai = senarai_kakitangan();
 		
@@ -152,9 +152,9 @@ class Batch extends Kawal
 		$this->papar->cariID = $cariID;
 		$this->papar->carian = 'semua';
         
-        # pergi papar kandungan
-        $this->papar->baca('kawalan/batchawal', 0);
-    }
+		# pergi papar kandungan
+		$this->papar->baca('kawalan/batchawal', 0);
+	}
 
 	private function cariAwal($senaraiJadual, $cariBatch, $cariID, $medan)
 	{
