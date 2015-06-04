@@ -100,7 +100,7 @@ class Batch extends Kawal
 
 	}
 	
-	private function wujudBatchAwal($cariBatch = null, $cariID = null) 
+	private function wujudBatchAwal($senaraiJadual, $cariBatch = null, $cariID = null) 
 	{
 		if (!isset($cariBatch) || empty($cariBatch) ):
 			$paparError = 'Tiada batch<br>';
@@ -137,9 +137,9 @@ class Batch extends Kawal
 			$senaraiJadual = array('sse15_kawal');
 			
 			# cari $cariBatch atau cariID wujud tak
-			$paparError = $this->wujudBatchAwal($cariBatch, $cariID);
+			$paparError = $this->wujudBatchAwal($senaraiJadual, $cariBatch, $cariID);
 			# mula carian dalam jadual $myTable
-			$this->cariAwal($cariBatch, $cariID);
+			$this->cariAwal($senaraiJadual, $cariBatch, $cariID);
 			
         # semak pembolehubah $this->papar->cariApa
         //echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
@@ -158,7 +158,7 @@ class Batch extends Kawal
         $this->papar->baca('kawalan/batchawal', 0);
     }
 
-	private function cariAwal($cariBatch, $cariID)
+	private function cariAwal($senaraiJadual, $cariBatch, $cariID)
 	{
 			# sql 1
 			$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
