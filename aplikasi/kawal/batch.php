@@ -7,37 +7,37 @@ class Batch extends Kawal
     {
         parent::__construct();
         Kebenaran::kawalKeluar();
-        
-        $this->papar->js = array(
-            /*'bootstrap.js',
-            'bootstrap-transition.js',
-            'bootstrap-alert.js',
-            'bootstrap-modal.js',
-            'bootstrap-dropdown.js',
-            'bootstrap-scrollspy.js',
-            'bootstrap-tab.js',
-            'bootstrap-tooltip.js',
-            'bootstrap-popover.js',
-            'bootstrap-button.js',
-            'bootstrap-collapse.js',
-            'bootstrap-carousel.js',
-            'bootstrap-typeahead.js',
-            'bootstrap-affix.js',*/
-            'bootstrap-datepicker.js',
-            'bootstrap-datepicker.ms.js',
-            'bootstrap-editable.min.js');
-        $this->papar->css = array(
-            'bootstrap-datepicker.css',
-            'bootstrap-editable.css');
+		
+		$this->papar->js = array(
+			/*'bootstrap.js',
+			'bootstrap-transition.js',
+			'bootstrap-alert.js',
+			'bootstrap-modal.js',
+			'bootstrap-dropdown.js',
+			'bootstrap-scrollspy.js',
+			'bootstrap-tab.js',
+			'bootstrap-tooltip.js',
+			'bootstrap-popover.js',
+			'bootstrap-button.js',
+			'bootstrap-collapse.js',
+			'bootstrap-carousel.js',
+			'bootstrap-typeahead.js',
+			'bootstrap-affix.js',*/
+			'bootstrap-datepicker.js',
+			'bootstrap-datepicker.ms.js',
+			'bootstrap-editable.min.js');
+		$this->papar->css = array(
+			'bootstrap-datepicker.css',
+			'bootstrap-editable.css');
 			
-        $this->medanRangka = 'newss,nossm,concat_ws("<br>",nama,operator) as nama,'
+		$this->medanRangka = 'newss,nossm,concat_ws("<br>",nama,operator) as nama,'
 			. 'fe,hantar_prosesan,respon R,msic2008,kp,nama_kp,'
 			. 'concat_ws("<br>",alamat1,alamat2,poskod,bandar,negeri) as alamat' 
 			//. 'concat_ws("<br>",semak1,mdt,notamdt2014,notamdt2012,notamdt2011) as nota_lama'
 			. "\r";
 		$this->medanData = 'newss,nama,fe,"<input type=\"checkbox\">" as tik, ' . "\r"
-		   . 'respon R,nama_kp,kp,msic2008,'
-		   . 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota';
+			. 'respon R,nama_kp,kp,msic2008,'
+			. 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota';
 		$this->pengguna = Sesi::get('namaPegawai');
 		$this->level = Sesi::get('levelPegawai');
     }
