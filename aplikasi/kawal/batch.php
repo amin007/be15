@@ -43,10 +43,10 @@ class Batch extends Kawal
 			. 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota';
 	}
     
-    public function index() 
-    { 
+	public function index()
+	{ 
 		echo 'class Batchawal::index() extends Kawal ';
-    }
+	}
 	
 // UNTUK KES POM
 	public function buangBatchAwal($cariBatch = null, $dataID = null)
