@@ -130,16 +130,14 @@ class Batch extends Kawal
     {    
 		# setkan pembolehubah untuk $this->tanya
 			//echo "\$cariBatch = $cariBatch . \$cariID = $cariID <br>";
-			$item = 1000; $ms = 1;
             $medanRangka = $this->medanRangka;
 			$medanData = $this->medanData;
-			$medan = $medanData;
 			$senaraiJadual = array('sse15_kawal');
 			
 			# cari $cariBatch atau cariID wujud tak
 			$paparError = $this->wujudBatchAwal($senaraiJadual, $cariBatch, $cariID);
 			# mula carian dalam jadual $myTable
-			$this->cariAwal($senaraiJadual, $cariBatch, $cariID);
+			$this->cariAwal($senaraiJadual, $cariBatch, $cariID, $medanData);
 			
         # semak pembolehubah $this->papar->cariApa
         //echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
@@ -158,8 +156,9 @@ class Batch extends Kawal
         $this->papar->baca('kawalan/batchawal', 0);
     }
 
-	private function cariAwal($senaraiJadual, $cariBatch, $cariID)
+	private function cariAwal($senaraiJadual, $cariBatch, $cariID, $medan)
 	{
+			$item = 1000; $ms = 1; # set pembolehubah utama
 			# sql 1
 			$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			foreach ($senaraiJadual as $key => $myTable)
