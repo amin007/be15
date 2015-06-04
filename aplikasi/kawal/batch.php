@@ -125,15 +125,14 @@ class Batch extends Kawal
 	
 		return $paparError;
 	}
-	
-	
+
 	public function awal($cariBatch = null, $cariID = null) 
-    {    
+	{    
 		# setkan pembolehubah untuk $this->tanya
-			//echo "\$cariBatch = $cariBatch . \$cariID = $cariID <br>";
-            $medanRangka = $this->medanRangka;
-			$medanData = $this->medanData;
-			$senaraiJadual = array('sse15_kawal');
+		//echo "\$cariBatch = $cariBatch . \$cariID = $cariID <br>";
+		$medanRangka = $this->medanRangka;
+		$medanData = $this->medanData;
+		$senaraiJadual = array('sse15_kawal');
 			
 			# cari $cariBatch atau cariID wujud tak
 			$paparError = $this->wujudBatchAwal($senaraiJadual, $cariBatch, $cariID);
