@@ -157,7 +157,6 @@ class Batch extends Kawal
 				$this->papar->halaman[$myTable] = halaman($jum);
 			}# tamat ulang table
 			
-			# batchAwal = null, mdt = not null
 			# tentukan bilangan mukasurat. bilangan jumlah rekod
 			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 			$jum2 = pencamSqlLimit(300, $item, $ms);
