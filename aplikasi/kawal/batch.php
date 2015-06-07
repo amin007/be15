@@ -162,8 +162,8 @@ class Batch extends Kawal
 			$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			foreach ($senaraiJadual as $key => $myTable)
 			{# mula ulang table
-				# dapatkan bilangan jumlah rekod
 				//echo "\$myTable:$myTable | \$medan:$medan | \$cariBatch:$cariBatch<br>";
+				# dapatkan bilangan jumlah rekod
 				$bilSemua = $this->tanya->kiraKes($myTable, $medan, $carian);
 				# tentukan bilangan mukasurat. bilangan jumlah rekod
 				//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
