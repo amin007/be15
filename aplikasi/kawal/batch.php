@@ -143,9 +143,6 @@ class Batch extends Kawal
 		//echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
 
 		# Set pemboleubah utama
-		## untuk menubar
-		$this->papar->pegawai = senarai_kakitangan();
-		
 		## untuk dalam class Papar
 		$this->papar->cariBatch = $cariBatch;
 		$this->papar->cariID = $cariID;
