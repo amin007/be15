@@ -199,9 +199,9 @@ class Batch extends Kawal
 			$susunFE[] = array_merge($jum2, array('kumpul'=>'fe','susun'=>'fe') );
 			$this->papar->cariApa['kiraBatchAwal'] = $this->tanya->
 				cariGroup($jadualGroup, $medan = 'fe as batchAwal, count(*) as kira', $carian = null, $susunFE);
-			# sql 5 - buat group ikut pembuatan / perkhidmtan
-			$susunKP[] = array_merge($jum2, array('kumpul'=>'kp,sv,nama_kp','susun'=>'kp,sv,nama_kp') );
+			# sql 5 - buat group ikut pembuatan / perkhidmatan
 			$cariKP[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$susunKP[] = array_merge($jum2, array('kumpul'=>'kp,sv,nama_kp','susun'=>'kp,sv,nama_kp') );
 			$this->papar->cariApa['kiraKP' . $cariBatch] = $this->tanya->
 				cariGroup($jadualGroup, $medan = 'kp,sv,nama_kp, count(*) as kira', $cariKP, $susunKP);
 	
