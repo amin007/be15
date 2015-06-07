@@ -157,7 +157,7 @@ class Batch extends Kawal
 
 	private function cariAwal($senaraiJadual, $cariBatch, $cariID, $medan)
 	{
-			$item = 1000; $ms = 1; # set pembolehubah utama
+		$item = 1000; $ms = 1; ## set pembolehubah utama
 			# sql 1
 			$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			foreach ($senaraiJadual as $key => $myTable)
@@ -177,7 +177,7 @@ class Batch extends Kawal
 				$this->papar->halaman[$myTable] = halaman($jum);
 			}# tamat ulang table
 			
-			# tentukan bilangan mukasurat. bilangan jumlah rekod
+		## tentukan bilangan mukasurat. bilangan jumlah rekod
 			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 			$jum2 = pencamSqlLimit(300, $item, $ms);
 			$susunNama[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'kp,nama') );
@@ -194,7 +194,7 @@ class Batch extends Kawal
 			$this->papar->cariApa['ppt'] = $this->tanya->
 				kesBatchAwal($jadual, $medan, $cariPPT, $susunNama);
 				
-			## buat group, $medan set semua
+		## buat group, $medan set semua
 			# sql 4 - buat group ikut fe
 			$susunFE[] = array_merge($jum2, array('kumpul'=>'fe','susun'=>'fe') );
 			$this->papar->cariApa['kiraBatchAwal'] = $this->tanya->
