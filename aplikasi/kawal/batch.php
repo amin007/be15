@@ -181,29 +181,29 @@ class Batch extends Kawal
 			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 			$jum2 = pencamSqlLimit(300, $item, $ms);
 			$susunNama[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'kp,nama') );
-			$jadualGroup = $senaraiJadual[0];
+			$jadual = $senaraiJadual[0];
 			
 			# sql 2 - cari kes MFG
 			$cariMFG[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariMFG[] = array('fix'=>'zin','atau'=>'AND','medan'=>'kp','apa'=>'("205","800")');
 			$this->papar->cariApa['mfg'] = $this->tanya->
-				kesBatchAwal($jadualGroup, $medan, $cariMFG, $susunNama);
+				kesBatchAwal($jadual, $medan, $cariMFG, $susunNama);
 			# sql 3 - cari kes PPT
 			$cariPPT[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariPPT[] = array('fix'=>'x!=','atau'=>'and','medan'=>'kp','apa'=>'205');
 			$this->papar->cariApa['ppt'] = $this->tanya->
-				kesBatchAwal($jadualGroup, $medan, $cariPPT, $susunNama);
+				kesBatchAwal($jadual, $medan, $cariPPT, $susunNama);
 				
 			## buat group, $medan set semua
 			# sql 4 - buat group ikut fe
 			$susunFE[] = array_merge($jum2, array('kumpul'=>'fe','susun'=>'fe') );
 			$this->papar->cariApa['kiraBatchAwal'] = $this->tanya->
-				cariGroup($jadualGroup, $medan = 'fe as batchAwal, count(*) as kira', $carian = null, $susunFE);
+				cariGroup($jadual, $medan = 'fe as batchAwal, count(*) as kira', $carian = null, $susunFE);
 			# sql 5 - buat group ikut pembuatan / perkhidmatan
 			$cariKP[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$susunKP[] = array_merge($jum2, array('kumpul'=>'kp,sv,nama_kp','susun'=>'kp,sv,nama_kp') );
 			$this->papar->cariApa['kiraKP' . $cariBatch] = $this->tanya->
-				cariGroup($jadualGroup, $medan = 'kp,sv,nama_kp, count(*) as kira', $cariKP, $susunKP);
+				cariGroup($jadual, $medan = 'kp,sv,nama_kp, count(*) as kira', $cariKP, $susunKP);
 	
 	}
 	
