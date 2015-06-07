@@ -180,7 +180,7 @@ class Batch extends Kawal
 			# tentukan bilangan mukasurat. bilangan jumlah rekod
 			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 			$jum2 = pencamSqlLimit(300, $item, $ms);
-			$susunNama[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'nama') );
+			$susunNama[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'kp,nama') );
 			$jadualGroup = $senaraiJadual[0];
 			
 			# sql 2 - cari kes MFG
