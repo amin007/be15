@@ -5,8 +5,10 @@ $imej = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $
 ?>
 		<a href="#<?php echo $fe ?>" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" 
 		data-icon="check" data-theme="a" data-transition="flip"><?php echo $fe ?></a>
-<?php endforeach; ?>
-<?php foreach ($pegawai as $key => $fe):  ?>
+<?php endforeach; 
+$kakitangan = senarai_kakitangan();
+$fe = $key = null;
+foreach ($kakitangan as $key => $fe):  ?>
 
 	<div data-demo-html="true">	
 	<div data-role="popup" id="popupMenu" data-theme="a">
