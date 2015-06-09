@@ -46,7 +46,7 @@ class Index extends Kawal
 
 		// pergi papar kandungan
 		//$this->papar->baca('index/index');
-		$this->papar->baca('index/index_mobile');
+		$this->papar->baca('mobile/login');
 	}
 	
 	function login($user) 
