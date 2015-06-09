@@ -66,7 +66,7 @@ class Kawalan extends Kawal
 			. 'concat_ws("-",kp,msic2008) keterangan,' 
 			//. 'concat_ws("=>ngdbbp baru=",ngdbbp,ngdbbp_baru) ngdbbp,ngdbbp_baru,' . "\r"
 			//. 'batchAwal,dsk,mko,batchProses,'
-			. 'tel,notel,fax,nofax,orang,responden,esurat,email,'
+			. 'tel,notel,fax,nofax,responden,orang,email,esurat,'
 			//. 'respon2,lawat,terima,hantar,hantar_prosesan,' . "\r" 
 			. 'hasil,belanja,gaji,aset,staf,stok' . "\r" 
 			. '';
