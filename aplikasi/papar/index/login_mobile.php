@@ -3,9 +3,12 @@ $pegawai = senarai_kakitangan();
 foreach ($pegawai as $key => $fe): 
 $imej = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $fe . '.jpg';
 ?>
-	<div data-demo-html="true">	
 		<a href="#<?php echo $fe ?>" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" 
 		data-icon="check" data-theme="a" data-transition="flip"><?php echo $fe ?></a>
+<?php endforeach; ?>
+<?php foreach ($pegawai as $key => $fe):  ?>
+
+	<div data-demo-html="true">	
 	<div data-role="popup" id="popupMenu" data-theme="a">
 	<div data-role="popup" id="<?php echo $fe ?>" data-theme="a" class="ui-corner-all">
 		<form>
