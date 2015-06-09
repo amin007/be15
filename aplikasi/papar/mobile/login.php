@@ -18,20 +18,22 @@ if ( in_array($this->ip2,$this->senaraiIP) )
 $kakitangan = senarai_kakitangan();
 $fe = $key = null;
 foreach ($kakitangan as $key => $fe):  
-$imej = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $fe . '.jpg';
+	$imej = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $fe . '.jpg';
+	$nama = ($fe=='amin') ? 'amin007' : $fe;
+	$password = ($fe=='amin') ? null : $fe;
 ?>
 
 	<div data-demo-html="true">	
 	<div data-role="popup" id="popupMenu" data-theme="a">
 	<div data-role="popup" id="<?php echo $fe ?>" data-theme="a" class="ui-corner-all">
-		<form method="POST" action="login/semakid">
+		<form data-ajax="false" method="POST" action="login/semakid">
 		<div style="padding:10px 20px;">
 			<h3>Please sign in</h3>
 			<img src="<?php echo $imej ?>">
 			<label for="un" class="ui-hidden-accessible">Nama Anda:</label>
-				<input type="text" name="user" id="un" value="<?php echo $fe ?>" placeholder="username" data-theme="a" />
+				<input type="text" name="user" id="un" value="<?php echo $nama ?>" placeholder="username" data-theme="a" />
 			<label for="pw" class="ui-hidden-accessible">Kata Laluan:</label>
-				<input type="password" name="pass" id="pw" value="" placeholder="password" data-theme="a" />
+				<input type="password" name="pass" id="pw" value="<?php echo $password ?>" placeholder="password" data-theme="a" />
 			<input type="submit" name="masuk" value="Masuk" data-theme="b" data-icon="check">
 			<!-- <button type="submit" data-theme="b" data-icon="check">Sign in</button> -->
 		</div>
