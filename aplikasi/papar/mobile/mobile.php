@@ -7,4 +7,7 @@
 		Tahunan, Bulanan, Suku Tahun, Setengah Tahun dan Ad-hock.
 		Harap anda dapat faham tentang sistem yang saya bangunkan menerusi php dan mysql juga mssql.
 		Sekian Wasalam .</p>
+		
+		<p><a href="<?php echo URL ?>ruangtamu" data-ajax="false"> Menu Utama &raquo;</a>
+		<a href="<?php echo URL ?>mobile">UX / UI mobile</a></p>
 	</div>
