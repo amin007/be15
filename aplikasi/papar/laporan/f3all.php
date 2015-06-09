@@ -2,8 +2,8 @@
 include 'diatas.php';
 	$pegawai = senarai_kakitangan(); // kumpul nama fe
 	$sv = isset($this->sv) ? $this->sv : null;
-	$nama_penyelia = 'Abdul Razak';
-	$nama_pegawai = $this->fe;
+	$namaOrg['penyelia'] = 'Abdul Razak';
+	$namaOrg['pegawai'] = $this->fe;
 	if (count($this->hasil)==0):
 		$fields = null; 
 		$rows = null; 
@@ -29,7 +29,7 @@ else:
 ?>
 	<table border="1" class="excel" width="100%" height="100%">
 	<?php
-	paparJadualF3_Data($sv,$nama_penyelia,$nama_pegawai,$allRows,$rows,$fields,$hasil,$item,$ms,$baris);
+	paparJadualF3_Data($sv,$namaOrg,$allRows,$rows,$fields,$hasil,$item,$ms,$baris);
 	paparJadualF3_TajukBawah($rows,$fields);
 	?>
 	</table>
