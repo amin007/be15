@@ -183,11 +183,13 @@ function senarai_kakitangan()
     $pegawai[]='ariff';
     $pegawai[]='azim';
     $pegawai[]='fendi';
-    $pegawai[]='ita';
+    $pegawai[]='irwan';
     $pegawai[]='khairi';
+    $pegawai[]='mazlan';
     $pegawai[]='murad';
     $pegawai[]='musa';
     $pegawai[]='mustaffa';
+    $pegawai[]='norita';
     $pegawai[]='razak';
     $pegawai[]='shukor';
     $pegawai[]='suhaida';
