@@ -21,11 +21,8 @@ class Sesi
 	
 	public static function destroy()
 	{
-		//unset($_SESSION);
-		//@session_start();
 		session_unset();
 		session_destroy();
-		//header('location:' . URL);
 	}
 	
 }
