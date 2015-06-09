@@ -10,16 +10,20 @@ if ( in_array($this->ip2,$this->senaraiIP) )
 {
 	$pegawai = senarai_kakitangan();
 	foreach ($pegawai as $key => $fe): 
-		$imej = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $fe . '.jpg';
-?>
+		$fail = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $fe . '.jpg';
+		$file_headers = @get_headers($fail);
+		$imej = (($file_headers[0] == 'HTTP/1.1 404 Not Found')) ? $fe:'<img src="'.$fail.'">'; ?>
 		<a href="#<?php echo $fe ?>" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" 
-		data-icon="user" data-theme="a" data-transition="flip"><img src="<?php echo $imej ?>"></a>
-<?php 
+		data-icon="user" data-theme="a" data-transition="flip"><?php echo $imej ?></a><?php 
 	endforeach; 
 	$kakitangan = senarai_kakitangan();
 	$fe = $key = null;
 	foreach ($kakitangan as $key => $fe):  
-		$imej = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $fe . '.jpg';
+		$fail = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $fe . '.jpg';
+		$file_headers = @get_headers($fail);
+		$imej = (($file_headers[0] == 'HTTP/1.1 404 Not Found')) ? 
+			'<a class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a>'
+			:'<img src="'.$fail.'">';
 		$nama = ($fe=='amin') ? 'amin007' : $fe;
 		$password = ($fe=='amin') ? null : $fe;
 ?>
@@ -28,7 +32,7 @@ if ( in_array($this->ip2,$this->senaraiIP) )
 	<div data-role="popup" id="<?php echo $fe ?>" data-theme="a" class="ui-corner-all">
 		<form data-ajax="false" method="POST" action="login/semakid">
 		<div style="padding:10px 20px;">
-			<img src="<?php echo $imej ?>">
+			<?php echo $imej ?>
 			<label for="un" class="ui-hidden-accessible">Nama Anda:</label>
 				<input type="text" name="username" id="un" value="<?php echo $nama ?>" placeholder="Nama Anda" data-theme="a" />
 			<label for="pw" class="ui-hidden-accessible">Kata Laluan:</label>
