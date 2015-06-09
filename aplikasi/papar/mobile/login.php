@@ -1,12 +1,12 @@
 <?php 
 echo "<br>Alamat IP : <font color='red'>" . $this->ip . "</font> |" .
-//"<br>Alamat IP2 : <font color='red'>" . substr($this->ip,0,10) . "</font> |" .
+//"<br>Alamat IP2 : <font color='red'>" . $this->ip2 . "</font> |" .
 "\r<br>Nama PC : <font color='red'>" . $this->hostname . "</font> |" .
 //"\r<br>Server : <font color='red'>" . $this->server . "</font>" .
 "<br>\r";
 
 //$senaraiIP=array('192.168.1.', '10.69.112.', '127.0.0.1', '10.72.112.');
-if ( in_array($ip2,$this->senaraiIP) )
+if ( in_array($this->ip2,$this->senaraiIP) )
 {
 	$pegawai = senarai_kakitangan();
 	foreach ($pegawai as $key => $fe): 
@@ -24,7 +24,7 @@ $imej = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $
 	<div data-demo-html="true">	
 	<div data-role="popup" id="popupMenu" data-theme="a">
 	<div data-role="popup" id="<?php echo $fe ?>" data-theme="a" class="ui-corner-all">
-		<form method="post" action="login/semakid">
+		<form method="POST" action="login/semakid">
 		<div style="padding:10px 20px;">
 			<h3>Please sign in</h3>
 			<img src="<?php echo $imej ?>">
@@ -32,7 +32,8 @@ $imej = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $
 				<input type="text" name="user" id="un" value="<?php echo $fe ?>" placeholder="username" data-theme="a" />
 			<label for="pw" class="ui-hidden-accessible">Kata Laluan:</label>
 				<input type="password" name="pass" id="pw" value="" placeholder="password" data-theme="a" />
-			<button type="submit" data-theme="b" data-icon="check">Sign in</button>
+			<input type="submit" name="masuk" value="Masuk" data-theme="b" data-icon="check">
+			<!-- <button type="submit" data-theme="b" data-icon="check">Sign in</button> -->
 		</div>
 		</form>
 	</div>
