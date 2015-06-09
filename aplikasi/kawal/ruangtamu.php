@@ -36,14 +36,26 @@ class Ruangtamu extends Kawal
 		$this->papar->pegawai = senarai_kakitangan();
 		$this->papar->tajuk = 'Ruangtamu';
 		// pergi papar kandungan
-		//$this->papar->baca('ruangtamu/index');
-		$this->papar->baca('mobile/mobile');
+		$this->papar->baca('ruangtamu/index');
+		//$this->papar->baca('mobile/mobile');
 	}
 	
+	function menu() 
+	{	
+		// Set pemboleubah utama
+		$this->papar->pegawai = senarai_kakitangan();
+		$this->papar->tajuk = 'Menu';
+		// pergi papar kandungan
+		$this->papar->baca('mobile/mobile');
+	}
+
 	function logout()
 	{
+		//echo '<pre>sebelum:'; print_r($_SESSION) . '</pre>';
 		Sesi::destroy();
-		header('location: ' . URL);
+		//echo '<pre>selepas:'; print_r($_SESSION) . '</pre>';
+		//echo 'URL=' . URL;
+		//header('location: ' . URL);
 		//exit;
 	}
 	
