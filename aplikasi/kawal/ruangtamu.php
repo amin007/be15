@@ -53,9 +53,7 @@ class Ruangtamu extends Kawal
 	{
 		//echo '<pre>sebelum:'; print_r($_SESSION) . '</pre>';
 		Sesi::destroy();
-		//echo '<pre>selepas:'; print_r($_SESSION) . '</pre>';
-		//echo 'URL=' . URL;
-		//header('location: ' . URL);
+		header('location: ' . URL);
 		//exit;
 	}
 	
