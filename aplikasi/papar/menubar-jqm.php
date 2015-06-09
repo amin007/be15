@@ -1,3 +1,10 @@
+<?php if (!isset($this->tajuk)) :?>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="<?php echo URL ?>mobile" data-icon="home">Anjung</a></li>
+			</ul>
+		</div>
+<?php else:?>
 		<div data-role="navbar">
 			<ul>
 				<li><a href="<?php echo URL ?>mobile" data-icon="home">Anjung</a></li>
@@ -7,3 +14,4 @@
 				<li><a href="<?php echo URL ?>ruangtamu/logout" data-icon="lock">Keluar</a></li>
 			</ul>
 		</div>
+<?php endif;?>
