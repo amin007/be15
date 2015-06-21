@@ -347,7 +347,6 @@ class Laporan_Tanya extends Tanya
 	{
 		// pembolehubah yg terlibat
 		$r = 'respon'; $kumpul = null; 
-		$kumpul = null; 
 		$AN=array(11=>'A1',12=>'A2',31=>'A3',40=>'A4',50=>'A5',60=>'A6',
 			13=>'A7',14=>'A8',21=>'A9',22=>'A10',23=>'A11',32=>'A12',15=>'A13');
 		$RN=array('11','12','13','14','15','21','22','23','31','32','40','50','60');
@@ -407,21 +406,16 @@ class Laporan_Tanya extends Tanya
 	{
 		// pembolehubah yg terlibat
 		$r = 'respon'; $kumpul = null; 
-		$AN=array('A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13');
-		$B=array('B1','B2','B3','B4','B5','B6','B7');
-		// kumpul respon ikut kp
-		$kumpul .= ",\r format(sum(if($r='A1',1,0) ),0)  as 'A1'";
-		$kumpul .= ",\r format(sum(if($r IN ('".implode("','",$AN)."'),1,0) ),0) as 'AX'";
-		$kumpul .= ",\r format(sum(if($r IN ('".implode("','",$B)."'),1,0) ),0) as 'B'";			
-		foreach(array(326,327,329) as $key2=>$p)
+		$AN=array(11=>'A1',12=>'A2',31=>'A3',40=>'A4',50=>'A5',60=>'A6',
+			13=>'A7',14=>'A8',21=>'A9',22=>'A10',23=>'A11',32=>'A12',15=>'A13');
+		$RN=array('11','12','13','14','15','21','22','23','31','32','40','50','60');
+		$B=array(71=>'B1',71=>'B2',73=>'B3',74=>'B4',75=>'B5',76=>'B6',77=>'B7');
+		foreach($RN as $k=>$p)
 		{
-			//$kumpul .= ",\r '' as '" . $p . "'";	
-			$kumpul .= ",\r format(sum(if($r='A1' and kp='$p',1,0) ),0)  as 'A1-$p'";
-			$kumpul .= ",\r format(sum(if($r IN ('".implode("','",$AN)."') and kp='$p',1,0) ),0) as 'AX-$p'";
-			$kumpul .= ",\r format(sum(if($r IN ('".implode("','",$B)."') and kp='$p',1,0) ),0) as 'B-$p'";
-			//$jumlah_kumpul.="+count(if($r='".$papar[0]."' and b.terima is not null,$r,null))\r";
+			//echo " $p -> " . $AN[$p]. " <br>";
+			$kumpul .= ",\r format(sum(if($r='".$AN[$p]."',1,null) ),0)  as '&nbsp;$p'";
 		}
-		$jumlah_kumpul = 23722;
+		$jumlah_kumpul = 843;
 		$ALL="format(count(*),0)";
 		$A1="count(if($r='A1' and b.terima is not null,$r,null))";
 		$B1="count(if($r='B1',$r,null))";
@@ -429,7 +423,7 @@ class Laporan_Tanya extends Tanya
 		$p="if (format(((($jumlah_kumpul)/$ALL)*100),2)=100.00,'Ya',':(' )";
 		///////////////////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////
-		$sql = "SELECT borang,daerah, $p as `Dah`,\r$dpt AS `Hasil`,\r"
+		$sql = "SELECT kp,bandar, $p as `Dah`,\r$dpt AS `Hasil`,\r"
 			 . "$ALL as Kes $kumpul\r"
 			 . "FROM $myTable as b\r"
 			 . "GROUP BY 1,2 with rollup "; 
@@ -445,21 +439,16 @@ class Laporan_Tanya extends Tanya
 	{
 		// pembolehubah yg terlibat
 		$r = 'respon'; $kumpul = null; 
-		$AN=array('A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13');
-		$B=array('B1','B2','B3','B4','B5','B6','B7');
-		// kumpul respon ikut kp
-		$kumpul .= ",\r format(sum(if($r='A1',1,0) ),0)  as 'A1'";
-		$kumpul .= ",\r format(sum(if($r IN ('".implode("','",$AN)."'),1,0) ),0) as 'AX'";
-		$kumpul .= ",\r format(sum(if($r IN ('".implode("','",$B)."'),1,0) ),0) as 'B'";			
-		foreach(array(326,327,329) as $key2=>$p)
+		$AN=array(11=>'A1',12=>'A2',31=>'A3',40=>'A4',50=>'A5',60=>'A6',
+			13=>'A7',14=>'A8',21=>'A9',22=>'A10',23=>'A11',32=>'A12',15=>'A13');
+		$RN=array('11','12','13','14','15','21','22','23','31','32','40','50','60');
+		$B=array(71=>'B1',71=>'B2',73=>'B3',74=>'B4',75=>'B5',76=>'B6',77=>'B7');
+		foreach($RN as $k=>$p)
 		{
-			//$kumpul .= ",\r '' as '" . $p . "'";	
-			$kumpul .= ",\r format(sum(if($r='A1' and kp='$p',1,0) ),0)  as 'A1-$p'";
-			$kumpul .= ",\r format(sum(if($r IN ('".implode("','",$AN)."') and kp='$p',1,0) ),0) as 'AX-$p'";
-			$kumpul .= ",\r format(sum(if($r IN ('".implode("','",$B)."') and kp='$p',1,0) ),0) as 'B-$p'";
-			//$jumlah_kumpul.="+count(if($r='".$papar[0]."' and b.terima is not null,$r,null))\r";
+			//echo " $p -> " . $AN[$p]. " <br>";
+			$kumpul .= ",\r format(sum(if($r='".$AN[$p]."',1,null) ),0)  as '&nbsp;$p'";
 		}
-		$jumlah_kumpul = 23722;
+		$jumlah_kumpul = 843;
 		$ALL="format(count(*),0)";
 		$A1="count(if($r='A1' and b.terima is not null,$r,null))";
 		$B1="count(if($r='B1',$r,null))";
