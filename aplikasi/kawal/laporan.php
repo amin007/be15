@@ -8,6 +8,7 @@ class Laporan extends Kawal
         parent::__construct();
         Kebenaran::kawalKeluar();
         
+		$JS = '../../';
         $this->papar->js = array(
             //'bootstrap.js',
             'bootstrap-transition.js',
@@ -25,10 +26,16 @@ class Laporan extends Kawal
             'bootstrap-affix.js',
             'bootstrap-datepicker.js',
             'bootstrap-datepicker.ms.js',
-            'bootstrap-editable.min.js');
+            'bootstrap-editable.min.js',
+			$JS.'satu/js/excanvas.min.js', 
+			$JS.'satu/js/chart.min.js', 
+			$JS.'satu/js/base.js', # menu satu
+			);
         $this->papar->css = array(
-            'bootstrap-datepicker.css',
-            'bootstrap-editable.css');
+            'bootstrap-datepicker.css','bootstrap-editable.css',
+			$JS.'satu/css/font-awesome.css', 
+			$JS.'satu/css/pages/reports.css',# menu satu
+			);
 		$this->_folder = 'laporan';
     }
     
@@ -72,7 +79,7 @@ class Laporan extends Kawal
 		$this->papar->fungsi = 'daerah';
 		$this->papar->url = dpt_url();
 		// pergi papar kandungan
-		//$this->papar->baca('laporan/index', 0);
+		$this->papar->baca('laporan/index', 0);
 	}
 
 	public function fe() 
