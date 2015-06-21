@@ -52,7 +52,7 @@ class Laporan extends Kawal
 		$this->papar->pegawai = senarai_kakitangan();
 		$this->papar->fungsi = 'bulanan';
 		$this->papar->url = dpt_url();
-		// pergi papar kandungan
+		# pergi papar kandungan
 		$this->papar->baca('laporan/index', 0);
 	}
 
@@ -72,7 +72,7 @@ class Laporan extends Kawal
 		$this->papar->fungsi = 'daerah';
 		$this->papar->url = dpt_url();
 		// pergi papar kandungan
-		$this->papar->baca('laporan/index', 0);
+		//$this->papar->baca('laporan/index', 0);
 	}
 
 	public function fe() 
