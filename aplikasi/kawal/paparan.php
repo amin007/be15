@@ -123,12 +123,19 @@ class Paparan extends Kawal
 		$myTable = 'sse15_kawal';
         # setkan pembolehubah untuk $this->tanya sql1
 			$paparTable1 = '1_belum_mko';
-            $jadualMedan1 = '/*1:belum_mko*/newss,concat_ws("",nama,operator) as nama,' 
+            $jadualMedan1 = '/*1:belum_mko*/newss,mko,concat_ws("",nama,operator) as nama,' 
 				. 'kp,msic2008 m6,nama_kp,'
+				. ' concat_ws("|",' . "\r"
+				. ' 	concat("tel=",tel),' . "\r"
+				. ' 	concat("fax=",fax),' . "\r"
+				. ' 	concat("responden=",responden),' . "\r"
+				. ' 	concat("email=",email),' . "\r"
+				. ' 	concat("nota=",nota)' . "\r"
+				. ' ) as catatan,'
 				. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat_penuh,respon,' 
 				. 'nota' . ((!isset($cariBatch)) ? ',fe fe' : '') . "\r";
 			$cari1[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch,'akhir'=>'');
-			$groupBy1 = null; $orderBy1 = 'respon DESC,kp,newss';//'dp_baru, jalan, no';
+			$groupBy1 = null; $orderBy1 = 'mko,respon DESC,kp,newss';//'dp_baru, jalan, no';
 			#sql1
 				$this->papar->cariApa[$paparTable1] = $this->tanya->
 					cariIkutSql($myTable, $jadualMedan1, $cari1, $item = 500, $ms = 1, $groupBy1, $orderBy1);					
@@ -207,6 +214,25 @@ class Paparan extends Kawal
 			#sql7
 				$this->papar->cariApa[$paparTable7] = $this->tanya->
 					cariIkutSql($myTable, $jadualMedan7, $cari7, $item = 300, $ms = 1, $groupBy7, $orderBy7);
+        # setkan pembolehubah untuk $this->tanya sql8
+			$paparTable8 = '8_sudah_mko';
+            $jadualMedan8 = '/*8:sudah_mko*/newss,mko,concat_ws("",nama,operator) as nama,' 
+				. 'kp,msic2008 m6,nama_kp,'
+				. ' concat_ws("|",' . "\r"
+				. ' 	concat("tel=",tel),' . "\r"
+				. ' 	concat("fax=",fax),' . "\r"
+				. ' 	concat("responden=",responden),' . "\r"
+				. ' 	concat("email=",email),' . "\r"
+				. ' 	concat("nota=",nota)' . "\r"
+				. ' ) as catatan,'
+				. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat_penuh,respon,' 
+				. 'nota' . ((!isset($cariBatch)) ? ',fe fe' : '') . "\r";
+			$cari8[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch,'akhir'=>'');
+			$cari8[] = array('fix'=>'x=','atau'=>'AND','medan'=>'MKO','apa'=>1,'akhir'=>'');
+			$groupBy8 = null; $orderBy8 = 'mko,respon DESC,kp,newss';//'dp_baru, jalan, no';
+			#sql8
+				$this->papar->cariApa[$paparTable8] = $this->tanya->
+					cariIkutSql($myTable, $jadualMedan8, $cari8, $item = 500, $ms = 1, $groupBy8, $orderBy8);					
 
 		# semak pembolehubah $this->papar->cariApa
 		//echo '<pre>$this->papar->cariApa:', print_r($this->papar->cariApa, 1) . '</pre><br>';
