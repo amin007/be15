@@ -183,7 +183,7 @@ class Kawalan extends Kawal
 				$posmen[$rangka]['email']=strtolower($posmen[$rangka]['email']);
 			if (isset($posmen[$rangka]['responden']))
 				$posmen[$rangka]['responden']=mb_convert_case($posmen[$rangka]['responden'], MB_CASE_TITLE);
-			if (isset($posmen[$rangka]['no']))
+			/*if (isset($posmen[$rangka]['no']))
 				$posmen[$rangka]['no']=strtoupper($posmen[$rangka]['no']);
 			if (isset($posmen[$rangka]['batu']))
 				$posmen[$rangka]['batu']=strtoupper($posmen[$rangka]['batu']);
@@ -192,7 +192,7 @@ class Kawalan extends Kawal
 			if (isset($posmen[$rangka]['tmn_kg']))
 				$posmen[$rangka]['tmn_kg']=strtoupper($posmen[$rangka]['tmn_kg']);
 			if (isset($posmen[$rangka]['dp_baru']))
-				$posmen[$rangka]['dp_baru']=ucwords(strtolower($posmen[$rangka]['dp_baru']));
+				$posmen[$rangka]['dp_baru']=ucwords(strtolower($posmen[$rangka]['dp_baru']));//*/
         //echo '<br>$dataID=' . $dataID . '<br>';
         //echo '<pre>$_POST='; print_r($_POST) . '</pre>';
         //echo '<pre>$posmen='; print_r($posmen) . '</pre>';
@@ -205,7 +205,7 @@ class Kawalan extends Kawal
         
         # pergi papar kandungan
 		//$this->papar->baca('kawalan/ubah/' . $dataID);
-        header('location: ' . URL . 'kawalan/ubah/' . $dataID);
+		header('location: ' . URL . 'kawalan/ubah/' . $dataID);
  //*/       
     }
 
