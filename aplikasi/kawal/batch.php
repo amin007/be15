@@ -39,8 +39,10 @@ class Batch extends Kawal
 			//. 'concat_ws("<br>",semak1,mdt,notamdt2014,notamdt2012,notamdt2011) as nota_lama'
 			. "\r";
 		$this->medanData = 'newss,nama,fe,"<input type=\"checkbox\">" as tik, ' . "\r"
+			//. 'concat_ws("<br>",alamat1,alamat2,poskod,bandar,negeri) as alamat,' 
 			. 'respon R,nama_kp,kp,msic2008,'
-			. 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota';
+			. 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota'
+			. "\r";
 	}
     
 	public function index()
@@ -138,6 +140,7 @@ class Batch extends Kawal
 			$this->papar->error = $this->wujudBatchAwal($senaraiJadual, $cariBatch, $cariID);
 			# mula carian dalam jadual $myTable
 			$this->cariAwal($senaraiJadual, $cariBatch, $cariID, $medanData);
+			$this->cariGroup($senaraiJadual, $cariBatch, $cariID, $medanData);
 			
 		# semak pembolehubah $this->papar->cariApa
 		//echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
@@ -159,7 +162,6 @@ class Batch extends Kawal
 			$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			foreach ($senaraiJadual as $key => $myTable)
 			{# mula ulang table
-				//echo "\$myTable:$myTable | \$medan:$medan | \$cariBatch:$cariBatch<br>";
 				# dapatkan bilangan jumlah rekod
 				$bilSemua = $this->tanya->kiraKes($myTable, $medan, $carian);
 				# tentukan bilangan mukasurat. bilangan jumlah rekod
@@ -190,18 +192,40 @@ class Batch extends Kawal
 			$cariPPT[] = array('fix'=>'x!=','atau'=>'and','medan'=>'kp','apa'=>'205');
 			$this->papar->cariApa['ppt'] = $this->tanya->
 				kesBatchAwal($jadual, $medan, $cariPPT, $susunNama);
-				
+			# sql 4.2 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
+			$medanA = 'newss,nama,alamat1,alamat2';
+			$cariA[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$this->papar->cariApa['alamatKes'] = $this->tanya->
+				kesBatchAwal($jadual, $medanA, $cariA, $susunNama);
+			# sql 4.2 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
+			$medanABtPht = 'newss,lower(nama),concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar)';
+			$cariABtPht[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$cariABtPht[] = array('fix'=>'%like%','atau'=>'AND','medan'=>'bandar','apa'=>'batu pahat');
+			$this->papar->cariApa['alamatBtPahat'] = $this->tanya->
+				kesBatchAwal($jadual, $medanABtPht, $cariABtPht, null);
+			# sql 4.3 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
+			$medanASgt = 'newss,nama,alamat1,alamat2';
+			$cariASgt[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$cariASgt[] = array('fix'=>'x=','atau'=>'AND','medan'=>'bandar','apa'=>'segamat');
+			$this->papar->cariApa['alamatSegamat'] = $this->tanya->
+				kesBatchAwal($jadual, $medanASgt, $cariASgt, null);
+
+	}
+
+	private function cariGroup($senaraiJadual, $cariBatch, $cariID, $medan)
+	{
+		$jum2 = pencamSqlLimit(300, $item=30, $ms=1);
+		$jadual = $senaraiJadual[0];
 		## buat group, $medan set semua
-			# sql 4 - buat group ikut fe
+			# sql 5 - buat group ikut fe
 			$susunFE[] = array_merge($jum2, array('kumpul'=>'fe','susun'=>'fe') );
 			$this->papar->cariApa['kiraBatchAwal'] = $this->tanya->
 				cariGroup($jadual, $medan = 'fe as batchAwal, count(*) as kira', $carian = null, $susunFE);
-			# sql 5 - buat group ikut pembuatan / perkhidmatan
+			# sql 6 - buat group ikut pembuatan / perkhidmatan
 			$cariKP[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$susunKP[] = array_merge($jum2, array('kumpul'=>'kp,sv,nama_kp','susun'=>'kp,sv,nama_kp') );
 			$this->papar->cariApa['kiraKP' . $cariBatch] = $this->tanya->
-				cariGroup($jadual, $medan = 'kp,sv,nama_kp, count(*) as kira', $cariKP, $susunKP);
-	
+				cariGroup($jadual, $medan = 'kp,sv,nama_kp, count(*) as kira', $cariKP, $susunKP);	
 	}
 	
 	public function tukarBatch($tukarBatch)
