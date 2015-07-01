@@ -81,7 +81,7 @@ class Batch_Tanya extends Tanya
 				//echo "\r$key => ($fix) $atau $medan -> '$cariApa' |";
 				$where .= $this->jika($atau,$medan,$fix,$cariApa,$akhir);
 			}
-		endif; //echo "<hr>$where";
+		endif; 
 	
 		return $where;
 	
@@ -120,7 +120,6 @@ class Batch_Tanya extends Tanya
 		
 		//echo $sql . '<br>';
 		$result = $this->db->columnCount($sql);
-		//echo json_encode($result);
 		
 		return $result;
 	}
@@ -132,7 +131,6 @@ class Batch_Tanya extends Tanya
 		
 		//echo $sql . '<br>';
 		$result = $this->db->rowCount($sql);
-		//echo json_encode($result);
 		
 		return $result;
 	}
@@ -151,7 +149,6 @@ class Batch_Tanya extends Tanya
 		
 		//echo $sql . '<br>';
 		$result = $this->db->rowCount($sql);
-		//echo json_encode($result);
 		
 		return $result;
 	}
@@ -170,28 +167,14 @@ class Batch_Tanya extends Tanya
 		return $result;
 	}
 
-	public function kesBatchJohor($myTable, $medan, $carian, $susun)
-	{
-		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
-		     . $this->dimana($carian) . $this->dibawah($susun)
-			 . '';
-		
-		//echo $sql . '<br>';
-		$result = $this->db->selectAll($sql);
-		//echo json_encode($result);
-		
-		return $result;
-	}
-	
 	public function kesBatchProses($myTable, $medan, $carian, $susun)
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 		     . $this->dimana($carian) . $this->dibawah($susun)
 			 . '';			
 		
-		echo $sql . '<br>';
+		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
-		//echo json_encode($result);
 		
 		return $result;
 	}
@@ -227,7 +210,6 @@ class Batch_Tanya extends Tanya
 		$result['kiraBaris'] = $this->db->rowCount($sql2);
 		$result['kiraMedan'] = $this->db->columnCount($sql2);
 		$result['kiraData'] = $this->db->selectAll($sql2);
-		//echo json_encode($result);
 		
 		return $result;		
 		
@@ -241,8 +223,6 @@ class Batch_Tanya extends Tanya
 		
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
-		//echo json_encode($result);
-		//echo '<pre>result:' . print_r($result) . '</pre>';
 		
 		return $result;
 	}
@@ -256,7 +236,6 @@ class Batch_Tanya extends Tanya
 		
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
-		//echo json_encode($result);
 		//echo '<pre>result:' . print_r($result) . '</pre>';
 		
 		return $result;
@@ -270,7 +249,6 @@ class Batch_Tanya extends Tanya
 		
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
-		//echo json_encode($result);
 		
 		return $result;
 	}
@@ -281,7 +259,6 @@ class Batch_Tanya extends Tanya
 		
 		//echo $sql . '<br>';
 		$result = $this->db->select($sql);
-		//echo json_encode($result);
 		
 		return $result;
 	}
