@@ -135,6 +135,7 @@ class Paparan extends Kawal
 				. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat_penuh,respon,' 
 				. 'nota' . ((!isset($cariBatch)) ? ',fe fe' : '') . "\r";
 			$cari1[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch,'akhir'=>'');
+			$cari1[] = array('fix'=>'x=','atau'=>'AND','medan'=>'mko','apa'=>null,'akhir'=>'');
 			$groupBy1 = null; $orderBy1 = 'mko,respon DESC,kp,newss';//'dp_baru, jalan, no';
 			#sql1
 				$this->papar->cariApa[$paparTable1] = $this->tanya->
@@ -228,7 +229,7 @@ class Paparan extends Kawal
 				. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat_penuh,respon,' 
 				. 'nota' . ((!isset($cariBatch)) ? ',fe fe' : '') . "\r";
 			$cari8[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch,'akhir'=>'');
-			$cari8[] = array('fix'=>'x=','atau'=>'AND','medan'=>'MKO','apa'=>1,'akhir'=>'');
+			$cari8[] = array('fix'=>'x=','atau'=>'AND','medan'=>'mko','apa'=>1,'akhir'=>'');
 			$groupBy8 = null; $orderBy8 = 'mko,respon DESC,kp,newss';//'dp_baru, jalan, no';
 			#sql8
 				$this->papar->cariApa[$paparTable8] = $this->tanya->
