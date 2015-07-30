@@ -455,7 +455,7 @@ class Laporan extends Kawal
 		# kumpul respon
 		$kumpul = $this->tanya->kumpulRespon('kod','f2','respon',
 			$medan = "concat_ws('<br>Operator:',nama,operator) nama, concat_ws(' ',kp) as 'sv', "
-				. " '' as utama, newss, nota",
+				. " msic2008 as utama, newss, nota",
 			$jadual,$carian,$susun);
 		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
 		$this->papar->kiraSemuaBaris = $bilSemua;
