@@ -1,15 +1,6 @@
 <?php 
-//print_r($this->url);
-//print_r($this->bilSemua); 
-//print_r($this->halaman); 
-//print_r($this->cariApa); 
-//print_r($this->carian); 
-#
-//print_r($this->error); 
-//print_r($this->cariBatch); 
-//print_r($this->cariID); 
-//print_r($this->carian); 
-
+//print_r($this->url);//print_r($this->bilSemua); //print_r($this->halaman); //print_r($this->cariApa); //print_r($this->carian); 
+//print_r($this->error); //print_r($this->cariBatch); //print_r($this->cariID); //print_r($this->carian); 
 
 if ($this->carian=='[id:0]')
 {
@@ -29,9 +20,8 @@ else
 ?>
 <h3><a target="_blank" href="<?=$cetakF3semua?>">Cetak F3 Semua</a>
 |<a target="_blank" href="<?=$cetakF3mfg?>">F3 MFG</a>
-|<a target="_blank" href="<?=$cetakF3ppt?>">F3 PPT</a></h3>
-<h1>Ubah BatchAwal : <?=$cariBatch?><br>
-<small>Nota: <?=$this->error?></small></h1>
+|<a target="_blank" href="<?=$cetakF3ppt?>">F3 PPT</a>
+| Ubah BatchAwal : <?=$cariBatch?><small>Nota: <?=$this->error?></small></h3>
 <div align="center"><form method="GET" action="<?=$mencari?>" class="form-inline" autocomplete="off">
 <div class="form-group"><div class="input-group">
 	<input type="text" name="cari" class="form-control" autofocus
