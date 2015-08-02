@@ -194,19 +194,23 @@ class Batch extends Kawal
 			$cariPPT[] = array('fix'=>'x!=','atau'=>'and','medan'=>'kp','apa'=>'205');
 			$this->papar->cariApa['ppt'] = $this->tanya->
 				kesBatchAwal($jadual, $medan, $cariPPT, $susunNama);
-			# sql 4.2 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
+			# sql 4.1 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
 			$medanA = 'newss,nama,alamat1,alamat2,bandar';
 			$cariA[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$this->papar->cariApa['alamatKes'] = $this->tanya->
 				kesBatchAwal($jadual, $medanA, $cariA, $susunBandar);
 			# sql 4.2 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
-			$medanABtPht = 'newss,lower(nama) nama,concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar) bandar';
+			$medanABtPht = 'newss,lower(nama) nama,concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar) bandar'
+				. ',mko,respon,nota'
+				. '';
 			$cariABtPht[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariABtPht[] = array('fix'=>'%like%','atau'=>'AND','medan'=>'bandar','apa'=>'batu pahat');
 			$this->papar->cariApa['alamatBtPahat'] = $this->tanya->
 				kesBatchAwal($jadual, $medanABtPht, $cariABtPht, null);
 			# sql 4.3 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
-			$medanASgt = 'newss,lower(nama) nama,concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar) bandar';
+			$medanASgt = 'newss,lower(nama) nama,concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar) bandar'
+				. ',mko,respon,nota'
+				. '';
 			$cariASgt[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariASgt[] = array('fix'=>'%like%','atau'=>'AND','medan'=>'bandar','apa'=>'segamat');
 			$this->papar->cariApa['alamatSegamat'] = $this->tanya->
