@@ -180,6 +180,8 @@ class Batch extends Kawal
 			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 			$jum2 = pencamSqlLimit(300, $item, $ms);
 			$susunNama[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'kp,nama') );
+			$susunBandar[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'bandar desc,nama') );
+			$susunNota[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'nota asc,nama') );
 			$jadual = $senaraiJadual[0];
 			
 			# sql 2 - cari kes MFG
@@ -196,19 +198,28 @@ class Batch extends Kawal
 			$medanA = 'newss,nama,alamat1,alamat2,bandar';
 			$cariA[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$this->papar->cariApa['alamatKes'] = $this->tanya->
-				kesBatchAwal($jadual, $medanA, $cariA, $susunNama);
+				kesBatchAwal($jadual, $medanA, $cariA, $susunBandar);
 			# sql 4.2 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
-			$medanABtPht = 'newss,lower(nama),concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar)';
+			$medanABtPht = 'newss,lower(nama) nama,concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar) bandar';
 			$cariABtPht[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariABtPht[] = array('fix'=>'%like%','atau'=>'AND','medan'=>'bandar','apa'=>'batu pahat');
 			$this->papar->cariApa['alamatBtPahat'] = $this->tanya->
 				kesBatchAwal($jadual, $medanABtPht, $cariABtPht, null);
 			# sql 4.3 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
-			$medanASgt = 'newss,lower(nama),concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar)';
+			$medanASgt = 'newss,lower(nama) nama,concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar) bandar';
 			$cariASgt[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
-			$cariASgt[] = array('fix'=>'x=','atau'=>'AND','medan'=>'bandar','apa'=>'segamat');
+			$cariASgt[] = array('fix'=>'%like%','atau'=>'AND','medan'=>'bandar','apa'=>'segamat');
 			$this->papar->cariApa['alamatSegamat'] = $this->tanya->
 				kesBatchAwal($jadual, $medanASgt, $cariASgt, null);
+			# sql 4.4 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
+			$medanAMuo = 'newss,lower(nama) nama,concat_ws(" ",lower(alamat1),lower(alamat2)) alamat,lower(bandar) bandar'
+				. ',mko,respon,nota'
+				. '';
+			$cariAMuo[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$cariAMuo[] = array('fix'=>'%like%','atau'=>'AND (','medan'=>'bandar','apa'=>'muar');
+			$cariAMuo[] = array('fix'=>'%like%','atau'=>' OR ','medan'=>'bandar','apa'=>'parit jawa','akhir'=>')');
+			$this->papar->cariApa['alamatMuar'] = $this->tanya->
+				kesBatchAwal($jadual, $medanAMuo, $cariAMuo, $susunNota);
 
 	}
 
