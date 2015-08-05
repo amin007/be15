@@ -35,7 +35,9 @@ if ( in_array($this->ip2,$this->senaraiIP) )
 				<input type="hidden" name="username" value="<?php echo $nama ?>" placeholder="Nama Anda" data-theme="a" />
 				<input type="password" name="password" id="pw" placeholder="Kata Laluan" data-theme="a" />
 <?php else: ?>
-			<?php echo $imej ?><br>anda ada kebenaran masuk sistem
+			<?php echo $imej 
+			. '';
+			?><br>anda ada kebenaran masuk sistem
 				<input type="hidden" name="username" value="<?php echo $fe ?>" />
 				<input type="hidden" name="password" value="<?php echo $fe ?>" />
 <?php endif; ?>
