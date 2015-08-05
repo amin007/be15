@@ -49,7 +49,7 @@ class Batch extends Kawal
 	{ 
 		echo 'class Batchawal::index() extends Kawal ';
 		# pergi papar kandungan
-		$this->papar->baca('kawalan/io', 0);
+		$this->papar->baca('kawalan/io', 1);
 	}
 	
 // UNTUK KES POM
