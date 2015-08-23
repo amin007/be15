@@ -502,6 +502,17 @@ class Laporan_Tanya extends Tanya
 		return $result;	
 	}
 
+	public function cariSql($myTable, $medan, $carian, $susun)
+	{
+		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
+			 . $this->dimana($carian)
+			 . $this->dibawah($susun);
+		
+		echo htmlentities($sql) . '<br>';
+		
+		return $result = null;
+	}
+
 	public function cariSemuaData($myTable, $medan, $carian, $susun)
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
