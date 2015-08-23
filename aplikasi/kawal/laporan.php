@@ -263,8 +263,8 @@ class Laporan extends Kawal
 		# kiraKes dulu
 		$item = 30; $ms = 1;
 		$jadual = 'sse15_kawal';
-		//$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'batchProses','apa'=>$cariBatch);
-		$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'hantar','apa'=>$cariBatch);
+		$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'batchProses','apa'=>$cariBatch);
+		//$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'hantar','apa'=>$cariBatch);
 		$bilSemua = $this->tanya->kiraKes($jadual, $medan = '*', $carian);
 		# tentukan bilangan mukasurat. bilangan jumlah rekod
 		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
@@ -272,8 +272,9 @@ class Laporan extends Kawal
 
 		# kumpul respon
 		$kumpul = $this->tanya->cariSemuaData($jadual, 
+		//$kumpul = $this->tanya->cariSql($jadual, 
 			$medan = "newss, concat_ws('<br',nama,operator) nama,"
-				   . " concat_ws('-',kp,borang) kp,"
+				   . " concat_ws('-',kp,nama_kp) kp,"
 				   . " if(respon='A1',respon,'&nbsp;') A1,"
 				   . " if(respon!='A1',respon,'&nbsp;') NONA1, nota",
 			$carian, $jum);
@@ -282,13 +283,14 @@ class Laporan extends Kawal
 		# Set pembolehubah
 		$this->papar->hasil = $kumpul;
 		$this->papar->fe = $cariBatch;
+		$this->papar->kodkp = 'SSE';
 		# Set pemboleubah utama
         $this->papar->pegawai = senarai_kakitangan();
-        $this->papar->lokasi = 'CDT 2014 - Ubah';
+        $this->papar->lokasi = 'SSE 2015 - Ubah';
 		
 		 # pergi papar kandungan
 		//echo '<br>location: ' . URL . "batchawal/semak/$cariBatch/$dataID" . '';
-		$this->papar->baca('laporan/f10', 1);
+		$this->papar->baca('laporan/f10_sse2015', 1);
 //*/		
 	}
 # hantar kawalan ke en razak
