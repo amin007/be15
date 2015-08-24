@@ -298,6 +298,7 @@ class Batch extends Kawal
 	
 		return $paparError;
 	}
+	
 	public function proses($cariBatch = null, $cariID = null) 
 	{    
 		# setkan pembolehubah untuk $this->tanya
@@ -323,6 +324,7 @@ class Batch extends Kawal
 		# pergi papar kandungan
 		$this->papar->baca('kawalan/batchprosesan', 0);
 	}
+	
 	private function cariProses($senaraiJadual, $cariBatch, $cariID, $medan)
 	{
 		$item = 1000; $ms = 1; ## set pembolehubah utama	
@@ -385,5 +387,5 @@ class Batch extends Kawal
 			$this->papar->cariApa['-ve'] = $this->tanya->
 				kesBatchAwal($jadual, $medan, $cariNegatif, $susunNama);
 	}
-#
+# tamat class Batch extend Kawal
 }
