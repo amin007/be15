@@ -167,6 +167,7 @@ class Batch extends Kawal
 		## tentukan bilangan mukasurat. bilangan jumlah rekod
 			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 			$jum2 = pencamSqlLimit(300, $item, $ms);
+			$susunMfg[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'respon,nama') );
 			$susunNama[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'kp,nama') );
 			$susunBandar[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'bandar desc,nama') );
 			$susunNota[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'nota asc,nama') );
@@ -176,7 +177,7 @@ class Batch extends Kawal
 			$cariMFG[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariMFG[] = array('fix'=>'zin','atau'=>'AND','medan'=>'kp','apa'=>'("205","800")');
 			$this->papar->cariApa['mfg'] = $this->tanya->
-				kesBatchAwal($jadual, $medan, $cariMFG, $susunNama);
+				kesBatchAwal($jadual, $medan, $cariMFG, $susunMfg);
 			# sql 3 - cari kes PPT
 			$cariPPT[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariPPT[] = array('fix'=>'x!=','atau'=>'and','medan'=>'kp','apa'=>'205');
@@ -222,7 +223,6 @@ class Batch extends Kawal
 			$cariNegatif[] = array('fix'=>'xin','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
 			$this->papar->cariApa['-ve'] = $this->tanya->
 				kesBatchAwal($jadual, $medan, $cariNegatif, $susunNama);
-
 	}
 
 	private function cariGroup($senaraiJadual, $cariBatch, $cariID, $medan)
