@@ -50,12 +50,11 @@ class Batch extends Kawal
 			//echo '<br>$dataID=' . $dataID . '<br>';
 			//echo '<pre>$posmen='; print_r($posmen) . '</pre>';
 	
-		$this->tanya->ubahSimpan($posmen, $jadual,
-			$medanID = 'newss');
+		$this->tanya->ubahSimpan($posmen, $jadual, $medanID = 'newss');
 
 		# Set pemboleubah utama
 		$this->papar->pegawai = senarai_kakitangan();
-		$this->papar->lokasi = 'CDT 2014 - Ubah';
+		$this->papar->lokasi = 'SSE 2015 - Ubah';
 		
 		# pergi papar kandungan
 		//echo '<br>location: ' . URL . "batch/awal/$cariBatch" . '';
@@ -98,7 +97,7 @@ class Batch extends Kawal
 				$paparError = 'Tiada id<br>';
 			else
 			{
-				$paparMedan = 'newss,nossm,nama,operator,'
+				$paparMedan = 'newss,ssm,nama,operator,'
 					. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat';
 				$cariNama[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'newss','apa'=>$cariID);
 				$dataKes = $this->tanya->cariSatuSahaja($senaraiJadual[0], $paparMedan, $cariNama);
