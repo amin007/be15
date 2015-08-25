@@ -10,7 +10,7 @@ class Batch extends Kawal
 
 		$this->pengguna = Sesi::get('namaPegawai');
 		$this->level = Sesi::get('levelPegawai');
-		
+		# untuk $this->papar
 		$this->papar->js = array(
 			/*'bootstrap.js','bootstrap-transition.js','bootstrap-alert.js','bootstrap-modal.js',
 			'bootstrap-dropdown.js','bootstrap-scrollspy.js','bootstrap-tab.js','bootstrap-tooltip.js',
@@ -18,7 +18,7 @@ class Batch extends Kawal
 			'bootstrap-typeahead.js','bootstrap-affix.js',*/
 			'bootstrap-datepicker.js','bootstrap-datepicker.ms.js','bootstrap-editable.min.js');
 		$this->papar->css = array('bootstrap-datepicker.css','bootstrap-editable.css');
-		
+		# istihar pembolehubah untuk class 
 		$this->medanRangka = 'newss,ssm,concat_ws("<br>",nama,operator) as nama,'
 			. 'fe,batchProses,hantar_prosesan,respon R,msic2008,kp,nama_kp,'
 			. 'concat_ws("<br>",alamat1,alamat2,poskod,bandar,negeri) as alamat' 
