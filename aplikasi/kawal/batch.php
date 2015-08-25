@@ -50,7 +50,7 @@ class Batch extends Kawal
 			//echo '<br>$dataID=' . $dataID . '<br>';
 			//echo '<pre>$posmen='; print_r($posmen) . '</pre>';
 	
-		$this->tanya->ubahSimpan($posmen[$jadual], $jadual,
+		$this->tanya->ubahSimpan($posmen, $jadual,
 			$medanID = 'newss');
 
 		# Set pemboleubah utama
@@ -71,15 +71,13 @@ class Batch extends Kawal
 		# masuk dalam database
 			# ubahsuai $posmen
 			$jadual = 'sse15_kawal'; //$jadual = 'cdt_pom_baki';
-			$medanID = 'newss';
 			$posmen[$jadual]['fe'] = $cariBatch;
 			$posmen[$jadual]['respon'] = 'B7';
 			$posmen[$jadual][$medanID] = $dataID;
 			//echo '<br>$dataID=' . $dataID . '<br>';
 			//echo '<pre>$posmen='; print_r($posmen) . '</pre>';
         
-			$data = $posmen[$jadual];
-			$this->tanya->ubahSimpan($data, $jadual, $medanID);
+			$this->tanya->ubahSimpan($posmen, $jadual, $medanID = 'newss');
 
 		# Set pemboleubah utama
 		$this->papar->pegawai = senarai_kakitangan();
