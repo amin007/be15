@@ -19,12 +19,12 @@ class Batch extends Kawal
 			'bootstrap-datepicker.js','bootstrap-datepicker.ms.js','bootstrap-editable.min.js');
 		$this->papar->css = array('bootstrap-datepicker.css','bootstrap-editable.css');
 			
-		$this->medanRangka = 'newss,nossm,concat_ws("<br>",nama,operator) as nama,'
+		$this->medanRangka = 'newss,ssm,concat_ws("<br>",nama,operator) as nama,'
 			. 'fe,batchProses,hantar_prosesan,respon R,msic2008,kp,nama_kp,'
 			. 'concat_ws("<br>",alamat1,alamat2,poskod,bandar,negeri) as alamat' 
 			//. 'concat_ws("<br>",semak1,mdt,notamdt2014,notamdt2012,notamdt2011) as nota_lama'
 			. "\r";
-		$this->medanData = 'newss,nama,fe,batchProses,"<input type=\"checkbox\">" as tik, ' . "\r"
+		$this->medanData = 'newss,ssm,nama,fe,batchProses,"<input type=\"checkbox\">" as tik, ' . "\r"
 			//. 'concat_ws("<br>",alamat1,alamat2,poskod,bandar,negeri) as alamat,' 
 			. 'respon R,nama_kp,kp,msic2008,'
 			. 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota'
@@ -100,7 +100,7 @@ class Batch extends Kawal
 				$paparError = 'Tiada id<br>';
 			else
 			{
-				$paparMedan = 'newss,ssm,nama,operator,'
+				$paparMedan = 'newss,nossm,nama,operator,'
 					. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat';
 				$cariNama[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'newss','apa'=>$cariID);
 				$dataKes = $this->tanya->cariSatuSahaja($senaraiJadual[0], $paparMedan, $cariNama);
