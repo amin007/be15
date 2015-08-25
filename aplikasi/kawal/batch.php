@@ -115,17 +115,13 @@ class Batch extends Kawal
 
 	public function awal($cariBatch = null, $cariID = null) 
 	{    
-		# setkan pembolehubah untuk $this->tanya
-		//echo "\$cariBatch = $cariBatch . \$cariID = $cariID <br>";
-		$medanRangka = $this->medanRangka;
-		$medanData = $this->medanData;
-		$senaraiJadual = array('sse15_kawal');
-			
+		//echo "\$cariBatch = $cariBatch . \$cariID = $cariID <br>";	
+			$senaraiJadual = array('sse15_kawal'); # set senarai jadual yang terlibat
 			# cari $cariBatch atau cariID wujud tak
 			$this->papar->error = $this->wujudBatchAwal($senaraiJadual, $cariBatch, $cariID);
 			# mula carian dalam jadual $myTable
-			$this->cariAwal($senaraiJadual, $cariBatch, $cariID, $medanData);
-			$this->cariGroup($senaraiJadual, $cariBatch, $cariID, $medanData);
+			$this->cariAwal($senaraiJadual, $cariBatch, $cariID, $this->medanData);
+			$this->cariGroup($senaraiJadual, $cariBatch, $cariID, $this->medanData);
 			
 		# semak pembolehubah $this->papar->cariApa
 		//echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
