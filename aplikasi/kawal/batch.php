@@ -44,14 +44,14 @@ class Batch extends Kawal
 		# masuk dalam database
 			# ubahsuai $posmen
 			$jadual = 'sse15_kawal';
-			$medanID = 'newss';
 			$posmen[$jadual]['fe'] = null;
 			$posmen[$jadual]['respon'] = null;
 			$posmen[$jadual][$medanID] = $dataID;
 			//echo '<br>$dataID=' . $dataID . '<br>';
 			//echo '<pre>$posmen='; print_r($posmen) . '</pre>';
 	
-		$this->tanya->ubahSimpan($posmen[$jadual], $jadual, $medanID);
+		$this->tanya->ubahSimpan($posmen[$jadual], $jadual,
+			$medanID = 'newss');
 
 		# Set pemboleubah utama
 		$this->papar->pegawai = senarai_kakitangan();
