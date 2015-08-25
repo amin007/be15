@@ -294,16 +294,13 @@ class Batch extends Kawal
 	
 	public function proses($cariBatch = null, $cariID = null) 
 	{    
-		# setkan pembolehubah untuk $this->tanya
 		//echo "\$cariBatch = $cariBatch . \$cariID = $cariID <br>";
-		$medanData = $this->medanData;
-		$senaraiJadual = array('sse15_kawal');
-			
+			$senaraiJadual = array('sse15_kawal'); # set senarai jadual yang terlibat
 			# cari $cariBatch atau cariID wujud tak
 			$this->papar->error = $this->wujudBatchProses($senaraiJadual, $cariBatch, $cariID);
 			# mula carian dalam jadual $myTable
-			$this->cariProses($senaraiJadual, $cariBatch, $cariID, $medanData);
-			//$this->cariGroup($senaraiJadual, $cariBatch, $cariID, $medanData);
+			$this->cariProses($senaraiJadual, $cariBatch, $cariID, $this->medanData);
+			//$this->cariGroup($senaraiJadual, $cariBatch, $cariID, $this->medanData);
 			
 		# semak pembolehubah $this->papar->cariApa
 		//echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
