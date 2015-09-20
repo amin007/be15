@@ -38,11 +38,11 @@ class Cari extends Kawal
 	public function index() 
 	{	
 		$this->papar->medan = array(1,2,3);
-		// set latarbelakang
+		# set latarbelakang
 		$this->papar->gambar=gambar_latarbelakang('../../');
-		// Set pemboleubah utama
+		# Set pemboleubah utama
 		$this->papar->pegawai = senarai_kakitangan();
-		// pergi papar kandungan
+		# pergi papar kandungan
 		$this->papar->baca($this->_folder . '/index');
 	}
 	
@@ -52,12 +52,12 @@ class Cari extends Kawal
         //echo '<pre>$_POST=>'; print_r($_POST) . '</pre>';
         /*  $_POST[] => Array ( [cari] => 0000000123456 or [nama] => ABC ) */
         
-        // senaraikan tatasusunan jadual
+        # senaraikan tatasusunan jadual
         $myJadual = array('sse15_kawal','mfg15_pom','ppt2015','ppt2015_pom');
 		$medan = '*';
         $this->papar->cariNama = array();
 
-        // cari id berasaskan newss/ssm/sidap/nama
+        # cari id berasaskan newss/ssm/sidap/nama
         $id['nama'] = bersih(isset($_POST['cari']) ? $_POST['cari'] : null);
         //$id['nama'] = isset($_POST['id']['nama']) ? $_POST['id']['nama'] : null;
 
@@ -68,7 +68,7 @@ class Cari extends Kawal
 				'medan' => 'concat_ws("",newss,ssm,nama)', # cari dalam medan apa
 				'apa' => $id['nama']); # benda yang dicari
 			
-            // mula cari $cariID dalam $myJadual
+			# mula cari $cariID dalam $myJadual
             foreach ($myJadual as $key => $myTable)
             {# mula ulang table
                 $this->papar->cariNama[$myTable] = 
