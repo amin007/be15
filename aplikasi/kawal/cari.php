@@ -126,7 +126,7 @@ class Cari extends Kawal
 		 
 		$had = '0, ' . $bil; // setkan $had untuk sql
 		$kira = pecah_post($_POST); # echo '<pre>$kira->'; print_r($kira); echo '</pre>';
-		// setkan pembolehubah dulu
+		# setkan pembolehubah dulu
 		$namajadual = isset($_POST['namajadual']) ? $_POST['namajadual'] : null;
 		$susun = isset($_POST['susun']) ? $_POST['susun'] : 1;
 		$carian = isset($_POST['cari']) ? $_POST['cari'] : null;
@@ -157,12 +157,12 @@ class Cari extends Kawal
 		{
 			//echo '3)$namajadual=' . $namajadual . '<br>';
 			$jadual = dpt_senarai('msicbaru');
-			// mula cari $cariID dalam $jadual
+			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $namaPanjang)
-			{// mula ulang table
+			{# mula ulang table
 				//$rest = substr("abcdef", 2, -1);  // returns "cde"
 				$myTable = substr($namaPanjang, 16);  
-				// senarai nama medan
+				# senarai nama medan
 				$medan = ($myTable=='msic2008') ? 
 					'seksyen S,bahagian B,kumpulan Kpl,kelas Kls,' .
 					'msic2000,msic,keterangan,notakaki' 
@@ -170,7 +170,7 @@ class Cari extends Kawal
 				$this->papar->cariNama[$myTable] = $this->tanya
 				->cariPOST($namaPanjang, $medan, $kira, $had);
 
-			}// tamat ulang table
+			}# tamat ulang table
 			
 			$this->papar->carian=$carian;
 			$mesej = null; $lokasi = null;
@@ -179,22 +179,22 @@ class Cari extends Kawal
 		{
 			//echo '4)$namajadual=' . $namajadual . '<br>';
 			$jadual = dpt_senarai('produk');
-			// mula cari $cariID dalam $jadual
+			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $namaPanjang)
-			{// mula ulang table
+			{# mula ulang table
 				//$rest = substr("abcdef", 2, -1);  // returns "cde"
 				$myTable = substr($namaPanjang, 16);  
 				//echo "<br> $myTable";
-				// senarai nama medan
+				# senarai nama medan
 				$medan = ($myTable=='kodproduk_aup') ? 
 					'bil,substring(kod_produk_lama,1,5) as msic,kod_produk_lama,' .
 					'kod_produk,unit_kuantiti unit,keterangan,keterangan_bi,aup,min,max' 
 					: '*'; 
 				$this->papar->cariNama[$myTable] = $this->tanya
 				->cariPOST($namaPanjang, $medan, $kira, $had);
-			}// tamat ulang table
+			}# tamat ulang table
 			
-			// papar jadual kod unit
+			# papar jadual kod unit
 			$unitPanjang = 'pom_dataekonomi.kodproduk_unitkuantiti';
 			$unit = 'unitkuantiti';
 				$this->papar->cariNama[$unit] = $this->tanya
@@ -207,14 +207,14 @@ class Cari extends Kawal
 		{
 			//echo '5)$namajadual=' . $namajadual . '<br>';
 			$jadual = dpt_senarai('syarikat');
-			// mula cari $cariID dalam $jadual
+			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $myTable)
-			{// mula ulang table
-				// senarai nama medan
+			{# mula ulang table
+				# senarai nama medan
 				$medan = '*'; 
 				$this->papar->cariNama[$myTable] = $this->tanya
 				->cariPOST($myTable, $medan, $kira, $had);
-			}// tamat ulang table
+			}# tamat ulang table
 			
 			$this->papar->carian=$carian;
 			$mesej = null; $lokasi = null;
@@ -223,7 +223,7 @@ class Cari extends Kawal
 		{
 			//`KOD NEGERI`, `NEGERI`,
 			//echo '6)$namajadual=' . $namajadual . '<br>';
-				// senarai nama medan
+				# senarai nama medan
 				$medanAsal = '`KOD NGDBBP 2010`,`PEJABAT OPERASI`,' .
 				"\r" . ' concat(`KOD DAERAH BANCI`,"-",`DAERAH BANCI`," | ",`NEGERI`) as DB,' .
 				"\r" . ' concat(`KOD STRATA`,"-",`STRATA`) as STRATA,' .
@@ -232,7 +232,7 @@ class Cari extends Kawal
 				"\r" . ' concat(`KOD PBT`,"-",`PIHAK BERKUASA TEMPATAN`) as PBT,' .
 				"\r" . ' concat(`KOD BDR`,"-",`NAMA BANDAR`) as BANDAR,' .
 				"\r" . '`DESKRIPSI (LOKALITI STATISTIC KAWKECIL)`, `LOKALITI UNTUK INDEKS`'; 
-				// senarai nama medan
+				# senarai nama medan
 				$medanBaru = '`KOD NGDBBP 2010`,' .
 				//"\r" . ' concat("01",`no_db`, `no_bp_baru`) as `KodNGDBBP`,' .
 				"\r" . ' `kod_strata` as STRATA, NEGERI,' .
@@ -243,9 +243,9 @@ class Cari extends Kawal
 				"\r" . ' `LOKALITI UNTUK INDEKS`'; 
 
 			$jadual = dpt_senarai('johor');
-			// mula cari $cariID dalam $jadual
+			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $myTable)
-			{// mula ulang table
+			{# mula ulang table
 				
 				$medan = ($myTable=='pom_lokaliti.johor') ? 
 					$medanAsal : $medanBaru;
@@ -254,7 +254,7 @@ class Cari extends Kawal
 				$this->papar->cariNama[$myJadual] = $this->tanya
 					->cariPOST($myTable, $medan, $kira, $had);
 
-			}// tamat ulang table
+			}# tamat ulang table
 			
 			$this->papar->carian=$carian;
 			$mesej = null; $lokasi = null;
@@ -263,22 +263,22 @@ class Cari extends Kawal
 		{
 			//echo '7)$namajadual=' . $namajadual . '<br>';
 			$jadual = dpt_senarai('prosesan');
-			// mula cari $cariID dalam $jadual
+			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $myTable)
-			{// mula ulang table
-				// senarai nama medan
+			{# mula ulang table
+				# senarai nama medan
 				$medan = '*'; 
 				//echo '$myTable:' . $myTable . '<br>';
 				$this->papar->cariNama[$myTable] = $this->tanya
 				->cariPOST($myTable, $medan, $kira, $had);
-			}// tamat ulang table
+			}# tamat ulang table
 			
 			$this->papar->carian = $carian;
 			$mesej = null; $lokasi = null;
 		}
 		
-		// semak output
-		/*
+		
+		/* # semak output
 		echo '<pre>';
 		//echo 'Patah balik ke ' . $lokasi . $mesej . $namajadual . '<hr>';
 		echo '$this->papar->cariNama:'; print_r($this->papar->cariNama);
@@ -287,7 +287,7 @@ class Cari extends Kawal
 		echo '</pre>';
 		//*/
 		
-		// paparkan ke fail cari/$namajadual.php
+		# paparkan ke fail cari/$namajadual.php
 		if ($mesej != null ) 
 		{
 			$_SESSION['mesej'] = $mesej;
