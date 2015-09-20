@@ -2,7 +2,7 @@
 
 class Cari_Tanya extends Tanya 
 {
-
+# mula - class Cari_Tanya extends Tanya
 	public function __construct() 
 	{
 		parent::__construct();
@@ -33,6 +33,8 @@ class Cari_Tanya extends Tanya
 			$where .= " $atau`$medan` like '%$cariApa'\r";	
 		elseif($fix=='x%like')
 			$where .= " $atau`$medan` not like '%$cariApa'\r";	
+		elseif($fix=='in')
+			$where .= " $atau`$medan` in $cariApa\r";						
 		elseif($fix=='xin')
 			$where .= " $atau`$medan` not in $cariApa\r";						
 		elseif($fix=='khas')
@@ -61,10 +63,9 @@ class Cari_Tanya extends Tanya
 				  $medan = isset($carian[$key]['medan']) ? $carian[$key]['medan']      : null;
 				    $fix = isset($carian[$key]['fix'])   ? $carian[$key]['fix']        : null;			
 				$cariApa = isset($carian[$key]['apa'])   ? $carian[$key]['apa']        : null;
+				
 				//echo "\r$key => ($fix) $atau $medan = '$apa'  ";
-				
 				$where = $this->cariApa($fix, $atau, $medan, $cariApa);
-				
 			}
 		endif;
 	
@@ -74,15 +75,6 @@ class Cari_Tanya extends Tanya
 	
 	private function dibawah($carian)
 	{
-/*
-   [bil_semua] => 300
-    [page] => 1
-    [max] => 500
-    [dari] => 0
-    [muka_surat] => 1
-    [bil] => 1
-    [susun] => batchAwal ASC
-*/		
 		$susun = null;
 		if($carian==null || empty($carian) ):
 			$susun .= null;
@@ -105,7 +97,6 @@ class Cari_Tanya extends Tanya
 		return $susun;
 	
 	}
-
 ########################################################################################################
 	private function dimanaPOST($myTable)
 	{
@@ -201,20 +192,6 @@ class Cari_Tanya extends Tanya
 		
 		return $result;
 	}
-
-	public function cariBanyakLimit($myTable, $medan, $susun, $jum)
-	{
-		//$jum['dari'] . ', ' . $jum['max']
-		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable
-			 . ' ' . $susun
-			 . ' LIMIT ' . $jum['dari'] . ', ' . $jum['max'];
-		
-		//echo '<pre>$sql->', print_r($sql, 1) . '</pre>';
-		$result = $this->db->selectAll($sql);
-		//echo json_encode($result);
-		
-		return $result;
-	}
 	
 	public function cariPOST($myTable, $medan)
 	{
@@ -275,5 +252,5 @@ class Cari_Tanya extends Tanya
 		//echo '<pre>$sql->', print_r($sql, 1) . '</pre>';
 		$this->db->insert($sql);
 	}
-	
+# tamat - class Cari_Tanya extends Tanya
 }
