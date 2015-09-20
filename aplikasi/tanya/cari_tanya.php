@@ -50,6 +50,7 @@ class Cari_Tanya extends Tanya
 		
 		return $where;
 	}
+	
 	private function dimana($carian)
 	{
 		//' WHERE ' . $medan . ' like %:cariID% ', array(':cariID' => $cariID));
@@ -64,7 +65,7 @@ class Cari_Tanya extends Tanya
 				    $fix = isset($carian[$key]['fix'])   ? $carian[$key]['fix']        : null;			
 				$cariApa = isset($carian[$key]['apa'])   ? $carian[$key]['apa']        : null;
 				
-				//echo "\r$key => ($fix) $atau $medan = '$apa'  ";
+				//echo "\r$key => ($fix) $atau $medan = '$apa' ";
 				$where = $this->cariApa($fix, $atau, $medan, $cariApa);
 			}
 		endif;
@@ -127,21 +128,16 @@ class Cari_Tanya extends Tanya
 				}
 				else 
 					$where .= ($f=='x') ? " $atau `$cari`='$apa'\r" : 
-					" $atau `$cari` like '%$apa%'\r";		
-				
+					" $atau `$cari` like '%$apa%'\r";						
 			}
 		endif;
-/* ulang cari2 hingga n...			
-		$sql.=($c2==null)?'':($f2==1?"\r$a2 $m2 $p2='$c2' $t2"
-							:"\r$a2 $m2 $p2 like '%$c2%' $t2");
-*/		
+
 		return $where;
 	} // private function dimanaPOST()
 
 	public function paparMedan($myTable)
 	{
-		return //$result =
-		$this->db->selectAll('SHOW COLUMNS FROM ' . $myTable);
+		return $this->db->selectAll('SHOW COLUMNS FROM ' . $myTable);
 	}
 	
 	public function kiraMedan($myTable, $medan = '*', $carian = null)
@@ -151,8 +147,6 @@ class Cari_Tanya extends Tanya
 		
 		//echo '<pre>$sql->', print_r($sql, 1) . '</pre>';
 		$result = $this->db->columnCount($sql);
-		//echo '<br>Bil hasil = ' . $result . '<br>';
-		//echo json_encode($result);	
 		return $result;
 	}
 
@@ -163,8 +157,6 @@ class Cari_Tanya extends Tanya
 		
 		//echo '<pre>$sql->', print_r($sql, 1) . '</pre>';
 		$result = $this->db->rowCount($sql);
-		//echo '<br>Bil hasil = ' . $result . '<br>';
-		//echo json_encode($result);	
 		return $result;
 	}
 	
