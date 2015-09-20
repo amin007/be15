@@ -322,22 +322,23 @@ class Cari extends Kawal
 				$medan = 'newss,nama,ssm,operator,kp';
 				$cari[] = array('fix'=>'likeMedan','atau'=>'WHERE','medan'=>'concat(newss,nama)','apa'=>$queryString);
 				$susun['dari'] = 30;
-				$query = "SELECT newss,nama,ssm,operator,kp FROM $myTable 
-				WHERE concat(newss,nama) like '%$queryString%' LIMIT 30";
 				
-				//$papar = $this->tanya->cariSql($myTable, $medan, $cari, $susun);
-				$papar = $this->tanya->cariSemuaData($myTable, $medan, $cari, $susun);
+				//$paparKes = $this->tanya->cariSql($myTable, $medan, $cari, $susun);
+				$paparKes = $this->tanya->cariSemuaData($myTable, $medan, $cari, $susun);
 				$bilKes = $this->tanya->kiraKes($myTable, $medan, $cari, $susun);
-				echo '<pre>' . $bilKes . '=>'; print_r($papar) . '</pre>';
-				/*
-					if($rows==0) {echo '<li onClick="fill(\'-\');">Takde Laa</li>';}
-					else
+				//echo '<pre>' . $bilKes . '=>'; print_r($paparKes) . '</pre>';
+				
+				if($bilKes==0) {echo '<li onClick="fill(\'-\');">Takde Laa</li>';}
+				else
+				{
+					foreach($paparKes as $key => $data)
 					{
-						while($row = mysql_fetch_array($result))
-						{echo '<li onClick="fill(\''.$row[0].'\');">'.$row[1].'-'.
-						$row[0].'-SSM '.$row[2].'-'.$row[3].'-'.$row[4].'</li>';}
+						echo '<li onClick="fill(\''.$data['newss'].'\');">'.$data['nama'].'-'.
+						$data['newss'].'-SSM '.$data['ssm'].'-'.$data['operator'].'-'.$data['kp'].'</li>';
+
 					}
-				*/
+				}
+				
 			}
 		}		
 	}
