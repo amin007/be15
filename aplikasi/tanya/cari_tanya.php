@@ -7,40 +7,106 @@ class Cari_Tanya extends Tanya
 	{
 		parent::__construct();
 	}
-
-	private function dimana($carian)
+########################################################################################################
+	private function cariApa($fix, $atau, $medan, $cariApa)
 	{
-		//echo '<pre>$carian->'; print_r($carian) . '</pre>'; 
-		/*' WHERE ' . $medan . ' like %:cariID% ', array(':cariID' => $cariID));
-					 $atau = isset($carian[$key]['atau'])  ? $carian[$key]['atau'] . ' ' : null;
-				$cariMedan = isset($carian[$key]['medan']) ? $carian[$key]['medan']      : null;
-				      $fix = isset($carian[$key]['fix'])   ? $carian[$key]['fix']        : null;			
-				  $cariApa = isset($carian[$key]['apa'])   ? $carian[$key]['apa']        : null;
-		//*/
 		$where = null;
-		if($carian==null || empty($carian) ):
-			$where .= null;
-		else:
-			foreach ($carian as $key=>$cari)
-			{
-				//echo '<pre>$cari->'; print_r($cari) . '</pre>'; 			
-				    $atau = isset($cari['atau'])  ? $cari['atau'] . ' ' : null;
-				$medanApa = isset($cari['medan']) ? $cari['medan']      : null;
-				     $fix = isset($cari['fix'])   ? $cari['fix']        : null;			
-				 $cariApa = isset($cari['apa'])   ? $cari['apa']        : null;
-				//echo "\r$key => $cari ($fix) $atau $cariMedan = '$cariApa' <br>";
-				
-				if ($cariApa==null) 
-					$where .= " $atau$medanApa is null\r";
-				else 
-					$where .= ($fix=='=') ? " $atau$medanApa='$cariApa'\r" : 
-						" $atau$medanApa like '%$cariApa%'\r";	
-			}
-		endif;
+		if ($cariApa==null) 
+			$where .= " $atau`$medan` is null\r";
+		elseif($fix=='xnull')
+			$where .= " $atau`$medan` is not null \r";
+		elseif($fix=='x=')
+			$where .= " $atau`$medan` = '$cariApa'\r";
+		elseif($fix=='x!=')
+			$where .= " $atau`$medan` != '$cariApa'\r";
+		elseif($fix=='like')
+			$where .= " $atau`$medan` like '%$cariApa%'\r";	
+		elseif($fix=='likeMedan')
+			$where .= " $atau$medan like '%$cariApa%'\r";	
+		elseif($fix=='xlike')
+			$where .= " $atau`$medan` not like '%$cariApa%'\r";	
+		elseif($fix=='like%')
+			$where .= " $atau`$medan` like '$cariApa%'\r";	
+		elseif($fix=='xlike%')
+			$where .= " $atau`$medan` not like '$cariApa%'\r";	
+		elseif($fix=='%like')
+			$where .= " $atau`$medan` like '%$cariApa'\r";	
+		elseif($fix=='x%like')
+			$where .= " $atau`$medan` not like '%$cariApa'\r";	
+		elseif($fix=='xin')
+			$where .= " $atau`$medan` not in $cariApa\r";						
+		elseif($fix=='khas')
+			$where .= " $atau`$medan` not like $cariApa\r";	
+		elseif($fix=='khas2')
+			$where .= " $atau`$medan` REGEXP CONCAT('(^| )','',$cariApa)\r";	
+		elseif($fix=='xkhas2')
+			$where .= " $atau`$medan` NOT REGEXP CONCAT('(^| )','',$cariApa)\r";	
+		elseif($fix=='khas3')
+			$where .= " $atau`$medan` REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";	
+		elseif($fix=='xkhas3')
+			$where .= " $atau`$medan` NOT REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]')\r";	
 		
 		return $where;
 	}
+	private function dimana($carian)
+	{
+		//' WHERE ' . $medan . ' like %:cariID% ', array(':cariID' => $cariID));
+		$where = null;
+		if($carian==null || $carian=='' || empty($carian) ):
+			$where .= null;
+		else:
+			foreach ($carian as $key=>$value)
+			{
+				   $atau = isset($carian[$key]['atau'])  ? $carian[$key]['atau'] . ' ' : null;
+				  $medan = isset($carian[$key]['medan']) ? $carian[$key]['medan']      : null;
+				    $fix = isset($carian[$key]['fix'])   ? $carian[$key]['fix']        : null;			
+				$cariApa = isset($carian[$key]['apa'])   ? $carian[$key]['apa']        : null;
+				//echo "\r$key => ($fix) $atau $medan = '$apa'  ";
+				
+				$where = $this->cariApa($fix, $atau, $medan, $cariApa);
+				
+			}
+		endif;
+	
+		return $where;
+	
+	}
+	
+	private function dibawah($carian)
+	{
+/*
+   [bil_semua] => 300
+    [page] => 1
+    [max] => 500
+    [dari] => 0
+    [muka_surat] => 1
+    [bil] => 1
+    [susun] => batchAwal ASC
+*/		
+		$susun = null;
+		if($carian==null || empty($carian) ):
+			$susun .= null;
+		else:
+			foreach ($carian as $key=>$cari)
+			{
+				$kumpul = isset($carian['kumpul'])? $carian['kumpul'] : null;
+				 $order = isset($carian['susun']) ? $carian['susun']  : null;
+				  $dari = isset($carian['dari'])  ? $carian['dari']   : null;
+				   $max = isset($carian['max'])   ? $carian['max']    : null;
+				
+				//echo "\$cari = $cari, \$key=$key <br>";
+				if ($kumpul!=null)  $susun = " GROUP BY concat('%',$kumpul,'%')\r";
+				elseif($order!=null)$susun = " ORDER BY $order\r";
+				elseif($dari!=null) $susun = " LIMIT $dari";	
+				elseif($max!=null)  $susun .= ",$max\r";
+			}
+		endif;
+		
+		return $susun;
+	
+	}
 
+########################################################################################################
 	private function dimanaPOST($myTable)
 	{
 		//echo '<pre>$_POST->'; print_r($_POST) . '</pre>'; 
@@ -111,6 +177,31 @@ class Cari_Tanya extends Tanya
 		return $result;
 	}
 	
+	public function cariSql($myTable, $medan, $carian = null, $susun = null)
+	{
+		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
+			 . $this->dimana($carian)
+			 . $this->dibawah($susun)
+			 . '';
+		
+		echo htmlentities($sql) . '<br>';
+	
+	}
+
+	public function cariSemuaData($myTable, $medan, $carian = null, $susun = null)
+	{
+		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
+			 . $this->dimana($carian)
+			 . $this->dibawah($susun)
+			 . '';
+		
+		//echo htmlentities($sql) . '<br>';
+		$result = $this->db->selectAll($sql);
+		//echo json_encode($result);
+		
+		return $result;
+	}
+
 	public function cariBanyakLimit($myTable, $medan, $susun, $jum)
 	{
 		//$jum['dari'] . ', ' . $jum['max']
@@ -125,18 +216,6 @@ class Cari_Tanya extends Tanya
 		return $result;
 	}
 	
-	public function cariBanyak($myTable, $medan, $carian)
-	{
-		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable
-			 . $this->dimana($carian);
-		
-		//echo '<pre>$sql->', print_r($sql, 1) . '</pre>';
-		$result = $this->db->selectAll($sql);
-		//echo json_encode($result);
-		
-		return $result;
-	}
-
 	public function cariPOST($myTable, $medan)
 	{
 		$sql = 'SELECT ' . $medan . "\r" . ' FROM ' . $myTable . "\r"
