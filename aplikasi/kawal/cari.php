@@ -145,9 +145,8 @@ class Cari extends Kawal
 			$mesej = 'tak isi atau-dan pada carian';
 			$lokasi = ($namajadual=='johor') ? 'lokaliti/' : 'semua/';
 		}
-		elseif ( (empty($semak) 
-			|| ( empty($semak2) && $namajadual=='johor') ) 
-			) 
+		elseif ( (empty($semak) || ( empty($semak2) 
+			&& $namajadual=='johor') ) ) 
 		{
 			//echo '2)$namajadual=' . $namajadual . '<br>';
 			$mesej = 'tak isi pada carian';
@@ -160,7 +159,6 @@ class Cari extends Kawal
 			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $namaPanjang)
 			{# mula ulang table
-				//$rest = substr("abcdef", 2, -1);  // returns "cde"
 				$myTable = substr($namaPanjang, 16);  
 				# senarai nama medan
 				$medan = ($myTable=='msic2008') ? 
@@ -168,7 +166,7 @@ class Cari extends Kawal
 					'msic2000,msic,keterangan,notakaki' 
 					: '*'; 
 				$this->papar->cariNama[$myTable] = $this->tanya
-				->cariPOST($namaPanjang, $medan, $kira, $had);
+					->cariPOST($namaPanjang, $medan, $kira, $had);
 
 			}# tamat ulang table
 			
@@ -182,9 +180,7 @@ class Cari extends Kawal
 			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $namaPanjang)
 			{# mula ulang table
-				//$rest = substr("abcdef", 2, -1);  // returns "cde"
-				$myTable = substr($namaPanjang, 16);  
-				//echo "<br> $myTable";
+				$myTable = substr($namaPanjang, 16); //echo "<br> $myTable";
 				# senarai nama medan
 				$medan = ($myTable=='kodproduk_aup') ? 
 					'bil,substring(kod_produk_lama,1,5) as msic,kod_produk_lama,' .
@@ -210,10 +206,8 @@ class Cari extends Kawal
 			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $myTable)
 			{# mula ulang table
-				# senarai nama medan
-				$medan = '*'; 
 				$this->papar->cariNama[$myTable] = $this->tanya
-				->cariPOST($myTable, $medan, $kira, $had);
+					->cariPOST($myTable, $medan = '*', $kira, $had);
 			}# tamat ulang table
 			
 			$this->papar->carian=$carian;
@@ -266,11 +260,8 @@ class Cari extends Kawal
 			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $myTable)
 			{# mula ulang table
-				# senarai nama medan
-				$medan = '*'; 
-				//echo '$myTable:' . $myTable . '<br>';
 				$this->papar->cariNama[$myTable] = $this->tanya
-				->cariPOST($myTable, $medan, $kira, $had);
+					->cariPOST($myTable, $medan = '*', $kira, $had);
 			}# tamat ulang table
 			
 			$this->papar->carian = $carian;
