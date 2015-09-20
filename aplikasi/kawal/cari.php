@@ -311,14 +311,17 @@ class Cari extends Kawal
 		//*/
 	}
 	
-	public function syarikat()
+	public function syarikat($cari = null)
 	{
-		if(isset($_GET['cari'])) 
+		//if($nama == null) echo '<li onClick="fill(\'-\');">Kosong Laa</li>';
+		if (isset($_GET['cari']))
+		//if ($cari)
 		{
-			$cari = bersih($_GET['cari']);		
+			$cari = bersih($_GET['cari']);
+			//echo '<li onClick="fill(\'-\');">'.$cari.'</li>';
 			if(strlen($cari) > 0) 
 			{
-				$myTable='sse15_kawal';
+				$myTable = 'sse15_kawal';
 				$medan = 'newss,nama,ssm,operator,kp';
 				$carian[] = array('fix'=>'likeMedan','atau'=>'WHERE','medan'=>'concat(newss,nama)','apa'=>$cari);
 				$susun['dari'] = 30;
@@ -339,7 +342,7 @@ class Cari extends Kawal
 					}
 				}# tamat - $bilKes ==0
 			}# tamat - strlen($cari) > 0
-		}# tamat - isset($_GET['cari'])
+		}# tamat - isset($_GET['cari'])//*/
 	}
 # tamat - class Cari extends Kawal
 }
