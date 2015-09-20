@@ -63,16 +63,17 @@ class Cari extends Kawal
 
         if (!empty($id['nama'])) 
         {
-			$carian[] = array('atau' => 'WHERE', # WHERE / OR / AND
+			$carian[] = array('fix'=>'likeMedan', # cari = atau %%
+				'atau'=>'WHERE', # WHERE / OR / AND
 				'medan' => 'concat_ws("",newss,ssm,nama)', # cari dalam medan apa
-				'fix' => '%%', # cari = atau %%
 				'apa' => $id['nama']); # benda yang dicari
 			
             // mula cari $cariID dalam $myJadual
             foreach ($myJadual as $key => $myTable)
             {# mula ulang table
                 $this->papar->cariNama[$myTable] = 
-                $this->tanya->cariBanyak($myTable, $medan, $carian);
+					$this->tanya->cariSemuaData($myTable, $medan, $carian, null);
+					//$this->tanya->cariSql($myTable, $medan, $carian, null);
             }# tamat ulang table
 
 			# isytihar pembolehubah untuk dalam class Papar
@@ -308,6 +309,37 @@ class Cari extends Kawal
 			$this->papar->baca('cari/cari', 0);	
 		}
 		//*/
+	}
+	
+	public function syarikat()
+	{
+		if(isset($_GET['cari'])) 
+		{
+			$queryString = $_GET['cari'];		
+			if(strlen($queryString) > 0) 
+			{
+				$myTable='sse15_kawal';
+				$medan = 'newss,nama,ssm,operator,kp';
+				$cari[] = array('fix'=>'likeMedan','atau'=>'WHERE','medan'=>'concat(newss,nama)','apa'=>$queryString);
+				$susun['dari'] = 30;
+				$query = "SELECT newss,nama,ssm,operator,kp FROM $myTable 
+				WHERE concat(newss,nama) like '%$queryString%' LIMIT 30";
+				
+				//$papar = $this->tanya->cariSql($myTable, $medan, $cari, $susun);
+				$papar = $this->tanya->cariSemuaData($myTable, $medan, $cari, $susun);
+				$bilKes = $this->tanya->kiraKes($myTable, $medan, $cari, $susun);
+				echo '<pre>' . $bilKes . '=>'; print_r($papar) . '</pre>';
+				/*
+					if($rows==0) {echo '<li onClick="fill(\'-\');">Takde Laa</li>';}
+					else
+					{
+						while($row = mysql_fetch_array($result))
+						{echo '<li onClick="fill(\''.$row[0].'\');">'.$row[1].'-'.
+						$row[0].'-SSM '.$row[2].'-'.$row[3].'-'.$row[4].'</li>';}
+					}
+				*/
+			}
+		}		
 	}
 # tamat - class Cari extends Kawal
 }
