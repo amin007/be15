@@ -2,7 +2,7 @@
 
 class Cari extends Kawal 
 {
-
+#mula - class Cari extends Kawal
 	public function __construct() 
 	{
 		parent::__construct();
@@ -309,5 +309,5 @@ class Cari extends Kawal
 		}
 		//*/
 	}
-
+# tamat - class Cari extends Kawal
 }
