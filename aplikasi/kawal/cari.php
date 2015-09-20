@@ -315,32 +315,31 @@ class Cari extends Kawal
 	{
 		if(isset($_GET['cari'])) 
 		{
-			$queryString = $_GET['cari'];		
-			if(strlen($queryString) > 0) 
+			$cari = bersih($_GET['cari']);		
+			if(strlen($cari) > 0) 
 			{
 				$myTable='sse15_kawal';
 				$medan = 'newss,nama,ssm,operator,kp';
-				$cari[] = array('fix'=>'likeMedan','atau'=>'WHERE','medan'=>'concat(newss,nama)','apa'=>$queryString);
+				$carian[] = array('fix'=>'likeMedan','atau'=>'WHERE','medan'=>'concat(newss,nama)','apa'=>$cari);
 				$susun['dari'] = 30;
 				
-				//$paparKes = $this->tanya->cariSql($myTable, $medan, $cari, $susun);
-				$paparKes = $this->tanya->cariSemuaData($myTable, $medan, $cari, $susun);
-				$bilKes = $this->tanya->kiraKes($myTable, $medan, $cari, $susun);
-				//echo '<pre>' . $bilKes . '=>'; print_r($paparKes) . '</pre>';
+				$paparKes = //$this->tanya->cariSql($myTable, $medan, $carian, $susun);
+					$this->tanya->cariSemuaData($myTable, $medan, $carian, $susun);
+				$bilKes = count($paparKes); //echo '<pre>' . $bilKes . '=>'; print_r($paparKes) . '</pre>';
 				
 				if($bilKes==0) {echo '<li onClick="fill(\'-\');">Takde Laa</li>';}
 				else
 				{
 					foreach($paparKes as $key => $data)
 					{
-						echo '<li onClick="fill(\''.$data['newss'].'\');">'.$data['nama'].'-'.
-						$data['newss'].'-SSM '.$data['ssm'].'-'.$data['operator'].'-'.$data['kp'].'</li>';
-
+						echo '<li onClick="fill(\'' . $data['newss'] . '\');">' 
+							. $data['nama'] . '-' . $data['newss'] 
+							. '-SSM ' . $data['ssm'] . '-' . $data['operator'] 
+							. '-' . $data['kp'] . '</li>';
 					}
-				}
-				
-			}
-		}		
+				}# tamat - $bilKes ==0
+			}# tamat - strlen($cari) > 0
+		}# tamat - isset($_GET['cari'])
 	}
 # tamat - class Cari extends Kawal
 }
