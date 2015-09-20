@@ -102,19 +102,19 @@ class Cari extends Kawal
 		 */
 		if ($apa=='msic') $jadual = 'pom_dataekonomi.msic2000';
 		elseif ($apa=='produk') $jadual = 'pom_dataekonomi.kodproduk_mei2011';
-		elseif ($apa=='johor') $jadual = 'pom_lokaliti.johor'; // negeri johor/malaysia
-		elseif ($apa=='malaysia') $jadual = 'pom_lokaliti.malaysia'; // negeri johor/malaysia
+		elseif ($apa=='johor') $jadual = 'pom_lokaliti.johor'; # negeri johor/malaysia
+		elseif ($apa=='malaysia') $jadual = 'pom_lokaliti.malaysia'; # negeri johor/malaysia
 		elseif ($apa=='prosesan') $jadual = 'pom_dataekonomi.data_mm_prosesan';
 
 		$this->papar->medan = $this->tanya->paparMedan($jadual);
 		//echo '<pre>$this->papar->medan:<br>'; print_r($this->papar->medan); 
 
-		// Set pemboleubah utama
+		# Set pemboleubah utama
 		//$this->papar->pegawai = senarai_kakitangan();
 		$this->papar->url = dpt_url();
 		$this->papar->mesej = $mesej;
 
-		// pergi papar kandungan
+		# pergi papar kandungan
 		$this->papar->baca($this->_folder . '/index', 0);
 	}
 	
