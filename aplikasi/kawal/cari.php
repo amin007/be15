@@ -93,12 +93,7 @@ class Cari extends Kawal
         $this->papar->baca($this->_folder . '/syarikat', 0);
 		//*/
     }
-/*
-	<li><a href="<?php echo $url ?>cari/tentang/msic/1"><?=$icon['Filter']?>MSIC</a></li>
-	<li><a href="<?php echo $url ?>cari/tentang/produk/1"><?=$icon['Filter']?>PRODUK</a></li>
-	<li><a href="<?php echo $url ?>cari/tentang/lokaliti/2"><?=$icon['Filter']?>LOKALITI</a></li>
-	<li><a href="<?php echo $url ?>cari/tentang/prosesan/1"><?=$icon['Filter']?>Prosesan</a></li>
-*/
+
 	public function tentang($apa, $bil=1, $mesej=null) 
 	{	
 		/* fungsi ini memaparkan borang
@@ -119,8 +114,6 @@ class Cari extends Kawal
 		$this->papar->url = dpt_url();
 		$this->papar->mesej = $mesej;
 
-		// pergi papar kandungan
-		
 		// pergi papar kandungan
 		$this->papar->baca($this->_folder . '/index', 0);
 	}
