@@ -38,8 +38,11 @@ class Kawalan extends Kawal
                 
         // senaraikan tatasusunan jadual dan setkan pembolehubah
         $jadualKawalan = 'sse15_kawal';
-        $medanKawalan = 'newss,concat_ws("|",nama,operator) nama,'
+		$newss = 'http://sidapmuar/ekonomi/ckawalan/ubah/' . $cariID;
+		$url = '" <a target=_blank href=' . $newss . '>SEMAK NEWSS</a>"';
+        $medanKawalan = 'newss,'
 			//. '( if (hasil is null, "", '
+			. 'concat_ws("|",nama,operator,'.$url.') nama,'
 			. ' concat_ws("|",' . "\r"
 			. ' 	concat_ws("="," hasil",format(hasil,0)),' . "\r"
 			. ' 	concat_ws("="," belanja",format(belanja,0)),' . "\r"
@@ -81,6 +84,7 @@ class Kawalan extends Kawal
             // 1. mula semak dalam rangka 
             $this->papar->kawalan['kes'] = $this->tanya->
 				cariSemuaData($jadualKawalan, $medanKawalan, $cari);
+				//cariSql($jadualKawalan, $medanKawalan, $cari);
 
 			if(isset($this->papar->kawalan['kes'][0]['newss'])):
 				// 1.1 ambil nilai msic & msic08
