@@ -20,11 +20,11 @@ class Batch extends Kawal
 		$this->papar->css = array('bootstrap-datepicker.css','bootstrap-editable.css');
 		# istihar pembolehubah untuk class 
 		$this->medanRangka = 'newss,ssm,concat_ws("<br>",nama,operator) as nama,'
-			. 'fe,batchProses,hantar_prosesan,respon R,msic2008,kp,nama_kp,'
+			. 'fe,batchProses,hantar_prosesan,mko,respon R,msic2008,kp,nama_kp,'
 			. 'concat_ws("<br>",alamat1,alamat2,poskod,bandar,negeri) as alamat' 
 			//. 'concat_ws("<br>",semak1,mdt,notamdt2014,notamdt2012,notamdt2011) as nota_lama'
 			. "\r";
-		$this->medanData = 'newss,ssm,nama,fe,batchProses,"<input type=\"checkbox\">" as tik, ' . "\r"
+		$this->medanData = 'newss,ssm,nama,fe,batchProses hantar,"<input type=\"checkbox\">" as tik,mko, ' . "\r"
 			//. 'concat_ws("<br>",alamat1,alamat2,poskod,bandar,negeri) as alamat,' 
 			. 'respon R,nama_kp,kp,msic2008,'
 			. 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota'
@@ -161,6 +161,7 @@ class Batch extends Kawal
 			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 			$jum2 = pencamSqlLimit(300, $item, $ms);
 			$susunMfg[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'respon,nama') );
+			$susunPpt[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'batchProses DESC,mko DESC,kp,nama') );
 			$susunNama[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'kp,nama') );
 			$susunBandar[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'bandar desc,nama') );
 			$susunNota[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'nota asc,nama') );
@@ -175,7 +176,7 @@ class Batch extends Kawal
 			$cariPPT[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariPPT[] = array('fix'=>'x!=','atau'=>'and','medan'=>'kp','apa'=>'205');
 			$this->papar->cariApa['ppt'] = $this->tanya->
-				kesBatchAwal($jadual, $medan, $cariPPT, $susunNama);
+				kesBatchAwal($jadual, $medan, $cariPPT, $susunPpt);
 			# sql 4.1 - buat group ikut alamat // "<input type=\"checkbox\">" as tik,
 			$medanA = 'newss,nama,alamat1,alamat2,bandar';
 			$cariA[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
