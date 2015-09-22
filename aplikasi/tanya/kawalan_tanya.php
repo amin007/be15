@@ -64,15 +64,6 @@ class Kawalan_Tanya extends Tanya
 	
 	private function dibawah($carian)
 	{
-/*
-   [bil_semua] => 300
-    [page] => 1
-    [max] => 500
-    [dari] => 0
-    [muka_surat] => 1
-    [bil] => 1
-    [susun] => batchAwal ASC
-*/		
 		$susun = null;
 		if($carian==null || empty($carian) ):
 			$susun .= null;
@@ -92,9 +83,6 @@ class Kawalan_Tanya extends Tanya
 			}
 		endif;
 		
-		//echo '<pre>susun:'; print_r($carian) . '</pre><br>';
-		//echo "$kumpul $order $dari $max hahaha<hr>";
-		//echo " $order $dari,$max hahaha<hr>";
 		return $susun;
 	
 	}
@@ -332,6 +320,16 @@ class Kawalan_Tanya extends Tanya
 		//echo json_encode($result);
 		
 		return $result;
+	}
+
+	public function cariSql($myTable, $medan, $carian = null, $susun = null)
+	{
+		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
+			 . $this->dimana($carian)
+			 //. $this->dibawah($susun)
+			 . '';
+		
+		echo htmlentities($sql) . '<br>';
 	}
 
 	public function cariSemuaData($myTable, $medan, $carian = null, $susun = null)
