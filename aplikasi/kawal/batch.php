@@ -234,30 +234,24 @@ class Batch extends Kawal
 			$this->papar->cariApa['kiraKP' . $cariBatch] = $this->tanya->
 				cariGroup($jadual, $medan = 'kp,sv,nama_kp, count(*) as kira', $cariKP, $susunKP);	
 	}
-	
-	public function tukarBatch($tukarBatch)
+##############################################################################################################	
+	public function ubahBatchProses($tukarBatch)
 	{
-/*			echo '<pre>$sql jangkaan->
-			UPDATE sse15_kawal INNER JOIN cdt_sambilan 
-			ON sse15_kawal.newss = cdt_sambilan.newss 
-			SET 
-			sse15_kawal.batchAwal = [dataAwal]
-			WHERE (((cdt_sambilan.dataAwal) Is Not Null));
-			</pre>';*/
 		//echo '<pre>$_GET->', print_r($_GET, 1) . '</pre>';
 		# bersihkan data $_GET
-		$asalBatch = $_GET['asal'];//bersihGET('asal');			
+		//$asalBatch = $_GET['asal'];//bersihGET('asal');			
+		$asalBatch = $_GET['cari']; //bersihGET('cari');			
 		# masuk dalam database
 			# ubahsuai $posmen
 			$jadual = 'sse15_kawal';
-			$medanID = 'batchAwal';
-			$posmen[$jadual]['batchAwal'] = $tukarBatch;
-			$dimana[$jadual]['batchAwal'] = $asalBatch;
+			$medanID = 'batchProses';
+			$posmen[$jadual]['batchProses'] = $tukarBatch;
+			$dimana[$jadual]['newss'] = $asalBatch;
 			//echo '<br>$dataID=' . $dataID . '<br>';
 			//echo '<pre>$posmen='; print_r($posmen) . '</pre>';
+			//echo '<pre>$dimana='; print_r($dimana) . '</pre>';
         
-			$this->tanya->ubahSimpanSemua($posmen[$jadual], $jadual, 
-				$medanID, $dimana[$jadual]);
+			$this->tanya->ubahSimpanSemua($posmen[$jadual], $jadual, $medanID, $dimana[$jadual]);
   
 		# Set pemboleubah utama
         $this->papar->pegawai = senarai_kakitangan();
@@ -267,7 +261,7 @@ class Batch extends Kawal
 		//echo '<br>location: ' . URL . "batch/awal/$tukarBatch" . '';
 		//header('location: ' . URL . "batch/awal/$tukarBatch"); //*/
 	}
-##############################################################################################################
+
 	private function wujudBatchProses($senaraiJadual, $cariBatch = null, $cariID = null) 
 	{
 		if (!isset($cariBatch) || empty($cariBatch) ):
