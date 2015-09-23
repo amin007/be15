@@ -21,11 +21,8 @@ class Kawalan extends Kawal
     
     public function index() { echo '<br>class Kawalan::index() extend Kawal<br>'; }
     
-    function ubah($cariID = null) 
-    {//echo '<br>Anda berada di class Imej extends Kawal:ubah($cari)<br>';
-                
-        // senaraikan tatasusunan jadual dan setkan pembolehubah
-        $jadualKawalan = 'sse15_kawal';
+	function medanKawalan($cariID) 
+	{ 
 		$news1 = 'http://sidapmuar/ekonomi/ckawalan/ubah/' . $cariID;
 		$news2 = 'http://sidapmuar/ekonomi/cprosesan/ubah/000/'.$cariID.'/2010/2015/'; 
 		$news3 = 'http://sidapmuar/ekonomi/semakan/ubah/",kp,"/'.$cariID.'/2010/2015/'; 
@@ -64,13 +61,21 @@ class Kawalan extends Kawal
 			. 'tel,notel,fax,nofax,responden,orang,email,esurat,'
 			//. 'respon2,lawat,terima,hantar,hantar_prosesan,' . "\r" 
 			. 'hasil,belanja,gaji,aset,staf,stok' . "\r" 
-			. '';
-        $this->papar->kesID = array();
-
+			. '';	
+		return $medanKawalan;
+	}
+    
+    public function ubah($cariID = null) 
+    {//echo '<br>Anda berada di class Imej extends Kawal:ubah($cari)<br>';
+                
+        // senaraikan tatasusunan jadual dan setkan pembolehubah
+        $jadualKawalan = 'sse15_kawal';
+        $medanKawalan = $this->medanKawalan($cariID);
+	
         if (!empty($cariID)) 
         {
-            //echo '$id:' . $id . '<br>';
             $this->papar->carian='newss';
+			$this->papar->kesID = array();
 			$cari[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'newss','apa'=>$cariID);
         
             // 1. mula semak dalam rangka 
@@ -126,8 +131,7 @@ class Kawalan extends Kawal
 		//echo '$this->papar->kawalan:<br>'; print_r($this->papar->kawalan); 
 		echo '$this->papar->cariIndustri:<br>'; print_r($this->papar->_cariIndustri); 
 		echo '$this->papar->cari:<br>'; print_r($this->papar->cari); 
-		echo '</pre>';
-		//*/
+		echo '</pre>'; //*/
 		
         # pergi papar kandungan
         $this->papar->baca('kawalan/ubah', 0);
