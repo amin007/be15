@@ -221,20 +221,23 @@ class Batch extends Kawal
 			$this->papar->cariApa['belum'] = $this->tanya->
 				kesBatchAwal($jadual, $medan, $cariBlm, $susunNama);
 			# sql 6 - cari kes B6 - proses lengkap
+			$susunB6[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'batchProses DESC,mko DESC,kp,nama') );
 			$cariB6[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
-			$cariB6[] = array('fix'=>'x=','atau'=>'and','medan'=>'respon','apa'=>"B6");
+			$cariB6[] = array('fix'=>'x=','atau'=>'and','medan'=>'respon','apa'=>'B6');
 			$this->papar->cariApa['b6'] = $this->tanya->
-				kesBatchAwal($jadual, $medan, $cariB6, $susunNama);
+				kesBatchAwal($jadual, $medan, $cariB6, $susunB6);
 			# sql 7 - cari kes Selesai
+			$susunSelesai[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'batchProses DESC,mko DESC,kp,nama') );
 			$cariSelesai[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
-			$cariSelesai[] = array('fix'=>'in','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
+			$cariB6[] = array('fix'=>'x=','atau'=>'and','medan'=>'respon','apa'=>'A1');
 			$this->papar->cariApa['selesai'] = $this->tanya->
-				kesBatchAwal($jadual, $medan, $cariSelesai, $susunNama);
+				kesBatchAwal($jadual, $medan, $cariSelesai, $susunSelesai);
 			# sql 8 - cari kes NEGATIF
+			$susunNegatif[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'batchProses DESC,mko DESC,kp,nama') );
 			$cariNegatif[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariNegatif[] = array('fix'=>'xin','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
 			$this->papar->cariApa['-ve'] = $this->tanya->
-				kesBatchAwal($jadual, $medan, $cariNegatif, $susunNama);
+				kesBatchAwal($jadual, $medan, $cariNegatif, $susunNegatif);
 	}
 
 	private function cariGroup($senaraiJadual, $cariBatch, $cariID, $medan)
