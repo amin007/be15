@@ -193,6 +193,26 @@ class Kawalan extends Kawal
 				eval( '$belanja = (' . $posmen[$rangka]['belanja'] . ');' );
 				$posmen[$rangka]['belanja'] = $belanja;
 			}
+			if (isset($posmen[$rangka]['gaji']))
+			{
+				eval( '$gaji = (' . $posmen[$rangka]['gaji'] . ');' );
+				$posmen[$rangka]['gaji'] = $gaji;
+			}
+			if (isset($posmen[$rangka]['aset']))			
+			{
+				eval( '$aset = (' . $posmen[$rangka]['aset'] . ');' );
+				$posmen[$rangka]['aset'] = $aset;
+			}
+			if (isset($posmen[$rangka]['staf']))
+			{
+				eval( '$staf = (' . $posmen[$rangka]['staf'] . ');' );
+				$posmen[$rangka]['staf'] = $staf;
+			}
+			if (isset($posmen[$rangka]['stok']))			
+			{
+				eval( '$stok = (' . $posmen[$rangka]['stok'] . ');' );
+				$posmen[$rangka]['stok'] = $stok;
+			}
 			/*if (isset($posmen[$rangka]['no']))
 				$posmen[$rangka]['no']=strtoupper($posmen[$rangka]['no']);
 			if (isset($posmen[$rangka]['batu']))
