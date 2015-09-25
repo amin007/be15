@@ -221,17 +221,17 @@ class Batch extends Kawal
 			$this->papar->cariApa['belum'] = $this->tanya->
 				kesBatchAwal($jadual, $medan, $cariBlm, $susunNama);
 			# sql 6 - cari kes B6 - proses lengkap
-			$susunB6[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'batchProses DESC,mko DESC,kp,nama') );
+			$susunB6[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'kp,newss,hasil DESC,mko DESC') );
 			$cariB6[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariB6[] = array('fix'=>'x=','atau'=>'and','medan'=>'respon','apa'=>'B6');
 			$this->papar->cariApa['b6'] = $this->tanya->
 				kesBatchAwal($jadual, $medan, $cariB6, $susunB6);
-			# sql 7 - cari kes Selesai
-			$susunSelesai[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'batchProses DESC,mko DESC,kp,nama') );
-			$cariSelesai[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
-			$cariB6[] = array('fix'=>'x=','atau'=>'and','medan'=>'respon','apa'=>'A1');
-			$this->papar->cariApa['selesai'] = $this->tanya->
-				kesBatchAwal($jadual, $medan, $cariSelesai, $susunSelesai);
+			# sql 7 - cari kes A1
+			$susunA1[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'batchProses DESC,mko DESC,kp,nama') );
+			$cariA1[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$cariA1[] = array('fix'=>'x=','atau'=>'and','medan'=>'respon','apa'=>'A1');
+			$this->papar->cariApa['a1'] = $this->tanya->
+				kesBatchAwal($jadual, $medan, $cariA1, $susunA1);
 			# sql 8 - cari kes NEGATIF
 			$susunNegatif[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'batchProses DESC,mko DESC,kp,nama') );
 			$cariNegatif[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
