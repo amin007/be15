@@ -204,9 +204,9 @@ class Kawalan extends Kawal
 			if (isset($posmen[$rangka]['dp_baru']))
 				$posmen[$rangka]['dp_baru']=ucwords(strtolower($posmen[$rangka]['dp_baru']));//*/
         //echo '<br>$dataID=' . $dataID . '<br>';
-        echo '<pre>$_POST='; print_r($_POST) . '</pre>';
-        echo '<pre>$posmen='; print_r($posmen) . '</pre>';
- /*
+        //echo '<pre>$_POST='; print_r($_POST) . '</pre>';
+        //echo '<pre>$posmen='; print_r($posmen) . '</pre>';
+ 
         # mula ulang $tahunan
         foreach ($tahunan as $kunci => $jadual)
         {// mula ulang table
