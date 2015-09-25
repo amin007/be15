@@ -207,12 +207,22 @@ class Batch extends Kawal
 			$cariAMuo[] = array('fix'=>'%like%','atau'=>' OR ','medan'=>'bandar','apa'=>'parit jawa','akhir'=>')');
 			$this->papar->cariApa['Muar'] = $this->tanya->
 				kesBatchAwal($jadual, $medanAMuo, $cariAMuo, $susunNota);
-			# sql 5 - cari kes Selesai
+			# sql 5 - cari kes belum siap
+			$cariBlm[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$cariBlm[] = array('fix'=>'in','atau'=>'and','medan'=>'respon','apa'=>"('B1','B2','B3','B4','B5','B7')");
+			$this->papar->cariApa['belum'] = $this->tanya->
+				kesBatchAwal($jadual, $medan, $cariBlm, $susunNama);
+			# sql 6 - cari kes B6 - proses lengkap
+			$cariB6[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
+			$cariB6[] = array('fix'=>'x=','atau'=>'and','medan'=>'respon','apa'=>"B6");
+			$this->papar->cariApa['b6'] = $this->tanya->
+				kesBatchAwal($jadual, $medan, $cariB6, $susunNama);
+			# sql 7 - cari kes Selesai
 			$cariSelesai[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariSelesai[] = array('fix'=>'in','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
 			$this->papar->cariApa['selesai'] = $this->tanya->
 				kesBatchAwal($jadual, $medan, $cariSelesai, $susunNama);
-			# sql 5 - cari kes NEGATIF
+			# sql 8 - cari kes NEGATIF
 			$cariNegatif[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'fe','apa'=>$cariBatch);
 			$cariNegatif[] = array('fix'=>'xin','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
 			$this->papar->cariApa['-ve'] = $this->tanya->
