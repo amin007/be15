@@ -382,7 +382,7 @@ class Batch extends Kawal
 			//$cariKP[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'batchProses','apa'=>$cariBatch);
 			$susunKP[] = array_merge($jum2, array('kumpul'=>'batchProses','susun'=>'batchProses') );
 			$this->papar->cariApa['proses'] = $this->tanya->
-				cariGroup($jadual, $medan = 'batchProses batchProses, count(*) as kira', $cariKP = null, $susunKP);	
+				cariGroup($jadual, $medan = 'batchProses hantar_prosesan, count(*) as kira', $cariKP = null, $susunKP);	
 	}
 
 # tamat class Batch extend Kawal
