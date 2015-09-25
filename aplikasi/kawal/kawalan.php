@@ -183,6 +183,16 @@ class Kawalan extends Kawal
 				$posmen[$rangka]['email']=strtolower($posmen[$rangka]['email']);
 			if (isset($posmen[$rangka]['responden']))
 				$posmen[$rangka]['responden']=mb_convert_case($posmen[$rangka]['responden'], MB_CASE_TITLE);
+			if (isset($posmen[$rangka]['hasil']))
+			{
+				eval( '$hasil = (' . $posmen[$rangka]['hasil'] . ');' );
+				$posmen[$rangka]['hasil'] = $hasil;
+			}
+			if (isset($posmen[$rangka]['belanja']))			
+			{
+				eval( '$belanja = (' . $posmen[$rangka]['belanja'] . ');' );
+				$posmen[$rangka]['belanja'] = $belanja;
+			}
 			/*if (isset($posmen[$rangka]['no']))
 				$posmen[$rangka]['no']=strtoupper($posmen[$rangka]['no']);
 			if (isset($posmen[$rangka]['batu']))
@@ -194,9 +204,9 @@ class Kawalan extends Kawal
 			if (isset($posmen[$rangka]['dp_baru']))
 				$posmen[$rangka]['dp_baru']=ucwords(strtolower($posmen[$rangka]['dp_baru']));//*/
         //echo '<br>$dataID=' . $dataID . '<br>';
-        //echo '<pre>$_POST='; print_r($_POST) . '</pre>';
-        //echo '<pre>$posmen='; print_r($posmen) . '</pre>';
- 
+        echo '<pre>$_POST='; print_r($_POST) . '</pre>';
+        echo '<pre>$posmen='; print_r($posmen) . '</pre>';
+ /*
         # mula ulang $tahunan
         foreach ($tahunan as $kunci => $jadual)
         {// mula ulang table
