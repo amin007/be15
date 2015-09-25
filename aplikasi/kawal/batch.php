@@ -27,7 +27,15 @@ class Batch extends Kawal
 		$this->medanData = 'newss,ssm,nama,fe,batchProses hantar,"<input type=\"checkbox\">" as tik,mko, ' . "\r"
 			//. 'concat_ws("<br>",alamat1,alamat2,poskod,bandar,negeri) as alamat,' 
 			. 'respon R,nama_kp,kp,msic2008,'
-			. 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota'
+			//. 'format(gaji,0) gaji,format(staf,0) staf,format(hasil,0) hasil,nota'
+			. ' concat_ws("|",' . "\r"
+			. ' 	concat_ws("="," hasil",format(hasil,0)),' . "\r"
+			. ' 	concat_ws("="," belanja",format(belanja,0)),' . "\r"
+			. ' 	concat_ws("="," gaji",format(gaji,0)),' . "\r"
+			. ' 	concat_ws("="," aset",format(aset,0)),' . "\r"
+			. ' 	concat_ws("="," staf",format(staf,0)),' . "\r"
+			. ' 	concat_ws("="," stok akhir",format(stok,0))' . "\r"
+ 			. ' ) as data5P,nota'
 			. "\r";
 	}
     
