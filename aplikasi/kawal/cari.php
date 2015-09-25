@@ -175,12 +175,11 @@ class Cari extends Kawal
 		}
 		elseif (!empty($namajadual) && $namajadual=='produk') 
 		{
-			//echo '4)$namajadual=' . $namajadual . '<br>';
 			$jadual = dpt_senarai('produk');
 			# mula cari $cariID dalam $jadual
 			foreach ($jadual as $key => $namaPanjang)
 			{# mula ulang table
-				$myTable = substr($namaPanjang, 16); //echo "<br> $myTable";
+				$myTable = substr($namaPanjang, 16); //echo "<br>4) $myTable";
 				# senarai nama medan
 				$medan = ($myTable=='kodproduk_aup') ? 
 					'bil,substring(kod_produk_lama,1,5) as msic,kod_produk_lama,' .
