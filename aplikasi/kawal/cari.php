@@ -193,8 +193,8 @@ class Cari extends Kawal
 			# papar jadual kod unit
 			$unitPanjang = 'pom_dataekonomi.kodproduk_unitkuantiti';
 			$unit = 'unitkuantiti';
-				$this->papar->cariNama[$unit] = $this->tanya
-					->cariBanyak($unitPanjang, '*', null);
+				$this->papar->cariNama[$unit] = $this->tanya->
+					cariSemuaData($unitPanjang, '*', null, null);
 			
 			$this->papar->carian=$carian;
 			$mesej = null; $lokasi = null;
