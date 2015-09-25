@@ -66,6 +66,7 @@ function dpt_senarai($namajadual)
 		$e.'kod2010_output',
 		$e.'mcpa2008_tr2010',
 		$e.'mcpa2009_tr2013',
+		$e.'mcpa2009_tr2014',
 		$e.'mcpa2009_input',
 		/*'kodproduk_unitkuantiti'*/);
 	elseif ($namajadual=='syarikat')
