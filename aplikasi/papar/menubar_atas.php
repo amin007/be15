@@ -33,7 +33,6 @@ $icon['Stats'] = '<span class="glyphicon glyphicon-stats"></span>';
 		<?=$icon['Filter']?>Cari
 	<b class="caret"></b></a>
 	<ul class="dropdown-menu">
-	<!--<li><a href="<?php echo $url ?>cari/syarikat/1"><?=$icon['Filter']?>Carian</a></li>-->
 	<li><a href="<?php echo $url ?>cari/tentang/msic/1"><?=$icon['Filter']?>MSIC</a></li>
 	<li><a href="<?php echo $url ?>cari/tentang/produk/1"><?=$icon['Filter']?>PRODUK</a></li>
 	<li><a href="<?php echo $url ?>cari/tentang/johor/2"><?=$icon['Filter']?>LOKALITI JOHOR</a></li>
