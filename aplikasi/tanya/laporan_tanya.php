@@ -156,7 +156,7 @@ class Laporan_Tanya extends Tanya
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 			. $this->dimana($carian)
-			. $this->dibawah($carian);
+			. $this->dibawah($susun);
 		
 		//echo '<pre>class Laporan::paparSemua() | $sql->', print_r($sql, 1) . '</pre>';
 		$result['kiraBaris'] = $this->db->rowCount($sql);
@@ -171,7 +171,7 @@ class Laporan_Tanya extends Tanya
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 			. $this->dimana($carian)
-			. $this->dibawah($carian);
+			. $this->dibawah($susun);
 
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -184,7 +184,8 @@ class Laporan_Tanya extends Tanya
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 			. $this->dimana($carian)
-			. $this->dibawah($carian);			
+			. $this->dibawah($susun);			
+		
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
 		//echo json_encode($result);
@@ -196,7 +197,7 @@ class Laporan_Tanya extends Tanya
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 			. $this->dimana($carian)
-			. $this->dibawah($carian);
+			. $this->dibawah($susun);
 			
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -209,7 +210,7 @@ class Laporan_Tanya extends Tanya
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 			. $this->dimana($carian)
-			. $this->dibawah($carian);
+			. $this->dibawah($susun);
 
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -265,7 +266,7 @@ class Laporan_Tanya extends Tanya
 		$sql = 'SELECT ' . $medan . ' FROM ' . 	$myTable 
 			 . ' b, `mdt_rangka13` as c '
 			 . $cariUtama . $cariRespon . $cariFe
-			 . $this->dibawah($carian);
+			 . $this->dibawah($susun);
 
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -274,7 +275,7 @@ class Laporan_Tanya extends Tanya
 		return $result;
 	}
 
-	public function kesSemak($myTable, $myJoin, $medan, $jum)
+	public function kesSemak($myTable, $myJoin, $medan, $susun)
 	{
 		//$jum['dari'] . ', ' . $jum['max']
 		$sql = 'SELECT ' . $medan . ' FROM ' . 
