@@ -135,7 +135,7 @@ class Laporan_Tanya extends Tanya
 		
         # tentukan bilangan mukasurat & jumlah rekod
 		//echo '$bilSemua:'.$bilSemua.', $item:'.$item.', $ms:'.$ms.'<br>';
-        $jum = pencamSqlLimit($bilSemua, $item, $ms, $susun, null);
+        $jum = pencamSqlLimit($bilSemua, $item, $ms);
 		//echo '<pre>$jum->', print_r($jum, 1) . '</pre>';
 		return $jum;
 	}
