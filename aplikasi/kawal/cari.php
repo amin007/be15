@@ -306,7 +306,7 @@ class Cari extends Kawal
 			{
 				$myTable = 'sse15_kawal';
 				$medan = 'newss,nama,ssm,operator,kp';
-				$carian[] = array('fix'=>'likeMedan','atau'=>'WHERE','medan'=>'concat(newss,ssm,nama)','apa'=>$cari);
+				$carian[] = array('fix'=>'likeMedan','atau'=>'WHERE','medan'=>'concat_ws(" ",newss,ssm,nama)','apa'=>$cari);
 				$susun['dari'] = 30;
 				
 				$paparKes = //$this->tanya->cariSql($myTable, $medan, $carian, $susun);
