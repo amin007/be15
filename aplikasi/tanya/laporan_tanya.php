@@ -152,14 +152,11 @@ class Laporan_Tanya extends Tanya
 		return $result;
 	}
 	
-	public function paparSemua($myTable, $medan, $carian, $jum)
+	public function paparSemua($myTable, $medan, $carian, $susun)
 	{
-		$limit = ($jum==null || $jum=='' || empty($jum) ) ? null
-			: ' LIMIT ' . $jum['dari'] . ', ' . $jum['max'];
-
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 			. $this->dimana($carian)
-			. $limit;
+			. $this->dibawah($carian);
 		
 		//echo '<pre>class Laporan::paparSemua() | $sql->', print_r($sql, 1) . '</pre>';
 		$result['kiraBaris'] = $this->db->rowCount($sql);
