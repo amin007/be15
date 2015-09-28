@@ -41,26 +41,27 @@ class Laporan_Tanya extends Tanya
 			$dimana .= " $atau`$medan` in $cariApa $akhir\r";				
 		elseif($fix=='xin')
 			$dimana .= " $atau`$medan` not in $cariApa $akhir\r";				
-		elseif($fix=='khas2')
+		elseif($fix=='khas1')
 			$dimana .= " $atau`$medan` REGEXP CONCAT('(^| )','',$cariApa) $akhir\r";	
-		elseif($fix=='xkhas2')
+		elseif($fix=='xkhas1')
 			$dimana .= " $atau`$medan` NOT REGEXP CONCAT('(^| )','',$cariApa) $akhir\r";	
-		elseif($fix=='khas3')
+		elseif($fix=='khas2')
 			$dimana .= " $atau`$medan` REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]') $akhir\r";	
-		elseif($fix=='xkhas4')
+		elseif($fix=='xkhas2')
 			$dimana .= " $atau`$medan` NOT REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]') $akhir\r";	
-		elseif($fix=='z1')
+		elseif($fix=='z=')
 			$dimana .= " $atau$medan = $cariApa $akhir\r";
-		elseif($fix=='z2')
-			$dimana .= " $atau$medan like '$cariApa' $akhir\r";
-		elseif($fix=='z2x')
-			$dimana .= " $atau$medan not like '$cariApa' $akhir\r";
-		elseif($fix=='z3x')
+		elseif($fix=='zlike')
+			$dimana .= " $atau$medan like $cariApa $akhir\r";
+		elseif($fix=='zxlike')
+			$dimana .= " $atau$medan not like $cariApa $akhir\r";
+		elseif($fix=='zxnull')
 			$dimana .= " $atau$medan IS NOT NULL $akhir\r";
 		elseif($fix=='zin')
 			$dimana .= " $atau$medan in $cariApa $akhir\r";
 		elseif($fix=='zxin')
 			$dimana .= " $atau$medan not in $cariApa $akhir\r";	
+			
 		return $dimana;
 	}
 	
