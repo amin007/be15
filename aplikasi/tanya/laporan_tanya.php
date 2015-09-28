@@ -93,21 +93,18 @@ class Laporan_Tanya extends Tanya
 		if($carian==null || empty($carian) ):
 			$susunan .= null;
 		else:
-			foreach ($carian as $key=>$cari)
-			{
-				$kumpul = isset($carian[$key]['kumpul'])? $carian[$key]['kumpul'] : null;
-				 $order = isset($carian[$key]['susun']) ? $carian[$key]['susun']  : null;
-				  $dari = isset($carian[$key]['dari'])  ? $carian[$key]['dari']   : null;			
-				   $max = isset($carian[$key]['max'])   ? $carian[$key]['max']    : null;
-				
-				//echo "\$cari = $cari, \$key=$key <br>";
-			}
-				if ($kumpul!=null)$susunan .= " GROUP BY $kumpul\r";
+				$kumpul = isset($carian['kumpul'])? $carian['kumpul'] : null;
+				 $order = isset($carian['susun']) ? $carian['susun']  : null;
+				  $dari = isset($carian['dari'])  ? $carian['dari']   : null;			
+				   $max = isset($carian['max'])   ? $carian['max']    : null;
+
+			   if ($kumpul!=null)$susunan .= " GROUP BY $kumpul\r";
 				if ($order!=null) $susunan .= " ORDER BY $order\r";
 				if ($max!=null)   $susunan .= ($dari==0) ? 
 						" LIMIT $max\r" : " LIMIT $dari,$max\r";
 		endif; 
 		
+		//echo "<pre>\$carian=>".print_r($carian)."</pre>";
 		//echo "<hr>\$kumpul:$kumpul \$order:$order \$dari:$dari \$max:$max hahaha<hr>";
 		return $susunan;
 		
