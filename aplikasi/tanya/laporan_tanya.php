@@ -167,12 +167,11 @@ class Laporan_Tanya extends Tanya
 		return $result;		
 	}
 
-	public function kesSemua($myTable, $medan, $carian, $jum)
+	public function kesSemua($myTable, $medan, $carian,  $susun)
 	{
-		//$jum['dari'] . ', ' . $jum['max']
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 			. $this->dimana($carian)
-			. ' LIMIT ' . $jum['dari'] . ', ' . $jum['max'];
+			. $this->dibawah($carian);
 
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
