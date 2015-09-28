@@ -490,6 +490,8 @@ class Laporan_Tanya extends Tanya
 			 . $this->dibawah($susun);
 		
 		echo htmlentities($sql) . '<br>';
+		//echo '<pre>$sql:'; print_r($sql) . '</pre><br>';
+		//echo json_encode($result);		
 		
 		return $result = null;
 	}
@@ -500,24 +502,17 @@ class Laporan_Tanya extends Tanya
 			 . $this->dimana($carian)
 			 . $this->dibawah($susun);
 		
-		//echo '<pre>susun:'; print_r($susun) . '</pre><br>';
-		//echo htmlentities($sql) . '<br>';
-		$result = $this->db->selectAll($sql);
-		//echo json_encode($result);
+		return $this->db->selectAll($sql);
 		
-		return $result;
 	}
 
 	public function cariSatuSahaja($myTable, $medan, $carian)
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
-			 . $this->dimana($carian);
-		
-		//echo $sql . '<br>';
-		$result = $this->db->select($sql);
-		//echo json_encode($result);
-		
-		return $result;
+			 . $this->dimana($carian);	
+
+		return $this->db->select($sql);
+
 	}
 	
 	public function ubahSimpan($data, $myTable)
@@ -560,4 +555,5 @@ class Laporan_Tanya extends Tanya
 		return $result;
 	}
 //*/
+#####################################################################################################################
 }
