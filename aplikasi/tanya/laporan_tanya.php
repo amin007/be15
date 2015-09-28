@@ -155,8 +155,8 @@ class Laporan_Tanya extends Tanya
 	public function paparSemua($myTable, $medan, $carian, $susun)
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
-			. $this->dimana($carian)
-			. $this->dibawah($susun);
+			 . $this->dimana($carian)
+			 . $this->dibawah($susun);
 		
 		//echo '<pre>class Laporan::paparSemua() | $sql->', print_r($sql, 1) . '</pre>';
 		$result['kiraBaris'] = $this->db->rowCount($sql);
@@ -170,8 +170,8 @@ class Laporan_Tanya extends Tanya
 	public function kesSemua($myTable, $medan, $carian,  $susun)
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
-			. $this->dimana($carian)
-			. $this->dibawah($susun);
+			 . $this->dimana($carian)
+			 . $this->dibawah($susun);
 
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -183,8 +183,8 @@ class Laporan_Tanya extends Tanya
 	public function kesSelesai($myTable, $medan, $carian,  $susun)
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
-			. $this->dimana($carian)
-			. $this->dibawah($susun);			
+			 . $this->dimana($carian)
+			 . $this->dibawah($susun);			
 		
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -196,8 +196,8 @@ class Laporan_Tanya extends Tanya
 	public function kesBelum($myTable, $medan, $carian,  $susun)
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
-			. $this->dimana($carian)
-			. $this->dibawah($susun);
+			 . $this->dimana($carian)
+			 . $this->dibawah($susun);
 			
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -209,8 +209,8 @@ class Laporan_Tanya extends Tanya
 	public function kesTegar($myTable, $medan, $carian,  $susun)
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
-			. $this->dimana($carian)
-			. $this->dibawah($susun);
+			 . $this->dimana($carian)
+			 . $this->dibawah($susun);
 
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -278,10 +278,10 @@ class Laporan_Tanya extends Tanya
 	public function kesSemak($myTable, $myJoin, $medan, $susun)
 	{
 		//$jum['dari'] . ', ' . $jum['max']
-		$sql = 'SELECT ' . $medan . ' FROM ' . 
-			$myTable . ' a, '.$myJoin.' b ' .
-			' WHERE a.newss=b.newss ' . 
-			' LIMIT ' . $jum['dari'] . ', ' . $jum['max'];
+		$sql = 'SELECT ' . $medan . ' FROM ' 
+		     . $myTable . ' a, '.$myJoin.' b ' 
+			 . ' WHERE a.newss=b.newss ' 
+			 . $this->dibawah($susun);
 			
 		$result = $this->db->selectAll($sql);
 		//echo '<pre>' . $sql . '</pre><br>';
