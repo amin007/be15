@@ -180,14 +180,23 @@ class Laporan_Tanya extends Tanya
 		return $result;
 	}
 
-	public function kesSelesai($myTable, $medan, $carian, $jum)
+	public function kesSelesai($myTable, $medan, $carian,  $susun)
 	{
-		//$jum['dari'] . ', ' . $jum['max']
-		// $carian[] = array('fix'=>'','atau'=>'WHERE',
-		// 'medan'=>'terima','apa'=>'is not null');	
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 			. $this->dimana($carian)
-			. ' LIMIT ' . $jum['dari'] . ', ' . $jum['max'];
+			. $this->dibawah($carian);			
+		//echo $sql . '<br>';
+		$result = $this->db->selectAll($sql);
+		//echo json_encode($result);
+		
+		return $result;
+	}
+
+	public function kesBelum($myTable, $medan, $carian,  $susun)
+	{
+		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
+			. $this->dimana($carian)
+			. $this->dibawah($carian);
 			
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -196,34 +205,11 @@ class Laporan_Tanya extends Tanya
 		return $result;
 	}
 
-	public function kesBelum($myTable, $medan, $carian, $jum)
+	public function kesTegar($myTable, $medan, $carian,  $susun)
 	{
-		//$jum['dari'] . ', ' . $jum['max']
-		// $carian[] = array('fix'=>'xx','atau'=>'WHERE',
-		// 'medan'=>'terima','apa'=>'is null');	
-		// $carian[] = array('fix'=>'xx','atau'=>'OR',
-		// 'medan'=>'terima','apa'=>'like "0000%"');	
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
 			. $this->dimana($carian)
-			. ' LIMIT ' . $jum['dari'] . ', ' . $jum['max'];
-			
-		//echo $sql . '<br>';
-		$result = $this->db->selectAll($sql);
-		//echo json_encode($result);
-		
-		return $result;
-	}
-
-	public function kesTegar($myTable, $medan, $carian, $jum)
-	{
-		//$jum['dari'] . ', ' . $jum['max']
-		// $carian[] = array('fix'=>'xlike','atau'=>'WHERE',
-		// 'medan'=>'respon','apa'=>'A1');	
-		// $carian[] = array('fix'=>'xlike%','atau'=>'OR',
-		// 'medan'=>'respon','apa'=>'0000');	
-		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
-			. $this->dimana($carian)
-			. ' LIMIT ' . $jum['dari'] . ', ' . $jum['max'];
+			. $this->dibawah($carian);
 
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
@@ -259,7 +245,7 @@ class Laporan_Tanya extends Tanya
 		return $result;
 	}
 	
-	public function kesUtama($myTable, $medan, $cari, $jum)
+	public function kesUtama($myTable, $medan, $cari, $susun)		
 	{
 		//$jum['dari'] . ', ' . $jum['max']
 		$cariUtama = ( !isset($cari['utama']) ) ? 
@@ -279,7 +265,7 @@ class Laporan_Tanya extends Tanya
 		$sql = 'SELECT ' . $medan . ' FROM ' . 	$myTable 
 			 . ' b, `mdt_rangka13` as c '
 			 . $cariUtama . $cariRespon . $cariFe
-			 . ' LIMIT ' . $jum['dari'] . ', ' . $jum['max'];
+			 . $this->dibawah($carian);
 
 		//echo $sql . '<br>';
 		$result = $this->db->selectAll($sql);
