@@ -268,16 +268,18 @@ class Laporan extends Kawal
 		$bilSemua = $this->tanya->kiraKes($jadual, $medan = '*', $carian);
 		# tentukan bilangan mukasurat. bilangan jumlah rekod
 		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
-		$jum = pencamSqlLimit($bilSemua, $item, $ms, 'respon ASC,nama', null);
+		$jumlah = pencamSqlLimit($bilSemua, $item, $ms); 
+		$susun = array_merge($jumlah , array('kumpul'=>null,'susun'=>'respon ASC,nama') );
 
 		# kumpul respon
-		$kumpul = $this->tanya->cariSemuaData($jadual, 
-		//$kumpul = $this->tanya->cariSql($jadual, 
+		$kumpul = $this->tanya->
+			cariSemuaData($jadual, 
+			//cariSql($jadual, 
 			$medan = "newss, concat_ws('<br',nama,operator) nama,"
 				   . " concat_ws('-',kp,nama_kp) kp,"
 				   . " if(respon='A1',respon,'&nbsp;') A1,"
 				   . " if(respon!='A1',respon,'&nbsp;') NONA1, nota",
-			$carian, $jum);
+			$carian, $susun);
 		
 		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
 		# Set pembolehubah
