@@ -41,13 +41,13 @@ class Kawalan extends Kawal
 			. ' 	concat_ws("="," stok akhir",format(stok,0))' . "\r"
  			. ' ) as data5P,'
 			. ' concat_ws("|",' . "\r"
-			. ' 	"data anggaran",' . "\r"
-			. ' 	concat_ws("="," hasil",hasil),' . "\r"
-			. ' 	concat_ws("="," belanja",belanja),' . "\r"
-			. ' 	concat_ws("="," gaji",gaji),' . "\r"
-			. ' 	concat_ws("="," aset",aset),' . "\r"
-			. ' 	concat_ws("="," staf",staf),' . "\r"
-			. ' 	concat_ws("="," stok akhir",stok)' . "\r"
+			. ' 	"hubungi",' . "\r"
+			. ' 	concat_ws("="," responden",responden),' . "\r"
+			. ' 	concat_ws("="," tel",tel),' . "\r"
+			. ' 	concat_ws("="," fax",fax),' . "\r"
+			. ' 	concat_ws("="," orang",orang),' . "\r"
+			. ' 	concat_ws("="," notel",notel),' . "\r"
+			. ' 	concat_ws("="," nofax",nofax)' . "\r"
  			. ' ) as mko5P,'
 			. 'concat_ws(" | ",ssm,kp,sv,nama_kp) as nossm,' . "\r"
 			. 'mko,batchProses,respon,nota,nota_prosesan,fe,'		
