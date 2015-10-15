@@ -37,11 +37,10 @@ class Kawalan extends Kawal
 			. ' 	concat_ws("="," belanja",format(belanja,0)),' . "\r"
 			. ' 	concat_ws("="," gaji",format(gaji,0)),' . "\r"
 			. ' 	concat_ws("="," aset",format(aset,0)),' . "\r"
-			. ' 	concat_ws("="," staf",format(staf,0))' . "\r"
-			//. ' 	concat_ws("="," stok akhir",format(stok,0))' . "\r"
+			. ' 	concat_ws("="," staf",format(staf,0)),' . "\r"
+			. ' 	concat_ws("="," stok akhir",format(stok,0))' . "\r"
  			. ' ) as data5P,'
 			. ' concat_ws("|",' . "\r"
-			//. ' 	"hubungi",' . "\r"
 			. ' 	concat_ws("="," responden",responden),' . "\r"
 			. ' 	concat_ws("="," tel",tel),' . "\r"
 			. ' 	concat_ws("="," fax",fax),' . "\r"
