@@ -21,7 +21,7 @@ class Kawalan extends Kawal
     
     public function index() { echo '<br>class Kawalan::index() extend Kawal<br>'; }
     
-	function medanKawalan($cariID) 
+	public function medanKawalan($cariID) 
 	{ 
 		$news1 = 'http://sidapmuar/ekonomi/ckawalan/ubah/' . $cariID;
 		$news2 = 'http://sidapmuar/ekonomi/cprosesan/ubah/000/'.$cariID.'/2010/2015/'; 
@@ -37,18 +37,18 @@ class Kawalan extends Kawal
 			. ' 	concat_ws("="," belanja",format(belanja,0)),' . "\r"
 			. ' 	concat_ws("="," gaji",format(gaji,0)),' . "\r"
 			. ' 	concat_ws("="," aset",format(aset,0)),' . "\r"
-			. ' 	concat_ws("="," staf",format(staf,0)),' . "\r"
-			. ' 	concat_ws("="," stok akhir",format(stok,0))' . "\r"
+			. ' 	concat_ws("="," staf",format(staf,0))' . "\r"
+			//. ' 	concat_ws("="," stok akhir",format(stok,0))' . "\r"
  			. ' ) as data5P,'
 			. ' concat_ws("|",' . "\r"
-			. ' 	"hubungi",' . "\r"
+			//. ' 	"hubungi",' . "\r"
 			. ' 	concat_ws("="," responden",responden),' . "\r"
 			. ' 	concat_ws("="," tel",tel),' . "\r"
 			. ' 	concat_ws("="," fax",fax),' . "\r"
 			. ' 	concat_ws("="," orang",orang),' . "\r"
 			. ' 	concat_ws("="," notel",notel),' . "\r"
 			. ' 	concat_ws("="," nofax",nofax)' . "\r"
- 			. ' ) as mko5P,'
+ 			. ' ) as dataHubungi,'
 			. 'concat_ws(" | ",ssm,kp,sv,nama_kp) as nossm,' . "\r"
 			. 'mko,batchProses,respon,nota,nota_prosesan,fe,'		
 			. 'concat_ws(" ",alamat1,alamat2,poskod,bandar) as alamat,' . "\r"
