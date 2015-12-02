@@ -53,7 +53,7 @@ class Cari extends Kawal
         /*  $_POST[] => Array ( [cari] => 0000000123456 or [nama] => ABC ) */
         
         # senaraikan tatasusunan jadual
-        $myJadual = array('sse15_kawal','mfg15_pom','ppt2015','ppt2015_pom');
+        $myJadual = array('sse15_kawal','mfg15_pom','ppt2015','ppt2015_pom','sse15_prosesan');
 		$medan = '*';
         $this->papar->cariNama = array();
 
