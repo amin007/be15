@@ -494,7 +494,7 @@ function paparJadual_Data($allRows,$rows,$fields,$item,$ms,$hasil)
 			echo "<tr$h>";
 			foreach ($nilai as $key => $data)
 			{
-				echo '<td>' . $data . '</td>';
+				echo '<td align="center">' . $data . '</td>';
 			}echo "</tr>\n";
 		}
 		
