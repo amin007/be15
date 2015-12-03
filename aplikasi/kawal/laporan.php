@@ -623,5 +623,39 @@ class Laporan extends Kawal
 		//$this->papar->baca('kawalan/batchsemak_cetak', 1);
 		$this->papar->baca('laporan/f3all', 1);
 	}
-	
+	# cetakTerimaProses
+	public function cetakTerimaProses($kp, $tarikh, $item = 30, $baris = 31)
+	{
+		# kiraKes dulu
+		$ms = 1;
+		$myTable = 'sse15_prosesan';
+		$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'kp terkini','apa'=>$kp);
+		$carian[] = array('fix'=>'x=','atau'=>'AND','medan'=>'tarikh','apa'=>$tarikh);
+		# tentukan bilangan mukasurat. bilangan jumlah rekod
+		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
+		$jum = pencamSqlLimit($bilSemua=2, $item, $ms);
+		$susun[] = array_merge($jum, array('kumpul'=>1,'susun'=>'1 ASC') );
+		//$medan='concat_ws("/",`kp terkini`,tarikh) as terimaProsesan,';
+		# kumpul respon
+		$kumpul = $this->tanya->laporanProsesan($myTable, $medan = null, $carian, $susun);
+		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
+		$this->papar->kiraSemuaBaris = $bilSemua;
+		$this->papar->item = $item;
+		$this->papar->baris = $baris;
+		$this->papar->ms = $ms;	
+		$this->papar->hasil = $kumpul;
+		$this->papar->sv = $kp;
+		$this->papar->tarikh = $tarikh;
+		$this->papar->halaman = halaman($jum);
+
+		# Set pemboleubah utama
+        $this->papar->pegawai = senarai_kakitangan();
+        $this->papar->lokasi = 'CDT 2014 - Ubah';
+		
+		 # pergi papar kandungan
+		//echo '<br>location: ' . URL . "batchawal/semak/$cariBatch/$dataID" . '';
+		//$this->papar->baca('kawalan/batchsemak_cetak', 1);
+		$this->papar->baca('laporan/terimaProsesan', 1);
+	}
+################################################################################################################################
 }
