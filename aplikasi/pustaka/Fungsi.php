@@ -460,6 +460,48 @@ function paparJadualF3_Data($sv,$namaOrg,$allRows,
 		//echo "</tbody>\n";
 	endif;
 }
+// papar data biasa
+function paparJadual_Data($allRows,$rows,$fields,$item,$ms,$hasil)
+{	
+	// nak cari $rows
+	if ($rows=='0'): echo "\n";
+	else: // mula kalau jumpa
+		## tajuk atas
+			echo "<tr>\n";// dptkan nama medan
+			echo '<th colspan=3>RANGKA</th>' . "\n";
+			echo '<th colspan=3>KOD 11</th>' . "\n";
+			echo '<th colspan=6>PENERIMAAN BORANG</th>' . "\n";
+			echo '<th colspan=6>BAKI BORANG</th>' . "\n";
+			echo "</tr>\n";
+		## tajuk medan
+			echo "<tr>\n";// dptkan nama medan
+			$senaraiMedan = array('PJB','POK','POM','PJB','POK','POM',
+				'PJB','%PJB','POK','%POK','POM','%POM',
+				'PJB','%PJB','POK','%POK','POM','%POM'
+			);
+			foreach ($senaraiMedan as $key)
+			{
+				echo '<th align="center">' . $key . '</th>';
+			}echo "</tr>\n";
+		# PEMBOLEH UBAH
+		$highlight=" onmouseover=\"this.className='tikusatas';\" onmouseout=\"this.className='tikuslepas1';\"";
+		$highlight2=" onmouseover=\"this.className='tikusatas';\" onmouseout=\"this.className='tikuslepas2';\"";
+	
+		//echo "<tbody>\n"; # mula tbody
+		foreach ($hasil as $kira => $nilai)
+		{	//$mula = ($ms==1) ? $ms : ($ms*$item)-$ms;
+			$h = ($kira%'2'=='0') ? $highlight : $highlight2;
+			echo "<tr$h>";
+			foreach ($nilai as $key => $data)
+			{
+				echo '<td>' . $data . '</td>';
+			}echo "</tr>\n";
+		}
+		
+		//echo "</tbody>\n";
+	endif;
+}
+
 
 // pautan dalam list data
 function pautanID($url, $medan)
