@@ -217,8 +217,7 @@ class Batch_Tanya extends Tanya
 	
 	public function terimaProses($myTable, $medan, $carian, $susun)
 	{	
-		# pembolehubah yg terlibat
-		// berasaskan kp dan tarikh
+		# pembolehubah yg terlibat // berasaskan kp dan tarikh
 		## medan
 		$po = "`Pejabat Operasi Baru`";
 		$r11 = "`respon`=11";
