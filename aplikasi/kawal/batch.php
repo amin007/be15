@@ -405,6 +405,42 @@ class Batch extends Kawal
 			$this->papar->cariApa['proses'] = $this->tanya->
 				cariGroup($jadual, $medan = 'batchProses hantar_prosesan, count(*) as kira', $cariKP = null, $susunKP);	
 	}
+	
+	public function terima($kp = null, $tarikh = null) 
+	{
+		//echo "\$kp = $kp . \$tarikh = $tarikh <br>";
+			$senaraiJadual = array('sse15_proses'); # set senarai jadual yang terlibat
+			# mula carian dalam jadual $myTable
+			$this->terimaProses($senaraiJadual[0], $kp, $tarikh);
+			
+		# semak pembolehubah $this->papar->cariApa
+		echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
 
+		# Set pemboleubah utama
+		## untuk dalam class Papar
+		$this->papar->kp = $kp;
+		$this->papar->tarikh = $tarikh;
+		$this->papar->carian = 'semua';
+        
+		# pergi papar kandungan
+		//$this->papar->baca('kawalan/batchprosesan', 0);
+		
+	}
+	
+	private function terimaProses($jadual, $kp, $tarikh)
+	{
+		$item = 1000; $ms = 1; ## set pembolehubah utama	
+		## tentukan bilangan mukasurat. bilangan jumlah rekod
+			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
+			$jum2 = pencamSqlLimit(300, $item, $ms);
+			$susunNama[] = array_merge($jum2, array('kumpul'=>1,'susun'=>1) );
+
+		# sql 1
+		//$paparSemua[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'batchProses','apa'=>$cariBatch);
+		$this->papar->cariApa['terimaKini'] = $this->tanya->
+			terimaProses($jadual, $medan='`kp terkini` `KP`, tarikh,', null, $susunNama);
+		# sql 2
+		//$cariNegatif[] = array('fix'=>'xin','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
+	}
 # tamat class Batch extend Kawal
 }
