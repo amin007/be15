@@ -409,7 +409,7 @@ class Batch extends Kawal
 	public function terima($kp = null, $tarikh = null) 
 	{
 		//echo "\$kp = $kp . \$tarikh = $tarikh <br>";
-			$senaraiJadual = array('sse15_proses'); # set senarai jadual yang terlibat
+			$senaraiJadual = array('sse15_prosesan'); # set senarai jadual yang terlibat
 			# mula carian dalam jadual $myTable
 			$this->terimaProses($senaraiJadual[0], $kp, $tarikh);
 			
