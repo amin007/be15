@@ -271,14 +271,12 @@ class Batch_Tanya extends Tanya
 			 . "	((count(if($pom,'POM',null)) -\r"
 			 . "	count(if($pom AND $r11,'xPOM',null)))\r"
 			 . "	/ count(*)) * 100,2)\r"
-			 . ")`b%POM`,\r";
+			 . ")`b%POM`\r";
 		## mula cari sql berasaskan respon ///////////////////////////////////////////////////////////////////////////////////////////////
-		$sql = "SELECT $medan\r"
-			 . $rangka . $mko . $terima . $baki
-			 . "count(*) FROM sse15_prosesan\r"
+		$sql = "SELECT $medan\r" . $rangka . $mko . $terima . $baki
+			 . 'FROM '. $myTable 
 			 . $this->dimana($carian) . $this->dibawah($susun)
 			 . '';
-			 //. "GROUP BY 1 ORDER BY 1 DESC";
 		$result = $this->db->selectAll($sql);
 		echo '<pre>' . $sql . '</pre><br>'; //echo json_encode($result);
 		
