@@ -410,20 +410,22 @@ class Batch extends Kawal
 	{
 		//echo "\$kp = $kp . \$tarikh = $tarikh <br>";
 			$senaraiJadual = array('sse15_prosesan'); # set senarai jadual yang terlibat
+			# cari $cariBatch atau cariID wujud tak
+			$this->papar->error = null;
 			# mula carian dalam jadual $myTable
 			$this->terimaProses($senaraiJadual[0], $kp, $tarikh);
 			
 		# semak pembolehubah $this->papar->cariApa
-		echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
+		//echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
 
 		# Set pemboleubah utama
 		## untuk dalam class Papar
-		$this->papar->kp = $kp;
-		$this->papar->tarikh = $tarikh;
+		$this->papar->cariBatch = $kp;
+		$this->papar->cariID = $tarikh;
 		$this->papar->carian = 'semua';
         
 		# pergi papar kandungan
-		//$this->papar->baca('kawalan/batchprosesan', 0);
+		$this->papar->baca('kawalan/batchprosesan', 0);
 		
 	}
 	
@@ -433,12 +435,12 @@ class Batch extends Kawal
 		## tentukan bilangan mukasurat. bilangan jumlah rekod
 			//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 			$jum2 = pencamSqlLimit(300, $item, $ms);
-			$susunNama[] = array_merge($jum2, array('kumpul'=>1,'susun'=>1) );
+			$susunNama[] = array_merge($jum2, array('kumpul'=>1,'susun'=>'1 ASC') );
 
 		# sql 1
 		//$paparSemua[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'batchProses','apa'=>$cariBatch);
 		$this->papar->cariApa['terimaKini'] = $this->tanya->
-			terimaProses($jadual, $medan='`kp terkini` `KP`, tarikh,', null, $susunNama);
+			terimaProses($jadual, $medan='concat_ws("|",`kp terkini`,tarikh) as kp,', null, $susunNama);
 		# sql 2
 		//$cariNegatif[] = array('fix'=>'xin','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
 	}
