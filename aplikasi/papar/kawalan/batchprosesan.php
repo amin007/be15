@@ -148,12 +148,12 @@ function paparURL($key, $data)
 	elseif ($key=='terimaProsesan')
 	{
 		$k1 = URL . "batch/terima/$data";
-		$k2 = URL . "laporan/cetakNonA1/$data/1000";
-		$k3 = URL . "laporan/cetakA1/$data/1000";
+		$k2 = URL . "laporan/cetakTerimaProses/$data";
 		if ($data == null):
 			?><td>&nbsp;</td><?php
 		else:?><td><?php
 			?><a href="<?php echo $k1 ?>" class="btn btn-primary btn-mini"><?php echo $data ?></a><?php
+			?><a target="_blank" href="<?php echo $k2 ?>" class="btn btn-danger btn-mini">cetak</a><?php
 			?></td><?php
 		endif;
 	}
