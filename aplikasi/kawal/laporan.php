@@ -624,7 +624,7 @@ class Laporan extends Kawal
 		$this->papar->baca('laporan/f3all', 1);
 	}
 	# cetakTerimaProses
-	public function cetakTerimaProses($kp, $tarikh, $item = 30, $baris = 31)
+	public function cetakTerimaProses($kp = null, $tarikh = null, $item = 30, $baris = 31)
 	{
 		# kiraKes dulu
 		$ms = 1;
@@ -645,7 +645,7 @@ class Laporan extends Kawal
 		$this->papar->ms = $ms;	
 		$this->papar->hasil = $kumpul;
 		$this->papar->sv = $kp;
-		$this->papar->tarikh = $tarikh;
+		$this->papar->tarikh = ($tarikh==null) ? date("Y-m-d h:i:s") : $tarikh;
 		$this->papar->halaman = halaman($jum);
 
 		# Set pemboleubah utama
