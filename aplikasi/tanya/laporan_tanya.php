@@ -483,6 +483,73 @@ class Laporan_Tanya extends Tanya
 		return $result;	
 	}
 
+	public function laporanProsesan($myTable, $medan, $carian, $susun)
+	{	
+		# pembolehubah yg terlibat
+		## medan
+		$po = "`Pejabat Operasi Baru`";
+		$r11 = "`respon`=11";
+		## Pejabat Operasi
+		$pjb = "$po='PJB'";
+		$kiraPjb = "count(if($pjb,'PJB',null))";
+		$pok = "$po='POK'";
+		$kiraPok = "count(if($pok,'POK',null))";
+		$pom = "$po='POM'";
+		$kiraPom = "count(if($pom,'POM',null))";
+		## rangka
+		$rangka = "$kiraPjb `PJB`,\r"
+			 . "$kiraPok `POK`,\r"
+			 . "$kiraPom `POM`,\r";
+		## kod 11 mko
+		$mko = "count(if($pjb AND $r11,'PJB11',null)) `PJB11`,\r"
+			 . "count(if($pok AND $r11,'POK11',null)) `POK11`,\r"
+			 . "count(if($pom AND $r11,'POM11',null)) `POM11`,\r";
+		## penerimaan borang
+		$terima = "count(if($pjb AND $r11,'PJB1',null)) `tPJB`,\r"
+			 . "(format ((count(if($pjb AND $r11,'PJB1',null)) / count(*)) * 100, 2))`t%PJB`,\r"
+			 . "count(if($pok AND $r11,'POK1',null)) `tPOK`,\r"
+			 . "(format ((count(if($pok AND $r11,'POK1',null)) / count(*)) * 100, 2))`t%POK`,\r"
+			 . "count(if($pom AND $r11,'POM1',null)) `tPOM`,\r"
+			 . "(format ((count(if($pom AND $r11,'POM1',null)) / count(*)) * 100, 2))`t%POM`,\r";
+		## baki borang 
+		$baki = "(format ( \r"
+			 . "	count(if($pjb,'PJB',null)) -\r"
+			 . "	count(if($pjb AND $r11,'xPJB',null)),0)\r"
+			 . ")`bPJB`,\r"
+			 . "(format ( \r"
+			 . "	((count(if($pjb,'PJB',null)) -\r"
+			 . "	count(if($pjb AND $r11,'xPJB',null)))\r"
+			 . "	/ count(*)) * 100,2)\r"
+			 . ")`b%PJB`,\r"
+			 . "(format ( \r"
+			 . "	count(if($pok,'POK',null)) -\r"
+			 . "	count(if($pok AND $r11,'xPOK',null)), 0)\r"
+			 . ")`bPOK`,\r"
+			 . "(format ( \r"
+			 . "	((count(if($pok,'POK',null)) -\r"
+			 . "	count(if($pok AND $r11,'xPOK',null)))\r"
+			 . "	/ count(*)) * 100,2)\r"
+			 . ")`b%POK`,\r"
+			 . "(format ( \r"
+			 . "	count(if($pom,'POM',null)) -\r"
+			 . "	count(if($pom AND $r11,'xPOM',null)), 0)\r"
+			 . ")`bPOM`,\r"
+			 . "(format ( \r"
+			 . "	((count(if($pom,'POM',null)) -\r"
+			 . "	count(if($pom AND $r11,'xPOM',null)))\r"
+			 . "	/ count(*)) * 100,2)\r"
+			 . ")`b%POM`,\r";
+		## mula cari sql berasaskan respon ///////////////////////////////////////////////////////////////////////////////////////////////
+		$sql = "SELECT `kp terkini` `KP`, tarikh,\r"
+			 . $rangka . $mko . $terima . $baki
+			 . "count(*) FROM sse15_prosesan\r"
+			 . "GROUP BY 1 ORDER BY 1 DESC";
+		$result = $this->db->selectAll($sql);
+		//echo '<pre>' . $sql . '</pre><br>'; //echo json_encode($result);
+		
+		return $result;	
+	}
+	
 	public function cariSql($myTable, $medan, $carian, $susun)
 	{
 		$sql = 'SELECT ' . $medan . ' FROM ' . $myTable 
