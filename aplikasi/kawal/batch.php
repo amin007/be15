@@ -438,9 +438,17 @@ class Batch extends Kawal
 			$susunNama[] = array_merge($jum2, array('kumpul'=>1,'susun'=>'1 ASC') );
 
 		# sql 1
-		//$paparSemua[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'batchProses','apa'=>$cariBatch);
+		if ($kp==null)
+			$terimaProses[] = null;
+		elseif ($tarikh==null)
+			$terimaProses[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'kp terkini','apa'=>$kp);
+		elseif ($tarikh!=null)
+		{
+			$terimaProses[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'kp terkini','apa'=>$kp);
+			$terimaProses[] = array('fix'=>'x=','atau'=>'AND','medan'=>'tarikh','apa'=>$tarikh);
+		}
 		$this->papar->cariApa['terimaKini'] = $this->tanya->
-			terimaProses($jadual, $medan='concat_ws("|",`kp terkini`,tarikh) as kp,', null, $susunNama);
+			terimaProses($jadual, $medan='concat_ws("/",`kp terkini`,tarikh) as terimaProsesan,', $terimaProses, $susunNama);
 		# sql 2
 		//$cariNegatif[] = array('fix'=>'xin','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
 	}
