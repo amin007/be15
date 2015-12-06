@@ -487,12 +487,11 @@ class Laporan_Tanya extends Tanya
 		return $result;	
 	}
 
-	public function laporanProsesan($myTable, $medan, $carian, $susun)
+	public function laporanProsesan($myTable, $medan, $r11, $susun)
 	{	
 		# pembolehubah yg terlibat // berasaskan kp dan tarikh
 		## medan
 		$po = "`Pejabat Operasi Baru`";
-		$r11 = "`respon`=11";
 		## Pejabat Operasi
 		$pjb = "$po='PJB'";
 		$kiraPjb = "count(if($pjb,'PJB',null))";
@@ -546,7 +545,8 @@ class Laporan_Tanya extends Tanya
 		## mula cari sql berasaskan respon ///////////////////////////////////////////////////////////////////////////////////////////////
 		$sql = 'SELECT ' . $medan . $rangka . $mko . $terima . $baki
 			 . 'FROM '. $myTable 
-			 . $this->dimana($carian) . $this->dibawah($susun)
+			 //. $this->dimana($carian) 
+			 . $this->dibawah($susun)
 			 . '';
 		$result = $this->db->selectAll($sql);
 		echo '<pre>' . $sql . '</pre><br>'; //echo json_encode($result);
