@@ -103,10 +103,10 @@ class Laporan_Tanya extends Tanya
 				  $dari = isset($carian[0]['dari'])  ? $carian[0]['dari']   : null;			
 				   $max = isset($carian[0]['max'])   ? $carian[0]['max']    : null;
 
-			   if ($kumpul!=null)$susunan .= " GROUP BY $kumpul\r";
-				if ($order!=null) $susunan .= " ORDER BY $order\r";
+			   if ($kumpul!=null)$susunan .= "\r GROUP BY $kumpul";
+				if ($order!=null) $susunan .= "\r ORDER BY $order";
 				if ($max!=null)   $susunan .= ($dari==0) ? 
-						" LIMIT $max\r" : " LIMIT $dari,$max\r";
+						"\r LIMIT $max" : "\r LIMIT $dari,$max";
 		endif; 
 		
 		//echo "<pre>\$carian=>".print_r($carian)."</pre>";
