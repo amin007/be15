@@ -445,10 +445,10 @@ class Batch extends Kawal
 		elseif ($tarikh!=null)
 		{
 			$terimaProses[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'kp terkini','apa'=>$kp);
-			$terimaProses[] = array('fix'=>'x=','atau'=>'AND','medan'=>'tarikh','apa'=>$tarikh);
-		}
+			$terimaProses[] = array('fix'=>'x<=','atau'=>'AND','medan'=>'tarikh','apa'=>$tarikh);
+		} $medan='concat_ws("/",`kp terkini`,tarikh) as terimaProsesan,';
 		$this->papar->cariApa['terimaKini'] = $this->tanya->
-			terimaProses($jadual, $medan='concat_ws("/",`kp terkini`,tarikh) as terimaProsesan,', $terimaProses, $susunNama);
+			terimaProses($jadual, $medan, $terimaProses, $susunNama);
 		# sql 2
 		//$cariNegatif[] = array('fix'=>'xin','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
 	}
