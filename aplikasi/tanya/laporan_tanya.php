@@ -110,7 +110,7 @@ class Laporan_Tanya extends Tanya
 		endif; 
 		
 		//echo "<pre>\$carian=>".print_r($carian)."</pre>";
-		echo "<hr>\$kumpul:$kumpul \$order:$order \$dari:$dari \$max:$max hahaha<hr>";
+		//echo "<hr>\$kumpul:$kumpul \$order:$order \$dari:$dari \$max:$max hahaha<hr>";
 		return $susunan;
 		
 	}
