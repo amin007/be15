@@ -19,6 +19,10 @@ class Laporan_Tanya extends Tanya
 			$dimana .= " $atau`$medan` is not null  $akhir\r";
 		elseif($fix=='x=')
 			$dimana .= " $atau`$medan` = '$cariApa' $akhir\r";
+		elseif($fix=='x<=')
+			$dimana .= " $atau`$medan` <= '$cariApa' $akhir\r";
+		elseif($fix=='x>=')
+			$dimana .= " $atau`$medan` >= '$cariApa' $akhir\r";
 		elseif($fix=='x!=')
 			$dimana .= " $atau`$medan` != '$cariApa' $akhir\r";
 		elseif($fix=='like')
