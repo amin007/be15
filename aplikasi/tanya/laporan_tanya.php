@@ -98,10 +98,10 @@ class Laporan_Tanya extends Tanya
 		if($carian==null || empty($carian) ):
 			$susunan .= null;
 		else:
-				$kumpul = isset($carian['kumpul'])? $carian['kumpul'] : null;
-				 $order = isset($carian['susun']) ? $carian['susun']  : null;
-				  $dari = isset($carian['dari'])  ? $carian['dari']   : null;			
-				   $max = isset($carian['max'])   ? $carian['max']    : null;
+				$kumpul = isset($carian[0]['kumpul'])? $carian[0]['kumpul'] : null;
+				 $order = isset($carian[0]['susun']) ? $carian[0]['susun']  : null;
+				  $dari = isset($carian[0]['dari'])  ? $carian[0]['dari']   : null;			
+				   $max = isset($carian[0]['max'])   ? $carian[0]['max']    : null;
 
 			   if ($kumpul!=null)$susunan .= " GROUP BY $kumpul\r";
 				if ($order!=null) $susunan .= " ORDER BY $order\r";
@@ -110,7 +110,7 @@ class Laporan_Tanya extends Tanya
 		endif; 
 		
 		//echo "<pre>\$carian=>".print_r($carian)."</pre>";
-		//echo "<hr>\$kumpul:$kumpul \$order:$order \$dari:$dari \$max:$max hahaha<hr>";
+		echo "<hr>\$kumpul:$kumpul \$order:$order \$dari:$dari \$max:$max hahaha<hr>";
 		return $susunan;
 		
 	}
@@ -544,12 +544,12 @@ class Laporan_Tanya extends Tanya
 			 . "	/ count(*)) * 100,2)\r"
 			 . ")`b%POM`\r";
 		## mula cari sql berasaskan respon ///////////////////////////////////////////////////////////////////////////////////////////////
-		$sql = 'SELECT ' . $rangka . $mko . $terima . $baki
+		$sql = 'SELECT ' . $medan . $rangka . $mko . $terima . $baki
 			 . 'FROM '. $myTable 
 			 . $this->dimana($carian) . $this->dibawah($susun)
 			 . '';
 		$result = $this->db->selectAll($sql);
-		//echo '<pre>' . $sql . '</pre><br>'; //echo json_encode($result);
+		echo '<pre>' . $sql . '</pre><br>'; //echo json_encode($result);
 		
 		return $result;	
 	}
