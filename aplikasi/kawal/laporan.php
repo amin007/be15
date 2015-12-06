@@ -628,16 +628,17 @@ class Laporan extends Kawal
 	{
 		# kiraKes dulu
 		$ms = 1;
-		$myTable = 'sse15_prosesan';
-		$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'kp terkini','apa'=>$kp);
-		$carian[] = array('fix'=>'x<=','atau'=>'AND','medan'=>'tarikh','apa'=>$tarikh);
+		$jadual = 'sse15_prosesan';
+		//$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'kp terkini','apa'=>$kp);
+		$carian[] = array('fix'=>'x<=','atau'=>'WHERE','medan'=>'tarikh','apa'=>$tarikh);
+		$bilSemua = $this->tanya->kiraKes($jadual, $medan = '*', $carian);
 		# tentukan bilangan mukasurat. bilangan jumlah rekod
 		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
-		$jum = pencamSqlLimit($bilSemua=2, $item, $ms);
+		$jum = pencamSqlLimit($bilSemua, $item, $ms);
 		$susun[] = array_merge($jum, array('kumpul'=>1,'susun'=>'1 ASC') );
 		//$medan='concat_ws("/",`kp terkini`,tarikh) as terimaProsesan,';
 		# kumpul respon
-		$kumpul = $this->tanya->laporanProsesan($myTable, $medan = null, $carian, $susun);
+		$kumpul = $this->tanya->laporanProsesan($jadual, $medan = "`kp terkini`,", $carian, $susun);
 		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
 		$this->papar->kiraSemuaBaris = $bilSemua;
 		$this->papar->item = $item;
