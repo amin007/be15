@@ -630,7 +630,7 @@ class Laporan extends Kawal
 		$ms = 1;
 		$myTable = 'sse15_prosesan';
 		$carian[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'kp terkini','apa'=>$kp);
-		$carian[] = array('fix'=>'x=','atau'=>'AND','medan'=>'tarikh','apa'=>$tarikh);
+		$carian[] = array('fix'=>'x<=','atau'=>'AND','medan'=>'tarikh','apa'=>$tarikh);
 		# tentukan bilangan mukasurat. bilangan jumlah rekod
 		//echo '$bilSemua:' . $bilSemua . ', $item:' . $item . ', $ms:' . $ms . '<br>';
 		$jum = pencamSqlLimit($bilSemua=2, $item, $ms);
