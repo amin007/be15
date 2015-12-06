@@ -549,7 +549,7 @@ class Laporan_Tanya extends Tanya
 			 . $this->dibawah($susun)
 			 . '';
 		$result = $this->db->selectAll($sql);
-		echo '<pre>' . $sql . '</pre><br>'; //echo json_encode($result);
+		//echo '<pre>' . $sql . '</pre><br>'; //echo json_encode($result);
 		
 		return $result;	
 	}
