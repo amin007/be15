@@ -638,7 +638,8 @@ class Laporan extends Kawal
 		$susun[] = array_merge($jum, array('kumpul'=>1,'susun'=>'1 ASC') );
 		//$medan='concat_ws("/",`kp terkini`,tarikh) as terimaProsesan,';
 		# kumpul respon
-		$kumpul = $this->tanya->laporanProsesan($jadual, $medan = "`kp terkini`,", $carian, $susun);
+		$mencari = "respon='11' AND tarikh <= '$tarikh' "; 
+		$kumpul = $this->tanya->laporanProsesan($jadual, $medan = "`kp terkini`,\r", $mencari, $susun);
 		//echo '<pre>$kumpul:'; print_r($kumpul) . '</pre>';
 		$this->papar->kiraSemuaBaris = $bilSemua;
 		$this->papar->item = $item;
