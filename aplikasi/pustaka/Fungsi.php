@@ -475,7 +475,7 @@ function paparJadual_Data($allRows,$rows,$fields,$item,$ms,$hasil)
 			echo "</tr>\n";
 		## tajuk medan
 			echo "<tr>\n";// dptkan nama medan
-			$senaraiMedan = array('#','PJB','POK','POM','PJB','POK','POM',
+			$senaraiMedan = array('KP','PJB','POK','POM','PJB','POK','POM',
 				'PJB','%PJB','POK','%POK','POM','%POM',
 				'PJB','%PJB','POK','%POK','POM','%POM'
 			);
