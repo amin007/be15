@@ -27,7 +27,7 @@ if (count($this->baris) == 0):
 else:
 ?>
 	<table border="1" class="excel" width="100%" height="100%">
-	<tr><td colspan=18><?php echo $tajukLaporan ?></td></tr>
+	<tr><td colspan=19><?php echo $tajukLaporan ?></td></tr>
 	<?php
 	paparJadual_Data($allRows,$rows,$fields,$item,$ms,$hasil)
 	//paparJadualF3_TajukBawah($rows,$fields);
