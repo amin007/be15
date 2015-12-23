@@ -26,7 +26,7 @@ if ( isset($dataURL[1]) && ( in_array($dataURL[1],$classKhas) )) :
 		} 
 		else 
 		{
-			$.get("<?php echo URL ?>cari/syarikat/", {cari: ""+inputString+""}, function(data)
+			$.get("<?php echo URL ?>cari/syarikat/", {cari: inputString}, function(data)
 			{
 				if(data.length >0) 
 				{ 
