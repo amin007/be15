@@ -48,12 +48,12 @@ class Cari extends Kawal
 	
 	public function idnama() 
 	{	
-        #echo '<br>Anda berada di class Imej extends Kawal:cari()<br>';
+		//echo '<br>Anda berada di class Cari extends Kawal:idnama()<br>';
         //echo '<pre>$_POST=>'; print_r($_POST) . '</pre>';
         /*  $_POST[] => Array ( [cari] => 0000000123456 or [nama] => ABC ) */
         
         # senaraikan tatasusunan jadual
-        $myJadual = array('sse15_kawal','mfg15_pom','ppt2015','ppt2015_pom','sse15_prosesan');
+        $myJadual = array('sse15_kawal','mfg15_pom','ppt2015','ppt2015_pom','sse15_mko','sse15_prosesan');
 		$medan = '*';
         $this->papar->cariNama = array();
 
