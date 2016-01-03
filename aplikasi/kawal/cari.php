@@ -294,9 +294,12 @@ class Cari extends Kawal
 		//*/
 	}
 	
-	public function syarikat($cari = null)
+	public function syarikat($carilah = null)
 	{
+		$cari = bersih($_GET['cari']);
+		echo "URL \$cari = $cari <br> GET \$cari = $carilah";
 		//if($nama == null) echo '<li onClick="fill(\'-\');">Kosong Laa</li>';
+		/*
 		if (isset($_GET['cari']))
 		//if ($cari)
 		{
