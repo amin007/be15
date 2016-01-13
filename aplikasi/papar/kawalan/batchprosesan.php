@@ -1,15 +1,9 @@
 <?php 
-//print_r($this->url);
-//print_r($this->bilSemua); 
-//print_r($this->halaman); 
-//print_r($this->cariApa); 
-//print_r($this->carian); 
-#
 //print_r($this->error); 
+//print_r($this->cariApa); 
 //print_r($this->cariBatch); 
 //print_r($this->cariID); 
 //print_r($this->carian); 
-
 
 if ($this->carian=='[id:0]')
 {
