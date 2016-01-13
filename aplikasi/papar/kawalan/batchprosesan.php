@@ -99,7 +99,7 @@ foreach ($this->cariApa as $myTable => $row)
 		?><tbody><tr><td><?php echo $kira+1 ?></td><?php
 		foreach ( $row[$kira] as $key=>$data ) 
 		{	
-			paparURL($key, $data);
+			paparURL($key, $data, $cariBatch);
 		} 
 
 		?></tr></tbody>
@@ -118,7 +118,7 @@ foreach ($this->cariApa as $myTable => $row)
 </div><!-- /tabbable -->
 <?php } // $this->carian=='newss'' - tamat ?><?php 
 
-function paparURL($key, $data)
+function paparURL($key, $data, $cariBatch)
 {
 	if ($key=='newss')
 	{
