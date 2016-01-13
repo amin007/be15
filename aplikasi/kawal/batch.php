@@ -308,7 +308,7 @@ class Batch extends Kawal
 		return $paparError;
 	}
 	
-	public function proses($cariBatch = null, $cariID = null) 
+	public function hantar($cariBatch = null, $cariID = null) 
 	{    
 		//echo "\$cariBatch = $cariBatch . \$cariID = $cariID <br>";
 			$senaraiJadual = array('sse15_kawal'); # set senarai jadual yang terlibat
