@@ -446,7 +446,9 @@ class Batch extends Kawal
 		{
 			$terimaProses[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'kp terkini','apa'=>$kp);
 			$terimaProses[] = array('fix'=>'x<=','atau'=>'AND','medan'=>'tarikh','apa'=>$tarikh);
-		} $medan='concat_ws("/",`kp terkini`,tarikh) as terimaProsesan,';
+		} 
+		//$medan = 'concat_ws("/",`kp terkini`,tarikh) as terimaProsesan,';
+		$medan = 'concat_ws("/",tarikh,`kp terkini`) as terimaProsesan,';
 		$this->papar->cariApa['terimaKini'] = $this->tanya->
 			terimaProses($jadual, $medan, $terimaProses, $susunNama);
 		# sql 2
