@@ -468,14 +468,14 @@ function paparJadual_Data($allRows,$rows,$fields,$item,$ms,$hasil)
 	else: // mula kalau jumpa
 		## tajuk atas
 			echo "<tr>\n";// dptkan nama medan
-			echo '<th colspan=4>RANGKA</th>' . "\n";
+			echo '<th colspan=5>RANGKA</th>' . "\n";
 			echo '<th colspan=3>KOD 11</th>' . "\n";
 			echo '<th colspan=6>PENERIMAAN BORANG</th>' . "\n";
 			echo '<th colspan=6>BAKI BORANG</th>' . "\n";
 			echo "</tr>\n";
 		## tajuk medan
 			echo "<tr>\n";// dptkan nama medan
-			$senaraiMedan = array('KP','PJB','POK','POM','PJB','POK','POM',
+			$senaraiMedan = array('KES','KP','PJB','POK','POM','PJB','POK','POM',
 				'PJB','%PJB','POK','%POK','POM','%POM',
 				'PJB','%PJB','POK','%POK','POM','%POM'
 			);
@@ -494,7 +494,8 @@ function paparJadual_Data($allRows,$rows,$fields,$item,$ms,$hasil)
 			echo "<tr$h>";
 			foreach ($nilai as $key => $data)
 			{
-				echo '<td align="center">' . $data . '</td>';
+				echo ($data == null) ? '<td align="center">JUM</td>'
+				:'<td align="center">' . $data . '</td>';
 			}echo "</tr>\n";
 		}
 		
