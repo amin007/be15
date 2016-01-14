@@ -406,14 +406,14 @@ class Batch extends Kawal
 				cariGroup($jadual, $medan = 'batchProses hantar_prosesan, count(*) as kira', $cariKP = null, $susunKP);	
 	}
 	
-	public function terima($kp = null, $tarikh = null) 
+	public function terima($cariBatch = null, $kp = null, $tarikh = null) 
 	{
 		//echo "\$kp = $kp . \$tarikh = $tarikh <br>";
 			$senaraiJadual = array('sse15_prosesan'); # set senarai jadual yang terlibat
 			# cari $cariBatch atau cariID wujud tak
 			$this->papar->error = null;
 			# mula carian dalam jadual $myTable
-			$this->terimaProses($senaraiJadual[0], $kp, $tarikh);
+			$this->terimaProses($senaraiJadual[0], $kp, $tarikh, $cariBatch);
 			
 		# semak pembolehubah $this->papar->cariApa
 		//echo '<pre>', print_r($this->papar->cariApa, 1) . '</pre><br>';
@@ -429,7 +429,7 @@ class Batch extends Kawal
 		
 	}
 	
-	private function terimaProses($jadual, $kp, $tarikh)
+	private function terimaProses($jadual, $kp, $tarikh, $cariBatch)
 	{
 		$item = 1000; $ms = 1; ## set pembolehubah utama	
 		## tentukan bilangan mukasurat. bilangan jumlah rekod
@@ -452,6 +452,24 @@ class Batch extends Kawal
 		$this->papar->cariApa['terimaKini'] = $this->tanya->
 			terimaProses($jadual, $medan, $terimaProses, $susunNama);
 		# sql 2
+		$medan2 = '`no# batch`,newss,nama';
+		$cari2[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'no# batch','apa'=>$cariBatch);
+		$susun2[] = array_merge($jum2, array('kumpul'=>null,'susun'=>'1 ASC') );
+		$this->papar->cariApa['senarai'] = $this->tanya->
+			kesBatchAwal($jadual, $medan2, $cari2, $susun2);
+		# sql 3
+		$medan3 = '`no# batch`,`FE Prosesan`,count(*)';
+		$cari3 = null; //$cari3[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'no# batch','apa'=>$cariBatch);
+		$susun3[] = array_merge($jum2, array('kumpul'=>'1,2','susun'=>'1 ASC,2') );
+		$this->papar->cariApa['senaraibatch'] = $this->tanya->
+			kesBatchAwal($jadual, $medan3, $cari3, $susun3);
+		# sql 4
+		$medan4 = '`FE Prosesan`,`kp terkini`,count(*)';
+		$cari4 = null; //$cari4[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'no# batch','apa'=>$cariBatch);
+		$susun4[] = array_merge($jum2, array('kumpul'=>'1,2','susun'=>'1 ASC,2') );
+		$this->papar->cariApa['pegawai'] = $this->tanya->
+			kesBatchAwal($jadual, $medan4, $cari4, $susun4);
+
 		//$cariNegatif[] = array('fix'=>'xin','atau'=>'and','medan'=>'respon','apa'=>"('A1','B1','B2','B3','B4','B5','B6','B7')");
 	}
 # tamat class Batch extend Kawal
