@@ -458,7 +458,7 @@ class Batch extends Kawal
 		$this->papar->cariApa['senarai'] = $this->tanya->
 			kesBatchAwal($jadual, $medan2, $cari2, $susun2);
 		# sql 3
-		$medan3 = '`no# batch`,`FE Prosesan`,count(*)';
+		$medan3 = '`no# batch` as terimaProsesan,`FE Prosesan`,count(*)';
 		$cari3 = null; //$cari3[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'no# batch','apa'=>$cariBatch);
 		$susun3[] = array_merge($jum2, array('kumpul'=>'1,2','susun'=>'1 ASC,2') );
 		$this->papar->cariApa['senaraibatch'] = $this->tanya->
