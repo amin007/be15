@@ -1,7 +1,7 @@
 <?php 
 echo "<br>Alamat IP : <font color='red'>" . $this->ip . "</font> |" .
 //"<br>Alamat IP2 : <font color='red'>" . $this->ip2 . "</font> |" .
-"\r<br>Nama PC : <font color='red'>" . $this->hostname . "</font> |" .
+"\r Nama PC : <font color='red'>" . $this->hostname . "</font> |" .
 //"\r<br>Server : <font color='red'>" . $this->server . "</font>" .
 "\r";
 
