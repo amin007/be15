@@ -1,9 +1,9 @@
 <?php 
-echo "<br>Alamat IP : <font color='red'>" . $this->ip . "</font> |" .
+echo "Alamat IP : <font color='red'>" . $this->ip . "</font> |" .
 //"<br>Alamat IP2 : <font color='red'>" . $this->ip2 . "</font> |" .
 "\r Nama PC : <font color='red'>" . $this->hostname . "</font> |" .
 //"\r<br>Server : <font color='red'>" . $this->server . "</font>" .
-"\r";
+"<br>\r";
 
 //$senaraiIP=array('192.168.1.', '10.69.112.', '127.0.0.1', '10.72.112.');
 if ( in_array($this->ip2,$this->senaraiIP) )
@@ -18,9 +18,12 @@ if ( in_array($this->ip2,$this->senaraiIP) )
 		$file_headers = @get_headers($fail);
 		$imej = (($file_headers[0] == 'HTTP/1.1 404 Not Found')) ? $fe:'<img src="'.$fail.'">'; ?>
 		<a href="#<?php echo $fe ?>" data-rel="popup" data-position-to="window" data-role="button" data-inline="true" 
-		data-icon="user" data-theme="a" data-transition="flip"><?php echo $imej ?></a><?php 
+		data-icon="user" data-theme="a" data-transition="flip"><?php echo $imej ?></a><?php echo "\r";
 	endforeach; 
-	$kakitangan = senarai_kakitangan();
+	//$kakitangan = senarai_kakitangan();
+	$kakitangan = array('shima','khairani','noraini','adam',
+	'khairi','musa','amin','ariff',/*'azim','fendi',*/'irwan',
+	'norita','mustaffa','shukor'/*,'suhaida'*/);;
 	$fe = $key = null;
 	foreach ($kakitangan as $key => $fe):  
 		$fail = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $fe . '.jpg';
