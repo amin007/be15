@@ -8,7 +8,11 @@ echo "<br>Alamat IP : <font color='red'>" . $this->ip . "</font> |" .
 //$senaraiIP=array('192.168.1.', '10.69.112.', '127.0.0.1', '10.72.112.');
 if ( in_array($this->ip2,$this->senaraiIP) )
 {
-	$pegawai = senarai_kakitangan();
+	//$pegawai = senarai_kakitangan();
+	$pegawai = array('shima','khairani','noraini','adam',
+	'khairi','musa','amin','ariff',/*'azim','fendi',*/'irwan',
+	'norita','mustaffa','shukor'/*,'suhaida'*/);;
+
 	foreach ($pegawai as $key => $fe): 
 		$fail = 'http://' . $_SERVER['SERVER_NAME'] . '/private_html/bg/kakitangan/' . $fe . '.jpg';
 		$file_headers = @get_headers($fail);
