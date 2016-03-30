@@ -128,8 +128,8 @@ class Kawalan extends Kawal
 		/*# semak data
 		echo '<pre>';
 		//echo '$this->papar->kawalan:<br>'; print_r($this->papar->kawalan); 
-		echo '$this->papar->cariIndustri:<br>'; print_r($this->papar->_cariIndustri); 
-		echo '$this->papar->cari:<br>'; print_r($this->papar->cari); 
+		echo '$this->papar->cariIndustri:<br>'; var_export($this->papar->_cariIndustri); 
+		echo '<br>$this->papar->cari:'; print_r($this->papar->cari); 
 		echo '</pre>'; //*/
 		
         # pergi papar kandungan
