@@ -324,8 +324,8 @@ class Laporan_Tanya extends Tanya
 		$result['kiraData'] = $this->db->selectAll($sql2);
 		//echo json_encode($result);
 		
-		return $result;		
-		
+		return $result;
+	
 	}
 
 	public function laporan_bulanan($myTable, $susun)
