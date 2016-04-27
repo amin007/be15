@@ -12,7 +12,7 @@ class Batch_Tanya extends Tanya
 	{
 		$dimana = null;
 		if($atau==null ) $dimana .= null;
-		elseif($cariApa==null )
+		elseif($cariApa==null)
 			$dimana .= ($fix=='x!=') ? " $atau`$medan` != '' $akhir\r"
 					: " $atau`$medan` is null $akhir\r";
 		elseif($fix=='xnull')
