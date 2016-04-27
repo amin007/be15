@@ -11,7 +11,7 @@ class Batch_Tanya extends Tanya
 	private function jika($atau,$medan,$fix,$cariApa,$akhir)
 	{
 		$dimana = null;
-		if($atau==null ) $dimana .= null;
+		if($atau==null) $dimana .= null;
 		elseif($cariApa==null)
 			$dimana .= ($fix=='x!=') ? " $atau`$medan` != '' $akhir\r"
 					: " $atau`$medan` is null $akhir\r";
@@ -34,23 +34,23 @@ class Batch_Tanya extends Tanya
 		elseif($fix=='like%')
 			$dimana .= " $atau`$medan` like '$cariApa%' $akhir\r";	
 		elseif($fix=='xlike%')
-			$dimana .= " $atau`$medan` not like '$cariApa%' $akhir\r";	
+			$dimana .= " $atau`$medan` not like '$cariApa%' $akhir\r";
 		elseif($fix=='%like')
-			$dimana .= " $atau`$medan` like '%$cariApa' $akhir\r";	
+			$dimana .= " $atau`$medan` like '%$cariApa' $akhir\r";
 		elseif($fix=='x%like')
-			$dimana .= " $atau`$medan` not like '%$cariApa' $akhir\r";	
+			$dimana .= " $atau`$medan` not like '%$cariApa' $akhir\r";
 		elseif($fix=='in')
-			$dimana .= " $atau`$medan` in $cariApa $akhir\r";				
+			$dimana .= " $atau`$medan` in $cariApa $akhir\r";	
 		elseif($fix=='xin')
-			$dimana .= " $atau`$medan` not in $cariApa $akhir\r";				
+			$dimana .= " $atau`$medan` not in $cariApa $akhir\r";
 		elseif($fix=='khas2')
-			$dimana .= " $atau`$medan` REGEXP CONCAT('(^| )','',$cariApa) $akhir\r";	
+			$dimana .= " $atau`$medan` REGEXP CONCAT('(^| )','',$cariApa) $akhir\r";
 		elseif($fix=='xkhas2')
-			$dimana .= " $atau`$medan` NOT REGEXP CONCAT('(^| )','',$cariApa) $akhir\r";	
+			$dimana .= " $atau`$medan` NOT REGEXP CONCAT('(^| )','',$cariApa) $akhir\r";
 		elseif($fix=='khas3')
-			$dimana .= " $atau`$medan` REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]') $akhir\r";	
+			$dimana .= " $atau`$medan` REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]') $akhir\r";
 		elseif($fix=='xkhas4')
-			$dimana .= " $atau`$medan` NOT REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]') $akhir\r";	
+			$dimana .= " $atau`$medan` NOT REGEXP CONCAT('[[:<:]]',$cariApa,'[[:>:]]') $akhir\r";
 		elseif($fix=='z1')
 			$dimana .= " $atau$medan = $cariApa $akhir\r";
 		elseif($fix=='z2')
