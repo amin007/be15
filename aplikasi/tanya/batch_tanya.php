@@ -63,6 +63,7 @@ class Batch_Tanya extends Tanya
 			$dimana .= " $atau$medan in $cariApa $akhir\r";
 		elseif($fix=='zxin')
 			$dimana .= " $atau$medan not in $cariApa $akhir\r";	
+
 		return $dimana;
 	}
 	
