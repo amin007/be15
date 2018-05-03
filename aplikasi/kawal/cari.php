@@ -96,10 +96,9 @@ class Cari extends Kawal
 
 	public function tentang($apa, $bil=1, $mesej=null) 
 	{	
-		/* fungsi ini memaparkan borang
-		 * 
-		   echo 'mana ko pergi daa lokaliti($negeri)<br>';
-		 */
+		# Fungsi ini memaparkan borang
+		//echo 'mana ko pergi daa lokaliti($negeri)<br>';
+
 		if ($apa=='msic') $jadual = 'pom_dataekonomi.msic2000';
 		elseif ($apa=='produk') $jadual = 'pom_dataekonomi.kodproduk_mei2011';
 		elseif ($apa=='johor') $jadual = 'pom_lokaliti.johor'; # negeri johor/malaysia
@@ -114,7 +113,7 @@ class Cari extends Kawal
 		$this->papar->url = dpt_url();
 		$this->papar->mesej = $mesej;
 
-		# pergi papar kandungan
+		# Pergi papar kandungan
 		$this->papar->baca($this->_folder . '/index', 0);
 	}
 	
