@@ -2,6 +2,7 @@
 
 class Kawalan extends Kawal 
 {
+#=================================================================================================================
     public function __construct() 
     {
         parent::__construct();
@@ -18,9 +19,9 @@ class Kawalan extends Kawal
             'bootstrap-datepicker.css',
             'bootstrap-editable.css');			
     }
-
+#-----------------------------------------------------------------------------------------------------------------
     public function index() { echo '<br>class Kawalan::index() extend Kawal<br>'; }
-
+#-----------------------------------------------------------------------------------------------------------------
 	public function medanKawalan($cariID) 
 	{ 
 		$news1 = 'http://sidapmuar/ekonomi/ckawalan/ubah/' . $cariID;
@@ -63,7 +64,7 @@ class Kawalan extends Kawal
 			. '';	
 		return $medanKawalan;
 	}
-
+#-----------------------------------------------------------------------------------------------------------------
     public function ubah($cariID = null) 
     {//echo '<br>Anda berada di class Imej extends Kawal:ubah($cari)<br>';
 		// senaraikan tatasusunan jadual dan setkan pembolehubah
@@ -132,7 +133,7 @@ class Kawalan extends Kawal
         # pergi papar kandungan
         $this->papar->baca('kawalan/ubah', 0);
     }
-
+#-----------------------------------------------------------------------------------------------------------------
 	public function ubahCari()
 	{
 		//echo '<pre>$_GET->', print_r($_GET, 1) . '</pre>';
@@ -148,7 +149,7 @@ class Kawalan extends Kawal
 		//echo '<br>location: ' . URL . 'kawalan/ubah/' . $dataID . '';
 		header('location: ' . URL . 'kawalan/ubah/' . $dataID);
 	}
-
+#-----------------------------------------------------------------------------------------------------------------
     public function ubahSimpan($dataID)
     {
         $posmen = array();
@@ -232,7 +233,7 @@ class Kawalan extends Kawal
 		header('location: ' . URL . 'kawalan/ubah/' . $dataID);
  //*/
     }
-
+#-----------------------------------------------------------------------------------------------------------------
 	function buang($id) 
     {//echo '<br>Anda berada di class Imej extends Kawal:buang($cari)<br>';
 
@@ -255,5 +256,6 @@ class Kawalan extends Kawal
         # pergi papar kandungan
         $this->papar->baca('kawalan/buang', 1);
     }
-
+#-----------------------------------------------------------------------------------------------------------------
+#=================================================================================================================
 }
