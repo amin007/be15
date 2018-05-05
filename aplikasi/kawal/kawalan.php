@@ -6,7 +6,7 @@ class Kawalan extends Kawal
     {
         parent::__construct();
         Kebenaran::kawalKeluar();
-        
+
         $this->papar->js = array(
             /*'bootstrap-transition.js','bootstrap-alert.js','bootstrap-modal.js','bootstrap-dropdown.js',
 			'bootstrap-scrollspy.js','bootstrap-tab.js','bootstrap-tooltip.js','bootstrap-popover.js',
@@ -18,9 +18,9 @@ class Kawalan extends Kawal
             'bootstrap-datepicker.css',
             'bootstrap-editable.css');			
     }
-    
+
     public function index() { echo '<br>class Kawalan::index() extend Kawal<br>'; }
-    
+
 	public function medanKawalan($cariID) 
 	{ 
 		$news1 = 'http://sidapmuar/ekonomi/ckawalan/ubah/' . $cariID;
@@ -63,20 +63,19 @@ class Kawalan extends Kawal
 			. '';	
 		return $medanKawalan;
 	}
-    
+
     public function ubah($cariID = null) 
     {//echo '<br>Anda berada di class Imej extends Kawal:ubah($cari)<br>';
-                
-        // senaraikan tatasusunan jadual dan setkan pembolehubah
+		// senaraikan tatasusunan jadual dan setkan pembolehubah
         $jadualKawalan = 'sse15_kawal';
         $medanKawalan = $this->medanKawalan($cariID);
-	
+
         if (!empty($cariID)) 
         {
             $this->papar->carian='newss';
 			$this->papar->kesID = array();
 			$cari[] = array('fix'=>'like','atau'=>'WHERE','medan'=>'newss','apa'=>$cariID);
-        
+
             // 1. mula semak dalam rangka 
             $this->papar->kawalan['kes'] = $this->tanya->
 				cariSemuaData($jadualKawalan, $medanKawalan, $cari);
@@ -90,7 +89,7 @@ class Kawalan extends Kawal
 				//326-46312  substr("abcdef", 0, -1);  // returns "abcde"
 				$msic08 = substr($msic, 4);  // returns "46312"
 				$cariM6[] = array('fix'=>'x=','atau'=>'WHERE','medan'=>'msic','apa'=>$msic08);
-			
+
 				// 1.2 cari nilai msic & msic08 dalam jadual msic2008
 				$jadualMSIC = dpt_senarai('msicbaru');
 				// mula cari $cariID dalam $jadual
@@ -111,47 +110,43 @@ class Kawalan extends Kawal
 						cariSemuaData($msic, $medanM6, $cariM6);
 				}// tamat ulang table
 			endif;
-		
 		}
         else
         {
             $this->papar->carian='[tiada id diisi]';
         }
-        
+
         # isytihar pemboleubah
         $this->papar->pegawai = senarai_kakitangan();
         $this->papar->lokasi = 'CDT 2014 - Ubah';
 		$this->papar->cari = (isset($this->papar->kawalan['kes'][0]['newss'])) ? $newss : $cariID;
 		$this->papar->_jadual = $jadualKawalan;
-		
-        
+
 		/*# semak data
 		echo '<pre>';
 		//echo '$this->papar->kawalan:<br>'; print_r($this->papar->kawalan); 
 		echo '$this->papar->cariIndustri:<br>'; var_export($this->papar->_cariIndustri); 
 		echo '<br>$this->papar->cari:'; print_r($this->papar->cari); 
 		echo '</pre>'; //*/
-		
+
         # pergi papar kandungan
         $this->papar->baca('kawalan/ubah', 0);
-
     }
-    
+
 	public function ubahCari()
 	{
 		//echo '<pre>$_GET->', print_r($_GET, 1) . '</pre>';
 		# bersihkan data $_POST
 		$input = bersih($_GET['cari']);
 		$dataID = str_pad($input, 12, "0", STR_PAD_LEFT);
-		
+
 		# Set pemboleubah utama
         $this->papar->pegawai = senarai_kakitangan();
         $this->papar->lokasi = 'CDT 2014 - Ubah';
-		
+
 		# pergi papar kandungan
 		//echo '<br>location: ' . URL . 'kawalan/ubah/' . $dataID . '';
 		header('location: ' . URL . 'kawalan/ubah/' . $dataID);
-
 	}
 
     public function ubahSimpan($dataID)
@@ -159,8 +154,8 @@ class Kawalan extends Kawal
         $posmen = array();
         $medanID = 'newss';
 		$tahunan = array('sse15_kawal');
-    
-        foreach ($_POST as $myTable => $value)
+
+		foreach ($_POST as $myTable => $value)
         {   if ( in_array($myTable,$tahunan) )
             {   foreach ($value as $kekunci => $papar)
 				{	$posmen[$myTable][$kekunci]= 
@@ -170,7 +165,7 @@ class Kawalan extends Kawal
 				}	$posmen[$myTable][$medanID] = $dataID;
             }
         }
-        
+
 		# ubahsuai $posmen
 			# buat peristiharan
 			$rangka = 'sse15_kawal'; // jadual rangka kawalan
@@ -187,7 +182,7 @@ class Kawalan extends Kawal
 				eval( '$hasil = (' . $posmen[$rangka]['hasil'] . ');' );
 				$posmen[$rangka]['hasil'] = $hasil;
 			}
-			if (isset($posmen[$rangka]['belanja']))			
+			if (isset($posmen[$rangka]['belanja']))
 			{
 				eval( '$belanja = (' . $posmen[$rangka]['belanja'] . ');' );
 				$posmen[$rangka]['belanja'] = $belanja;
@@ -197,7 +192,7 @@ class Kawalan extends Kawal
 				eval( '$gaji = (' . $posmen[$rangka]['gaji'] . ');' );
 				$posmen[$rangka]['gaji'] = $gaji;
 			}
-			if (isset($posmen[$rangka]['aset']))			
+			if (isset($posmen[$rangka]['aset']))
 			{
 				eval( '$aset = (' . $posmen[$rangka]['aset'] . ');' );
 				$posmen[$rangka]['aset'] = $aset;
@@ -207,7 +202,7 @@ class Kawalan extends Kawal
 				eval( '$staf = (' . $posmen[$rangka]['staf'] . ');' );
 				$posmen[$rangka]['staf'] = $staf;
 			}
-			if (isset($posmen[$rangka]['stok']))			
+			if (isset($posmen[$rangka]['stok']))
 			{
 				eval( '$stok = (' . $posmen[$rangka]['stok'] . ');' );
 				$posmen[$rangka]['stok'] = $stok;
@@ -231,18 +226,18 @@ class Kawalan extends Kawal
         {// mula ulang table
             $this->tanya->ubahSimpan($posmen[$jadual], $jadual, $medanID);
         }// tamat ulang table
-        
+
         # pergi papar kandungan
 		//$this->papar->baca('kawalan/ubah/' . $dataID);
 		header('location: ' . URL . 'kawalan/ubah/' . $dataID);
- //*/       
+ //*/
     }
 
 	function buang($id) 
     {//echo '<br>Anda berada di class Imej extends Kawal:buang($cari)<br>';
-                
+
         if (!empty($id)) 
-        {       
+        {
             // mula cari $cariID dalam $bulanan
             foreach ($bulanan as $key => $myTable)
             {// mula ulang table
@@ -250,16 +245,15 @@ class Kawalan extends Kawal
                     $this->tanya->cariSemuaMedan($sv . $myTable, 
                     $medanData, $cari);
             }// tamat ulang table
-			
+
         }
         else
         {
             $this->papar->carian='[tiada id diisi]';
         }
-        
+
         # pergi papar kandungan
         $this->papar->baca('kawalan/buang', 1);
-
     }
 
 }
