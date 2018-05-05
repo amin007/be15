@@ -7,7 +7,7 @@ class Cari extends Kawal
 	{
 		parent::__construct();
         Kebenaran::kawalKeluar();
-		
+
         $this->papar->js = array(
             //'bootstrap.js',
             'bootstrap-transition.js',
@@ -29,14 +29,14 @@ class Cari extends Kawal
         $this->papar->css = array(
             'bootstrap-datepicker.css',
             'bootstrap-editable.css');
-		
+
 		$this->_tajukAtas = 'SSE 2015:';
-		$this->_folder = 'cari';			
+		$this->_folder = 'cari';
 		
 	}
 	
 	public function index() 
-	{	
+	{
 		$this->papar->medan = array(1,2,3);
 		# set latarbelakang
 		$this->papar->gambar=gambar_latarbelakang('../../');
@@ -47,7 +47,7 @@ class Cari extends Kawal
 	}
 	
 	public function idnama() 
-	{	
+	{
 		//echo '<br>Anda berada di class Cari extends Kawal:idnama()<br>';
         //echo '<pre>$_POST=>'; print_r($_POST) . '</pre>';
         /*  $_POST[] => Array ( [cari] => 0000000123456 or [nama] => ABC ) */
@@ -95,7 +95,7 @@ class Cari extends Kawal
     }
 
 	public function tentang($apa, $bil=1, $mesej=null) 
-	{	
+	{
 		# Fungsi ini memaparkan borang
 		//echo 'mana ko pergi daa lokaliti($negeri)<br>';
 
